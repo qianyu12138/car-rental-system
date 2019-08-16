@@ -42,7 +42,10 @@
                     --><a href="javascript:void(0)" onclick="switchChange(this);"><img class="switch-img" src="${pageContext.request.contextPath}/images/switch-on.png" alt="switch-on"></a>
             </div>
         </div>
-        <img class="left-float car-to-img" src="${pageContext.request.contextPath}/images/car-to.jpg">
+        <div class="left-float car-to-img">
+            <img src="${pageContext.request.contextPath}/images/car-to.jpg">
+            <p>qawfqfqfdr</p>
+        </div>
         <div class="choice-date left-float">
             <div class="choice-date-block"><span class="date-text">取车时间</span><!--
                 --><input readonly value="${startTime}" form="form" placeholder="请选择开始日期" class="date-choice" type="text"></div>
@@ -64,6 +67,8 @@
             <div class="car-price">
                 <p class="price-title">价格<span class="grey-text size14">(元)</span></p>
                 <div class="price-line">
+                    <input type="hidden" id="minPrice-input" name="vo.minPrice"/>
+                    <input type="hidden" id="maxPrice-input" name="vo.maxPrice"/>
                     <a href="javascript:void(0)" onclick="selectPrice(this, '.price-no-filter', '');"><div class="price-line-common price-line-1"></div></a><!--
                         --><a href="javascript:void(0)" onclick="selectPrice(this, '.price-0', '.price-150');"><div class="price-line-common price-line-2"></div></a><!--
                         --><a href="javascript:void(0)" onclick="selectPrice(this, '.price-150', '.price-300');"><div class="price-line-common price-line-3"></div></a><!--
@@ -82,18 +87,15 @@
             <div class="car-brand">
                 <p class="brand-title">品牌</p>
                 <div class="brand-content">
-                    <a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common brand-name-specify">不限</p></a><!--
-                        --><a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">大众</p></a><!--
-                        --><a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">比亚迪</p></a><!--
-                        --><a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">丰田</p></a><!--
-                        --><a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">马自达</p></a><!--
-                        --><a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">斯巴鲁</p></a><!--
-                        --><a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">长安</p></a><!--
-                        --><a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">本田</p></a><!--
-                        --><a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">日产</p></a><!--
-                        --><a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">保时捷</p></a><!--
-                        --><a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">大众</p></a><!--
-                        -->
+                    <input type="hidden" id="kid-input" name="vo.kindIdChoosed" />
+                    <a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common brand-name-specify">不限</p></a>
+                    <c:forEach items="${kinds}" var="k">
+                    <a href="javascript:void(0)" onclick="selectBrand(this,${k.kid});"><p class="brand-name-common">${k.kname}</p></a>
+                    </c:forEach>
+                    <div class="form-group">
+                        <input type="text" name="keyword" value="${vo.keyWord}" class="form-control" placeholder="关键字"/><br />
+                        <button class="btn btn-default form-control">搜索</button>
+                    </div>
                 </div>
             </div>
             <div class="car-store">

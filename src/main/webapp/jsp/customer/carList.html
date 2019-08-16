@@ -21,6 +21,7 @@
     <div class="header-box"></div>
     <script>
         $(".header-box").load("../common/public-header.html");
+        $("")
     </script>
 
     <div class="address-date-choice">
@@ -39,7 +40,10 @@
                     --><a href="javascript:void(0)" onclick="switchChange(this);"><img class="switch-img" src="../../images/switch-on.png" alt="switch-on"></a>
                 </div>
             </div>
-            <img class="left-float car-to-img" src="../../images/car-to.jpg">
+            <div class="left-float car-to-img">
+            <img class="" src="../../images/car-to.jpg">
+            <p>trsdtraszt</p>
+            </div>
             <div class="choice-date left-float">
                 <div class="choice-date-block"><span class="date-text">取车时间</span><!--
                 --><input readonly placeholder="请选择开始日期" class="date-choice" type="text"></div>
@@ -91,7 +95,12 @@
                         --><a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">保时捷</p></a><!--
                         --><a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">大众</p></a><!--
                         -->
+                        
                     </div>
+                	<div class="form-group">
+                		<input type="text" name="keyword" class="form-control" placeholder="关键字"/><br />
+                		<button class="btn btn-default form-control">搜索</button>
+                	</div>
                 </div>
                 <div class="car-store">
                     <p class="store-name">武汉天河机场店</p>

@@ -38,17 +38,15 @@ public class UserController {
     }
 
     @RequestMapping("/user/login")
- public  String login(HttpServletRequest request, String phone, String password)
-     {
-        User user= userService.login(phone,password);
-        if (user==null)
-        {
-            request.setAttribute("er","账号或密码错误");
+    public String login(HttpServletRequest request, String phone, String password) {
+        User user = userService.login(phone, password);
+        if (user == null) {
+            request.setAttribute("er", "账号或密码错误");
             return "login";
         }
-       request.getSession().setAttribute("user",user);
-     return  "index";
-     }
+        request.getSession().setAttribute("user", user);
+        return "index";
+    }
 
 
 

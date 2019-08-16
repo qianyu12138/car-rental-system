@@ -22,12 +22,13 @@ function selectPrice(link, minPrice, maxPrice) {
  * 品牌切换
  * @param link
  */
-function selectBrand(link) {
+function selectBrand(link,kid) {
     var p = $(link).find("p").get(0);
     // 初始化字体颜色灰色
     $(".brand-name-common").css("color", "#93939e");
     // 指定选中字体黄色
     $(p).css("color", "#fabe00");
+    $("#kid-input").val(kid);
 }
 
 /**

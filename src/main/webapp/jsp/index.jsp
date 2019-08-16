@@ -27,7 +27,7 @@
     <div class="index-carousel-bg">
     </div>
     <div class="index-choice">
-        <form id="form" action="<c:url value='${pageContext.request.contextPath}/customer/toCarList'/>" method="post" ></form>
+        <form id="form" action="<c:url value='${pageContext.request.contextPath}/conditionSubmit'/>" method="post" ></form>
         <div class="choice-nav clearfloat">
             <div class="nav-common nav-random left-float"><p class="nav-text">上门取送</p></div>
             <div class="nav-common nav-specify left-float"><p class="nav-text">到店取还</p></div>
