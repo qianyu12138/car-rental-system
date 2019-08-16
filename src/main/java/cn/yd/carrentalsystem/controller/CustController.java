@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class CustController {
+
     @RequestMapping("/customer/toCarList")
     public String toCarList(HttpServletRequest request, String deliveryAddress, String pickUpAddress, String startTime, String endTime)
     {

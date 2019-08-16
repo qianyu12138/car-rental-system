@@ -31,7 +31,7 @@
             </c:if>
             <!--已登录-->
             <c:if test="${user!=null}">
-            <li class="item right-float"><a class="nav-link mycargo-link" href="#">我的Cargo</a></li>
+            <li class="item right-float"><a class="nav-link mycargo-link" href="${pageContext.request.contextPath }/usr/toPcenter">我的Cargo</a></li>
             <li class="item right-float"><span class="hello-text">欢迎您，${user.name}</span></li>
             </c:if>
             <!--已登录-->
