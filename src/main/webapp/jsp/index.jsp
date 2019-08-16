@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,29 +19,31 @@
 <body>
 <div class="header-box"></div>
 <script>
-    $(".header-box").load("${pageContext.request.contextPath}/html/common/public-header.html");
+    $(".header-box").load("${pageContext.request.contextPath}/jsp/common/public-header.jsp");
+
 </script>
 
 <div class="index-carousel">
     <div class="index-carousel-bg">
     </div>
     <div class="index-choice">
+        <form id="form" action="<c:url value='${pageContext.request.contextPath}/customer/toCarList'/>" method="post" ></form>
         <div class="choice-nav clearfloat">
             <div class="nav-common nav-random left-float"><p class="nav-text">上门取送</p></div>
             <div class="nav-common nav-specify left-float"><p class="nav-text">到店取还</p></div>
             <div class="nav-common nav-discount left-float"><p class="nav-text">特价优惠</p></div>
         </div>
         <div class="choice-address">
-            <div class="choice-address-block"><span class="address-text get-address-text">取车</span><input readonly class="address-choice" placeholder="请输入送车上门地址"></div>
-            <div class="choice-address-block"><span class="address-text return-address-text">还车</span><input readonly class="address-choice" placeholder="请输入上门取车地址"></div>
+            <div class="choice-address-block"><span class="address-text get-address-text">取车</span><input  form="form"    name="deliveryAddress"class="address-choice" placeholder="请输入送车上门地址"></div>
+            <div class="choice-address-block"><span class="address-text return-address-text">还车</span><input form="form" class="address-choice"  name="pickUpAddress" placeholder="请输入上门取车地址"></div>
         </div>
         <div class="choice-date">
-            <span class="date-text">租期</span><input readonly placeholder="请选择开始日期" class="date-choice" type="text">
+            <span class="date-text">租期</span><input readonly name="startTime" form="form" placeholder="请选择开始日期" class="date-choice" type="text">
             <!--<span class="date-to-bg"></span>-->
             <img src="${pageContext.request.contextPath}/images/dateTo.png" alt="至">
-            <input readonly  placeholder="请选择结束日期" class="date-choice return-date-choice" type="text">
+            <input readonly   placeholder="请选择结束日期" name="endTime" form="form" class="date-choice return-date-choice" type="text">
         </div>
-        <input type="submit" class="choice-btn" value="立即选车">
+        <input type="submit"  form="form" class="choice-btn" value="立即选车">
     </div>
 </div>
 
@@ -87,10 +90,11 @@
 
 <div class="footer-box"></div>
 <script>
-    $(".footer-box").load("${pageContext.request.contextPath}/html/common/public-footer.html");
+    $(".footer-box").load("${pageContext.request.contextPath}/jsp/common/public-footer.jsp");
 </script>
 
 <script>
+
     $('.date-choice').datetimepicker({
         autoclose: true,
         startDate: new Date()

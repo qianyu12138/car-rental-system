@@ -19,7 +19,7 @@
 <!--头部-->
 <div class="header-box"></div>
 <script>
-    $(".header-box").load("${pageContext.request.contextPath}/html/common/public-header.html");
+    $(".header-box").load("${pageContext.request.contextPath}/jsp/common/public-header.jsp");
 </script>
 <div class="main-content">
     <div class="bg-img"></div>
@@ -41,7 +41,7 @@
             <div class="form-group">
                 <span class="loginError">${er}</span>
                 <input type="submit" class="loginBtn" id="login" value="登录" />
-                <a id="register" class="registLink" href="${pageContext.request.contextPath }/user/toRegist"><span>还没账号？</span>快速注册</a>
+                <a id="register" class="registLink" href="${pageContext.request.contextPath }/toRegist"><span>还没账号？</span>快速注册</a>
                 <a class="forgetLink" id="forgetPwd" href="${pageContext.request.contextPath }/user/toForgetPassword">忘记密码?</a>
             </div>
         </form>
@@ -50,7 +50,7 @@
 <!--尾部-->
 <div class="footer-box"></div>
 <script>
-    $(".footer-box").load("${pageContext.request.contextPath}/html/common/public-footer.html");
+    $(".footer-box").load("${pageContext.request.contextPath}/jsp/common/public-footer.jsp");
 </script>
 <script type="text/javascript">
     // 登录前台校验
