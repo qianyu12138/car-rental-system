@@ -12,6 +12,8 @@
     <result column="sitNumber" property="sitnumber" jdbcType="INTEGER" />
     <result column="deposit" property="deposit" jdbcType="REAL" />
     <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="startAddress" property="startaddress" jdbcType="VARCHAR" />
+    <result column="endAddress" property="endaddress" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    cid, cname, kid, imgs, desc, price, licenseNumber, sitNumber, deposit, state
+    cid, cname, kid, imgs, desc, price, licenseNumber, sitNumber, deposit, state, startAddress, 
+    endAddress
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.yd.carrentalsystem.po.CarExample" >
     select
@@ -108,11 +111,13 @@
     insert into car (cid, cname, kid, 
       imgs, desc, price, 
       licenseNumber, sitNumber, deposit, 
-      state)
+      state, startAddress, endAddress
+      )
     values (#{cid,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, #{kid,jdbcType=INTEGER}, 
       #{imgs,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
       #{licensenumber,jdbcType=VARCHAR}, #{sitnumber,jdbcType=INTEGER}, #{deposit,jdbcType=REAL}, 
-      #{state,jdbcType=VARCHAR})
+      #{state,jdbcType=VARCHAR}, #{startaddress,jdbcType=VARCHAR}, #{endaddress,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.yd.carrentalsystem.po.Car" >
     insert into car
@@ -147,6 +152,12 @@
       <if test="state != null" >
         state,
       </if>
+      <if test="startaddress != null" >
+        startAddress,
+      </if>
+      <if test="endaddress != null" >
+        endAddress,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="cid != null" >
@@ -178,6 +189,12 @@
       </if>
       <if test="state != null" >
         #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="startaddress != null" >
+        #{startaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="endaddress != null" >
+        #{endaddress,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -220,6 +237,12 @@
       <if test="record.state != null" >
         state = #{record.state,jdbcType=VARCHAR},
       </if>
+      <if test="record.startaddress != null" >
+        startAddress = #{record.startaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endaddress != null" >
+        endAddress = #{record.endaddress,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -236,7 +259,9 @@
       licenseNumber = #{record.licensenumber,jdbcType=VARCHAR},
       sitNumber = #{record.sitnumber,jdbcType=INTEGER},
       deposit = #{record.deposit,jdbcType=REAL},
-      state = #{record.state,jdbcType=VARCHAR}
+      state = #{record.state,jdbcType=VARCHAR},
+      startAddress = #{record.startaddress,jdbcType=VARCHAR},
+      endAddress = #{record.endaddress,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -271,6 +296,12 @@
       <if test="state != null" >
         state = #{state,jdbcType=VARCHAR},
       </if>
+      <if test="startaddress != null" >
+        startAddress = #{startaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="endaddress != null" >
+        endAddress = #{endaddress,jdbcType=VARCHAR},
+      </if>
     </set>
     where cid = #{cid,jdbcType=INTEGER}
   </update>
@@ -284,7 +315,9 @@
       licenseNumber = #{licensenumber,jdbcType=VARCHAR},
       sitNumber = #{sitnumber,jdbcType=INTEGER},
       deposit = #{deposit,jdbcType=REAL},
-      state = #{state,jdbcType=VARCHAR}
+      state = #{state,jdbcType=VARCHAR},
+      startAddress = #{startaddress,jdbcType=VARCHAR},
+      endAddress = #{endaddress,jdbcType=VARCHAR}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
 </mapper>

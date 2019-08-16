@@ -754,6 +754,146 @@ public class CarExample {
             addCriterion("state not between", value1, value2, "state");
             return (Criteria) this;
         }
+
+        public Criteria andStartaddressIsNull() {
+            addCriterion("startAddress is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressIsNotNull() {
+            addCriterion("startAddress is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressEqualTo(String value) {
+            addCriterion("startAddress =", value, "startaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressNotEqualTo(String value) {
+            addCriterion("startAddress <>", value, "startaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressGreaterThan(String value) {
+            addCriterion("startAddress >", value, "startaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressGreaterThanOrEqualTo(String value) {
+            addCriterion("startAddress >=", value, "startaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressLessThan(String value) {
+            addCriterion("startAddress <", value, "startaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressLessThanOrEqualTo(String value) {
+            addCriterion("startAddress <=", value, "startaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressLike(String value) {
+            addCriterion("startAddress like", value, "startaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressNotLike(String value) {
+            addCriterion("startAddress not like", value, "startaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressIn(List<String> values) {
+            addCriterion("startAddress in", values, "startaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressNotIn(List<String> values) {
+            addCriterion("startAddress not in", values, "startaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressBetween(String value1, String value2) {
+            addCriterion("startAddress between", value1, value2, "startaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartaddressNotBetween(String value1, String value2) {
+            addCriterion("startAddress not between", value1, value2, "startaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressIsNull() {
+            addCriterion("endAddress is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressIsNotNull() {
+            addCriterion("endAddress is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressEqualTo(String value) {
+            addCriterion("endAddress =", value, "endaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressNotEqualTo(String value) {
+            addCriterion("endAddress <>", value, "endaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressGreaterThan(String value) {
+            addCriterion("endAddress >", value, "endaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressGreaterThanOrEqualTo(String value) {
+            addCriterion("endAddress >=", value, "endaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressLessThan(String value) {
+            addCriterion("endAddress <", value, "endaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressLessThanOrEqualTo(String value) {
+            addCriterion("endAddress <=", value, "endaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressLike(String value) {
+            addCriterion("endAddress like", value, "endaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressNotLike(String value) {
+            addCriterion("endAddress not like", value, "endaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressIn(List<String> values) {
+            addCriterion("endAddress in", values, "endaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressNotIn(List<String> values) {
+            addCriterion("endAddress not in", values, "endaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressBetween(String value1, String value2) {
+            addCriterion("endAddress between", value1, value2, "endaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndaddressNotBetween(String value1, String value2) {
+            addCriterion("endAddress not between", value1, value2, "endaddress");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

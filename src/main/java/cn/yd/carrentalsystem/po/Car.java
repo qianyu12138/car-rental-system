@@ -23,6 +23,10 @@ public class Car {
 
     private String state;
 
+    private String startaddress;
+
+    private String endaddress;
+
     public Integer getCid() {
         return cid;
     }
@@ -101,5 +105,21 @@ public class Car {
 
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
+    }
+
+    public String getStartaddress() {
+        return startaddress;
+    }
+
+    public void setStartaddress(String startaddress) {
+        this.startaddress = startaddress == null ? null : startaddress.trim();
+    }
+
+    public String getEndaddress() {
+        return endaddress;
+    }
+
+    public void setEndaddress(String endaddress) {
+        this.endaddress = endaddress == null ? null : endaddress.trim();
     }
 }
