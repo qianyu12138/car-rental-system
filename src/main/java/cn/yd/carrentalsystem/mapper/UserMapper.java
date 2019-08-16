@@ -2,9 +2,12 @@ package cn.yd.carrentalsystem.mapper;
 
 import cn.yd.carrentalsystem.po.User;
 import cn.yd.carrentalsystem.po.UserExample;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+@Mapper
 public interface UserMapper {
     int countByExample(UserExample example);
 

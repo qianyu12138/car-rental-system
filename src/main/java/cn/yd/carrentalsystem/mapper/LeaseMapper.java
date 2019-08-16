@@ -2,9 +2,12 @@ package cn.yd.carrentalsystem.mapper;
 
 import cn.yd.carrentalsystem.po.Lease;
 import cn.yd.carrentalsystem.po.LeaseExample;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+@Mapper
 public interface LeaseMapper {
     int countByExample(LeaseExample example);
 
