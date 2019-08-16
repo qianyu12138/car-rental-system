@@ -14,8 +14,10 @@ function selectPrice(link, minPrice, maxPrice) {
     // 价格初始化灰色
     $(".price-text span").css("color", "#93939E");
     // 指定最低价格和最高价格黄色
-    $(minPrice).css("color", "#fabe00");
-    $(maxPrice).css("color", "#fabe00");
+    $(".price-"+minPrice).css("color", "#fabe00");
+    $(".price-"+maxPrice).css("color", "#fabe00");
+    $("#minPrice-input").val(minPrice);
+    $("#maxPrice-input").val(maxPrice);
 }
 
 /**

@@ -69,11 +69,11 @@
                 <div class="price-line">
                     <input type="hidden" id="minPrice-input" name="vo.minPrice"/>
                     <input type="hidden" id="maxPrice-input" name="vo.maxPrice"/>
-                    <a href="javascript:void(0)" onclick="selectPrice(this, '.price-no-filter', '');"><div class="price-line-common price-line-1"></div></a><!--
-                        --><a href="javascript:void(0)" onclick="selectPrice(this, '.price-0', '.price-150');"><div class="price-line-common price-line-2"></div></a><!--
-                        --><a href="javascript:void(0)" onclick="selectPrice(this, '.price-150', '.price-300');"><div class="price-line-common price-line-3"></div></a><!--
-                        --><a href="javascript:void(0)" onclick="selectPrice(this, '.price-350', '.price-500');"><div class="price-line-common price-line-4"></div></a><!--
-                        --><a href="javascript:void(0)" onclick="selectPrice(this, '.price-500-plus', '');"><div class="price-line-common price-line-5"></div></a><!--
+                    <a href="javascript:void(0)" onclick="selectPrice(this, '', '');"><div class="price-line-common price-line-1"></div></a><!--
+                        --><a href="javascript:void(0)" onclick="selectPrice(this, 0, 150);"><div class="price-line-common price-line-2"></div></a><!--
+                        --><a href="javascript:void(0)" onclick="selectPrice(this, 150, 300);"><div class="price-line-common price-line-3"></div></a><!--
+                        --><a href="javascript:void(0)" onclick="selectPrice(this, 300, 500);"><div class="price-line-common price-line-4"></div></a><!--
+                        --><a href="javascript:void(0)" onclick="selectPrice(this, 500, 1000);"><div class="price-line-common price-line-5"></div></a><!--
                         -->
                 </div>
                 <p class="price-text"><span class="orange-text price-no-filter size14">不限</span>&nbsp;<!--
@@ -81,7 +81,7 @@
                         --><span class="price-150">150</span>&nbsp;&nbsp;<!--
                         --><span class="price-300">300</span>&nbsp;&nbsp;<!--
                         --><span class="price-500">500</span>&nbsp;&nbsp;<!--x
-                        --><span class="price-500-plus">500+</span><!--
+                        --><span class="price-1000">1000</span><!--
                         --></p>
             </div>
             <div class="car-brand">
@@ -117,96 +117,23 @@
         </div>
 
         <div class="car-content left-float">
+            <c:forEach items="${cars}" var="c">
             <div class="single-car clearfloat">
                 <img class="car-img left-float" src="${pageContext.request.contextPath}/images/car-1.jpg">
                 <dl class="car-desc-box left-float">
-                    <dt class="car-name">别克英朗</dt>
-                    <dd class="car-desc">三厢|1.5自动|5人</dd>
+                    <dt class="car-name">${c.cname}</dt>
+                    <dd class="car-desc">${c.desc}</dd>
                     <dd class="car-gear-auto">自动挡</dd>
                     <dd class="car-gear">手动挡</dd>
                 </dl>
                 <div class="car-price-box left-float">
-                    <span class="car-price-text">&yen;83</span><span class="day-avg">/日均</span>
+                    <span class="car-price-text">&yen;${c.price}</span><span class="day-avg">/日均</span>
                 </div>
                 <div class="choice-btn-box left-float">
                     <button class="choice-btn">租&nbsp;车</button>
                 </div>
             </div>
-            <div class="single-car clearfloat">
-                <img class="car-img left-float" src="${pageContext.request.contextPath}/images/car-1.jpg">
-                <dl class="car-desc-box left-float">
-                    <dt class="car-name">别克英朗</dt>
-                    <dd class="car-desc">三厢|1.5自动|5人</dd>
-                    <dd class="car-gear-auto">自动挡</dd>
-                    <dd class="car-gear">手动挡</dd>
-                </dl>
-                <div class="car-price-box left-float">
-                    <span class="car-price-text">&yen;83</span><span class="day-avg">/日均</span>
-                </div>
-                <div class="choice-btn-box left-float">
-                    <button class="choice-btn">租&nbsp;车</button>
-                </div>
-            </div>
-            <div class="single-car clearfloat">
-                <img class="car-img left-float" src="${pageContext.request.contextPath}/images/car-1.jpg">
-                <dl class="car-desc-box left-float">
-                    <dt class="car-name">别克英朗</dt>
-                    <dd class="car-desc">三厢|1.5自动|5人</dd>
-                    <dd class="car-gear-auto">自动挡</dd>
-                    <dd class="car-gear">手动挡</dd>
-                </dl>
-                <div class="car-price-box left-float">
-                    <span class="car-price-text">&yen;83</span><span class="day-avg">/日均</span>
-                </div>
-                <div class="choice-btn-box left-float">
-                    <button class="choice-btn">租&nbsp;车</button>
-                </div>
-            </div>
-            <div class="single-car clearfloat">
-                <img class="car-img left-float" src="${pageContext.request.contextPath}/images/car-1.jpg">
-                <dl class="car-desc-box left-float">
-                    <dt class="car-name">别克英朗</dt>
-                    <dd class="car-desc">三厢|1.5自动|5人</dd>
-                    <dd class="car-gear-auto">自动挡</dd>
-                    <dd class="car-gear">手动挡</dd>
-                </dl>
-                <div class="car-price-box left-float">
-                    <span class="car-price-text">&yen;83</span><span class="day-avg">/日均</span>
-                </div>
-                <div class="choice-btn-box left-float">
-                    <button class="choice-btn">租&nbsp;车</button>
-                </div>
-            </div>
-            <div class="single-car clearfloat">
-                <img class="car-img left-float" src="${pageContext.request.contextPath}/images/car-1.jpg">
-                <dl class="car-desc-box left-float">
-                    <dt class="car-name">别克英朗</dt>
-                    <dd class="car-desc">三厢|1.5自动|5人</dd>
-                    <dd class="car-gear-auto">自动挡</dd>
-                    <dd class="car-gear">手动挡</dd>
-                </dl>
-                <div class="car-price-box left-float">
-                    <span class="car-price-text">&yen;83</span><span class="day-avg">/日均</span>
-                </div>
-                <div class="choice-btn-box left-float">
-                    <button class="choice-btn">租&nbsp;车</button>
-                </div>
-            </div>
-            <div class="single-car clearfloat">
-                <img class="car-img left-float" src="${pageContext.request.contextPath}/images/car-1.jpg">
-                <dl class="car-desc-box left-float">
-                    <dt class="car-name">别克英朗</dt>
-                    <dd class="car-desc">三厢|1.5自动|5人</dd>
-                    <dd class="car-gear-auto">自动挡</dd>
-                    <dd class="car-gear">手动挡</dd>
-                </dl>
-                <div class="car-price-box left-float">
-                    <span class="car-price-text">&yen;83</span><span class="day-avg">/日均</span>
-                </div>
-                <div class="choice-btn-box left-float">
-                    <button class="choice-btn">租&nbsp;车</button>
-                </div>
-            </div>
+            </c:forEach>
         </div>
     </div>
 </div>

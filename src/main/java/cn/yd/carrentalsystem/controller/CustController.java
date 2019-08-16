@@ -1,7 +1,9 @@
 package cn.yd.carrentalsystem.controller;
 
+import cn.yd.carrentalsystem.po.Car;
 import cn.yd.carrentalsystem.po.Kind;
 import cn.yd.carrentalsystem.po.QueryVo;
+import cn.yd.carrentalsystem.service.CarService;
 import cn.yd.carrentalsystem.service.KindService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,9 @@ public class CustController {
 
     @Autowired
     private KindService kindService;
+    @Autowired
+    private CarService carService;
+
 
     @RequestMapping("/conditionSubmit")
     public String conditionSubmit(HttpServletRequest request, String deliveryAddress, String pickUpAddress, String startTime, String endTime)
@@ -39,11 +44,14 @@ public class CustController {
         Integer maxPrice = (Integer) session.getAttribute("maxPrice");
         Integer minPrice = (Integer) session.getAttribute("minPrice");
 
+        QueryVo vo = new QueryVo(startAddress,endAddress,kindIdChoosed,keyWord,maxPrice,minPrice);
+        List<Car> cars = carService.getCarListByQueryVo(vo);
+
         List<Kind> kinds = kindService.getAllKinds();
 
-        QueryVo vo = new QueryVo(startAddress,endAddress,kindIdChoosed,keyWord,maxPrice,minPrice);
         model.addAttribute("queryVo", vo);
         model.addAttribute("kinds", kinds);
+        model.addAttribute("cars", cars);
         System.out.println(vo);
         return "customer/carList";
     }
