@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userMapper;
 
     @Override
@@ -25,5 +25,13 @@ public class UserServiceImpl implements UserService {
         criteria.andPhoneEqualTo(username);
         List<User> users = userMapper.selectByExample(userExample);
         return users.size()>0;
+    }
+
+    @Override
+    public void regist(String phone, String password) {
+        User user = new User();
+        user.setPhone(phone);
+        user.setPassword(password);
+        userMapper.insert(user);
     }
 }

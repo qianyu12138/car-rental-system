@@ -3,6 +3,7 @@ package cn.yd.carrentalsystem.controller;
 import cn.yd.carrentalsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,14 +14,22 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/user/regist")
+    @ResponseBody
+    @RequestMapping("/regist")
     public  String Regist(String phone,String password)
     {
+        boolean isExist = userService.getUserExist(phone);
+        if(!isExist&& !StringUtils.isEmpty(phone) &&!StringUtils.isEmpty(password)){
+            userService.regist(phone,password);
+        }
 
-        return "html/user/login";
+        return "{\"status\":1}";
     }
 
-
+    @RequestMapping("toRegist")
+    public String toRegist(){
+        return "regist";
+    }
 
     @ResponseBody
     @RequestMapping("/user/getUserExist/{name}")
@@ -29,4 +38,6 @@ public class UserController {
 
         return "{\"isExist\":"+isExist+"}";
     }
+
+
 }
