@@ -38,17 +38,15 @@ public class UserController {
     }
 
     @RequestMapping("/user/login")
- public  String login(HttpServletRequest request, String phone, String password)
-     {
-        User user= userService.login(phone,password);
-        if (user==null)
-        {
-            request.setAttribute("er","账号或密码错误");
+    public String login(HttpServletRequest request, String phone, String password) {
+        User user = userService.login(phone, password);
+        if (user == null) {
+            request.setAttribute("er", "账号或密码错误");
             return "html/user/login";
         }
-       request.getSession().setAttribute("user",user);
-     return  "html/user/index";
-     }
+        request.getSession().setAttribute("user", user);
+        return "html/user/index";
+    }
 
 
 
@@ -57,6 +55,6 @@ public class UserController {
     public String getUserExist(@PathVariable("name") String username){
         boolean isExist = userService.getUserExist(username);
 
-        return "{\"isExist\":"+isExist+"}";
+        return "{\"isExist\":\""+isExist+"\"}";
     }
 }
