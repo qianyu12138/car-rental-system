@@ -26,8 +26,11 @@ public class CustController {
     @RequestMapping("/conditionSubmit")
     public String conditionSubmit(HttpServletRequest request, String deliveryAddress, String pickUpAddress, String startTime, String endTime)
     {
-        request.getSession().setAttribute("deliveryAddress",deliveryAddress);
-        request.getSession().setAttribute("pickUpAddress",pickUpAddress);
+        QueryVo vo = new QueryVo();
+        vo.setStartAddress(deliveryAddress);
+        vo.setEndAddress(pickUpAddress);
+        request.getSession().setAttribute("vo", vo);
+
         request.getSession().setAttribute("startTime",startTime);
         request.getSession().setAttribute("endTime",endTime);
 
@@ -36,15 +39,9 @@ public class CustController {
 
     @RequestMapping("/toCarList")
     public String toCarList(HttpSession session, Model model){
-        String startAddress = (String) session.getAttribute("deliveryAddress");
-        String endAddress = (String) session.getAttribute("pickUpAddress");
 
-        Integer kindIdChoosed = (Integer) session.getAttribute("kindIdChoosed");
-        String keyWord = (String) session.getAttribute("keyword");
-        Integer maxPrice = (Integer) session.getAttribute("maxPrice");
-        Integer minPrice = (Integer) session.getAttribute("minPrice");
-
-        QueryVo vo = new QueryVo(startAddress,endAddress,kindIdChoosed,keyWord,maxPrice,minPrice);
+        QueryVo vo = (QueryVo) session.getAttribute("vo");
+        System.out.println(vo);
         List<Car> cars = carService.getCarListByQueryVo(vo);
 
         List<Kind> kinds = kindService.getAllKinds();
@@ -52,8 +49,12 @@ public class CustController {
         model.addAttribute("queryVo", vo);
         model.addAttribute("kinds", kinds);
         model.addAttribute("cars", cars);
-        System.out.println(vo);
         return "customer/carList";
     }
 
+    @RequestMapping("/addCondition")
+    public String addCondition(HttpSession session,QueryVo vo){
+        session.setAttribute("vo", vo);
+        return "redirect:/toCarList";
+    }
 }

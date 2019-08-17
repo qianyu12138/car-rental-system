@@ -23,6 +23,8 @@ public class CarServiceImpl implements CarService {
     public List<Car> getCarListByQueryVo(QueryVo vo) {
         CarExample carExample = new CarExample();
         CarExample.Criteria criteria = carExample.createCriteria();
+        if(vo==null)
+            return carMapper.selectByExample(carExample);
         if(!StringUtils.isEmpty(vo.getStartAddress())&&vo.getStartAddress()!="null")
             criteria.andStartaddressLike("%"+vo.getStartAddress()+"%");
         if(!StringUtils.isEmpty(vo.getEndAddress())&&vo.getEndAddress()!="null")
@@ -32,7 +34,7 @@ public class CarServiceImpl implements CarService {
         if(!StringUtils.isEmpty(vo.getKeyWord())&&vo.getKeyWord()!="null")
             criteria.andCnameLike("%"+vo.getKeyWord()+"%");
         if(vo.getMaxPrice()!=null&&vo.getMinPrice()!=null)
-            criteria.andPriceBetween(new BigDecimal(vo.getMaxPrice()), new BigDecimal(vo.getMinPrice()));
+            criteria.andPriceBetween(new BigDecimal(vo.getMinPrice()), new BigDecimal(vo.getMaxPrice()));
         criteria.andStateEqualTo("1");
         List<Car> cars = carMapper.selectByExample(carExample);
         return cars;

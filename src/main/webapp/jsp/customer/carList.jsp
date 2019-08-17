@@ -25,19 +25,19 @@
 <script>
     $(".header-box").load("${pageContext.request.contextPath}/jsp/common/public-header.jsp");
 </script>
-<form id="form" action="<c:url value='${pageContext.request.contextPath}/'/>" method="post" ></form>
 <div class="address-date-choice">
     <div class="public-container clearfloat">
+        <form action="${pageContext.request.contextPath}/addCondition" id="conditionForm" method="post"></form>
         <div class="choice-address left-float">
             <div class="choice-address-block">
                 <span class="address-text get-address-text">取车</span><!--
-                --><input value="${deliveryAddress}" form="form" class="address-choice" placeholder="请输入送车上门地址">
+                --><input value="${vo.startAddress}" name="startAddress" form="conditionForm" class="address-choice" placeholder="请输入送车上门地址">
                 <p class="switch-text get-car-text">送车上门</p><!--
                     --><a href="javascript:void(0)" onclick="switchChange(this);"><img src="${pageContext.request.contextPath}/images/switch-on.png" alt="switch-on"></a>
             </div>
             <div class="choice-address-block">
                 <span class="address-text return-address-text">还车</span><!--
-                --><input value="${pickUpAddress}" form="form" class="address-choice" placeholder="请输入上门取车地址">
+                --><input value="${vo.endAddress}" name="endAddress" form="conditionForm" class="address-choice" placeholder="请输入上门取车地址">
                 <p class="switch-text return-car-text">上门取车</p><!--
                     --><a href="javascript:void(0)" onclick="switchChange(this);"><img class="switch-img" src="${pageContext.request.contextPath}/images/switch-on.png" alt="switch-on"></a>
             </div>
@@ -48,14 +48,14 @@
         </div>
         <div class="choice-date left-float">
             <div class="choice-date-block"><span class="date-text">取车时间</span><!--
-                --><input readonly value="${startTime}" form="form" placeholder="请选择开始日期" class="date-choice" type="text"></div>
+                --><input readonly value="${startTime}" placeholder="请选择开始日期" class="date-choice" type="text"></div>
             <div class="choice-date-block"><span class="date-text">还车时间</span><!--
-                --><input readonly value="${endTime}" form="form" placeholder="请选择结束日期" class="date-choice" type="text"></div>
+                --><input readonly value="${endTime}" placeholder="请选择结束日期" class="date-choice" type="text"></div>
         </div>
         <img class="date-to-img left-float" src="${pageContext.request.contextPath}/images/dateToV.png" alt="至">
         <div class="choice-submit clearfloat">
             <p class="rent-time">租期：<span class="red-text">2天</span>，不限里程</p>
-            <input type="submit" form="form" class="choice-btn" value="立即选车">
+            <input type="submit" form="conditionForm" class="choice-btn" value="立即选车">
         </div>
     </div>
 </div>
@@ -67,8 +67,8 @@
             <div class="car-price">
                 <p class="price-title">价格<span class="grey-text size14">(元)</span></p>
                 <div class="price-line">
-                    <input type="hidden" id="minPrice-input" name="vo.minPrice"/>
-                    <input type="hidden" id="maxPrice-input" name="vo.maxPrice"/>
+                    <input type="hidden" id="minPrice-input" name="minPrice" form="conditionForm"/>
+                    <input type="hidden" id="maxPrice-input" name="maxPrice" form="conditionForm"/>
                     <a href="javascript:void(0)" onclick="selectPrice(this, '', '');"><div class="price-line-common price-line-1"></div></a><!--
                         --><a href="javascript:void(0)" onclick="selectPrice(this, 0, 150);"><div class="price-line-common price-line-2"></div></a><!--
                         --><a href="javascript:void(0)" onclick="selectPrice(this, 150, 300);"><div class="price-line-common price-line-3"></div></a><!--
@@ -87,13 +87,13 @@
             <div class="car-brand">
                 <p class="brand-title">品牌</p>
                 <div class="brand-content">
-                    <input type="hidden" id="kid-input" name="vo.kindIdChoosed" />
+                    <input type="hidden" id="kid-input" name="kindIdChoosed" form="conditionForm"/>
                     <a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common brand-name-specify">不限</p></a>
                     <c:forEach items="${kinds}" var="k">
                     <a href="javascript:void(0)" onclick="selectBrand(this,${k.kid});"><p class="brand-name-common">${k.kname}</p></a>
                     </c:forEach>
                     <div class="form-group">
-                        <input type="text" name="keyword" value="${vo.keyWord}" class="form-control" placeholder="关键字"/><br />
+                        <input type="text" name="keyWord" value="${vo.keyWord}" class="form-control" placeholder="关键字" form="conditionForm"/><br />
                         <button class="btn btn-default form-control">搜索</button>
                     </div>
                 </div>
