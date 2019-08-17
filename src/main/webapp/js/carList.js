@@ -1,11 +1,28 @@
 /**
  * 价格区间切换
- * @param link 链接
  * @param minPrice 最低价
  * @param maxPrice 最高价
  */
-function selectPrice(link, minPrice, maxPrice) {
-    var div = $(link).find("div").get(0);
+function selectPrice2(minPrice, maxPrice) {
+    var div;
+    console.log(minPrice);
+    switch (minPrice) {
+        case '':
+            div = $(".price-line-1");
+            break;
+        case 0:
+            div = $(".price-line-2");
+            break;
+        case 150:
+            div = $(".price-line-3");
+            break;
+        case 300:
+            div = $(".price-line-4");
+            break;
+        case 500:
+            div = $(".price-line-5");
+            break;
+    }
     // line初始化灰色
     $(".price-line-common").css("border-bottom", "5px solid #E9EBEE");
     // 指定line黄色
@@ -19,7 +36,6 @@ function selectPrice(link, minPrice, maxPrice) {
     $("#minPrice-input").val(minPrice);
     $("#maxPrice-input").val(maxPrice);
 }
-
 /**
  * 品牌切换
  * @param link

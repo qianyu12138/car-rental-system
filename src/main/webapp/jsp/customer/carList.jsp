@@ -20,6 +20,12 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/jquery.raty.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/carList.js"></script>
 </head>
+<script type="text/javascript">
+    $(function () {
+        alert("load");
+        selectPrice2(${vo.minPrice},${vo.maxPrice});
+    })
+</script>
 <body>
 <div class="header-box"></div>
 <script>
@@ -69,11 +75,11 @@
                 <div class="price-line">
                     <input type="hidden" id="minPrice-input" name="minPrice" form="conditionForm"/>
                     <input type="hidden" id="maxPrice-input" name="maxPrice" form="conditionForm"/>
-                    <a href="javascript:void(0)" onclick="selectPrice(this, '', '');"><div class="price-line-common price-line-1"></div></a><!--
-                        --><a href="javascript:void(0)" onclick="selectPrice(this, 0, 150);"><div class="price-line-common price-line-2"></div></a><!--
-                        --><a href="javascript:void(0)" onclick="selectPrice(this, 150, 300);"><div class="price-line-common price-line-3"></div></a><!--
-                        --><a href="javascript:void(0)" onclick="selectPrice(this, 300, 500);"><div class="price-line-common price-line-4"></div></a><!--
-                        --><a href="javascript:void(0)" onclick="selectPrice(this, 500, 1000);"><div class="price-line-common price-line-5"></div></a><!--
+                    <a href="javascript:void(0)" onclick="selectPrice2('', '');"><div class="price-line-common price-line-1"></div></a><!--
+                        --><a href="javascript:void(0)" onclick="selectPrice2(0, 150);"><div class="price-line-common price-line-2"></div></a><!--
+                        --><a href="javascript:void(0)" onclick="selectPrice2(150, 300);"><div class="price-line-common price-line-3"></div></a><!--
+                        --><a href="javascript:void(0)" onclick="selectPrice2(300, 500);"><div class="price-line-common price-line-4"></div></a><!--
+                        --><a href="javascript:void(0)" onclick="selectPrice2(500, 1000);"><div class="price-line-common price-line-5"></div></a><!--
                         -->
                 </div>
                 <p class="price-text"><span class="orange-text price-no-filter size14">不限</span>&nbsp;<!--
@@ -87,10 +93,10 @@
             <div class="car-brand">
                 <p class="brand-title">品牌</p>
                 <div class="brand-content">
-                    <input type="hidden" id="kid-input" name="kindIdChoosed" form="conditionForm"/>
-                    <a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common brand-name-specify">不限</p></a>
+                    <input type="hidden" id="kid-input" name="kindIdChoosed" form="conditionForm" value="${vo.kindIdChoosed}"/>
+                    <a href="javascript:void(0)" onclick="selectBrand(this);"><p class="brand-name-common">不限</p></a>
                     <c:forEach items="${kinds}" var="k">
-                    <a href="javascript:void(0)" onclick="selectBrand(this,${k.kid});"><p class="brand-name-common">${k.kname}</p></a>
+                        <a href="javascript:void(0)" onclick="selectBrand(this,${k.kid});" ><p class="brand-name-common" <c:if test="${k.kid==vo.kindIdChoosed}">style="color: #fabe00"</c:if> >${k.kname}</p></a>
                     </c:forEach>
                     <div class="form-group">
                         <input type="text" name="keyWord" value="${vo.keyWord}" class="form-control" placeholder="关键字" form="conditionForm"/><br />
