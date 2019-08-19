@@ -24,7 +24,6 @@
 </head>
 <script type="text/javascript">
     $(function () {
-        alert("load");
         selectPrice2(${vo.minPrice},${vo.maxPrice});
     })
 </script>

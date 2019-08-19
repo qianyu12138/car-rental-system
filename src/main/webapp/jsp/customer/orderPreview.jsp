@@ -13,15 +13,27 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/orderPreview.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/bootstrap-datetimepicker.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/orderPreview.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/getSubDay.js"></script>
 </head>
 <script>
+    function chg(){
+        var totalDay = getYMDHMS($("#startTime").val(),$("#endTime").val());
+        $("#rentDay").html(totalDay);
+        var price = ${carCustom.price}*totalDay;
+        $("#price").html(price);
+
+        var totalPrice = price + 20;
+        $("#totalPrice").html(totalPrice);
+    }
     $(function () {
         $('.date-choice').datetimepicker({
             autoclose: true,
             startDate: new Date()
         });
-    })
+        chg();
+        $("#endTime").change(chg);
+        $("#startTime").change(chg);
+    });
 </script>
 <body>
     <div class="header-box"></div>
@@ -70,11 +82,11 @@ pageEncoding="UTF-8"%>
                 	</div>
                 	<div class="form-group">
                 		<label>取车时间</label>
-                		<input class="form-control date-choice" readonly type="text" value="${startTime}"/>
+                		<input class="form-control date-choice" readonly id="startTime" type="text" value="${startTime}"/>
                 	</div>
                 	<div class="form-group">
                 		<label>还车时间</label>
-                		<input class="form-control date-choice" readonly type="text" value="${endTime}"/>
+                		<input class="form-control date-choice" readonly id="endTime" type="text" value="${endTime}"/>
                 	</div>
                 	<div class="form-group">
                 		<label>联系电话</label>
@@ -86,10 +98,10 @@ pageEncoding="UTF-8"%>
             <div class="price-content">
                 <dl>
                     <dt class="price-title">费用明细</dt>
-                    <dd class="price-text clearfloat"><p class="left-float">车辆租赁费</p><p class="sub-price right-float">&yen;98</p><p class="calc-price right-float">98x2</p></dd>
+                    <dd class="price-text clearfloat"><p class="left-float">车辆租赁费</p><p class="sub-price right-float"><span id="price">-</span>元</p><p class="calc-price right-float">${carCustom.price}x<span id="rentDay">2</span></p></dd>
                     <dd class="price-text clearfloat"><p class="left-float">手续费</p><p class="sub-price right-float">&yen;20</p></dd>
-                    <dd class="price-text clearfloat"><p class="left-float">合计</p><p class="sub-price right-float">&yen;450</p></dd>
-                    <dd class="price-text clearfloat"><p class="left-float">押金</p><p class="sub-price right-float">&yen;110</p></dd>
+                    <dd class="price-text clearfloat"><p class="left-float">合计</p><p class="sub-price right-float">&yen;<span id="totalPrice">-</span></p></dd>
+                    <dd class="price-text clearfloat"><p class="left-float">押金</p><p class="sub-price right-float">&yen;${carCustom.deposit}</p></dd>
                     <dd class="total-text clearfloat"><p class="left-float">预付款<span class="real-money">&yen;30</span></p> <button class="submit-btn right-float">提交订单</button></dd>
                 </dl>
             </div>
