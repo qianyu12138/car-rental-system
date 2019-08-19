@@ -48,6 +48,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void changePwd(User user, String newPassword)
+    {
+
+       user.setPassword(newPassword);
+       userMapper.updateByPrimaryKey(user);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userMapper.updateByPrimaryKey(user);
+    }
+
+    @Override
     public void regist(String phone, String password) {
         User user = new User();
         user.setPhone(phone);

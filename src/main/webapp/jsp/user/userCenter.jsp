@@ -31,13 +31,12 @@
         <div class="left-nav left-float">
             <dl>
                 <dt class="nav-title">我的订单</dt>
-                <a href="javascript:void(0)" onclick="changeNav(this);"><dd class="nav-text active">租车</dd></a>
-                <a href="javascript:void(0)" onclick="changeNav(this);"><dd class="nav-text">出租</dd></a>
-                <dt class="nav-title">我的车辆</dt>
+                <a href="${pageContext.request.contextPath}/user/findOrder?status=1" onclick="changeNav(this);"><dd class="nav-text active">当前订单</dd></a>
+                <a href="${pageContext.request.contextPath}/user/findOrder?status=2" onclick="changeNav(this);"><dd class="nav-text">历史订单</dd></a>
+
                 <dt class="nav-title">我的账户</dt>
-                <a href="javascript:void(0)" onclick="changeNav(this);"><dd class="nav-text">登录信息完善</dd></a>
-                <a href="javascript:void(0)" onclick="changeNav(this);"><dd class="nav-text">身份认证</dd></a>
-                <a href="javascript:void(0)" onclick="changeNav(this);"><dd class="nav-text">修改密码</dd></a>
+                <a href="${pageContext.request.contextPath}/user/identitySAuth" onclick="changeNav(this);"><dd class="nav-text">身份认证</dd></a>
+                <a href="${pageContext.request.contextPath}/user/toChangePwd" onclick="changeNav(this);"><dd class="nav-text">修改密码</dd></a>
                 <dt class="nav-title">我的消息</dt>
             </dl>
         </div>

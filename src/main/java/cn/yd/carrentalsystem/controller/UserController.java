@@ -1,21 +1,35 @@
 package cn.yd.carrentalsystem.controller;
 
+import cn.yd.carrentalsystem.fastdfs.FastDFSClient;
+import cn.yd.carrentalsystem.po.Lease;
+import cn.yd.carrentalsystem.po.LeaseQueryVo;
 import cn.yd.carrentalsystem.po.User;
+import cn.yd.carrentalsystem.service.LeaseService;
 import cn.yd.carrentalsystem.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import sun.security.util.Password;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
 
+@Value("${Host}")
+private String host;
     @Autowired
     private UserService userService;
+    @Autowired
+    private LeaseService leaseService;
 
     @ResponseBody
     @RequestMapping("/regist")
@@ -34,10 +48,11 @@ public class UserController {
     @RequestMapping("/user/toLogin")
     public  String toLogin()
     {
+
         return "login";
     }
 
-    @RequestMapping("/user/login")
+    @RequestMapping("/login")
     public String login(HttpServletRequest request, String phone, String password) {
         User user = userService.login(phone, password);
         if (user == null) {
@@ -56,5 +71,126 @@ public class UserController {
         boolean isExist = userService.getUserExist(username);
 
         return "{\"isExist\":"+isExist+"}";
+    }
+    /**
+     *  去个人中心页面
+     */
+
+    @RequestMapping("/user/toPcenter")
+    public  String  toPcenter(HttpServletRequest request)
+    {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user.getState().equals("1"))
+        {
+            String idCard[]=user.getIdcardimgs().split(",");
+            String driverCard[]=user.getLicenseiimg().split(",");
+            request.setAttribute("idCard1",idCard[0]);
+            request.setAttribute("idCard2",idCard[1]);
+            request.setAttribute("driverCard1",driverCard[0]);
+            request.setAttribute("driverCard2",driverCard[0]);
+            return "user/authenticationAccountT";
+        }
+        return "user/authenticationAccount";
+    }
+
+    /**
+     * 去修改密码页面
+     * @return
+     */
+    @RequestMapping("/user/toChangePwd")
+    public String toChangePwd(){
+
+        return  "user/improveAccount";
+    }
+
+    /**
+     * 修改密码
+     * @param request
+     * @param newPassword
+     * @return
+     */
+    @RequestMapping("/user/changePwd")
+    public String changePwd(HttpServletRequest request,String newPassword)
+    {
+       User user= (User) request.getSession().getAttribute("user");
+
+       userService.changePwd(user,newPassword);
+        return  "redirect:toPcenter";
+    }
+
+    /**
+     * 完善信息
+     * @param request
+     * @param name
+     * @param address
+     * @param idCardNum
+     * @param idCard1
+     * @param idCard2
+     * @param driverCar1
+     * @param driverCar2
+     * @return
+     */
+    @RequestMapping("/user/authentica")
+    public String authentica(HttpServletRequest request, String name, String address,
+                             String idCardNum, MultipartFile idCard1,MultipartFile idCard2,
+                             MultipartFile driverCar1,MultipartFile driverCar2)
+    {
+        User user= (User) request.getSession().getAttribute("user");
+
+        //1、取文件的扩展名
+        try {
+            String originalFilename1 = idCard1.getOriginalFilename();
+            String originalFilename2=idCard2.getOriginalFilename();
+            String originalFilename3=driverCar1.getOriginalFilename();
+            String originalFilename4 =driverCar2.getOriginalFilename();
+            String extName = originalFilename1.substring(originalFilename1.lastIndexOf(".") + 1);
+            String extName1=originalFilename2.substring(originalFilename2.lastIndexOf(".") + 1);
+            String extName2=originalFilename3.substring(originalFilename3.lastIndexOf(".") + 1);
+            String extName3=originalFilename4.substring(originalFilename4.lastIndexOf(".") + 1);
+
+            //2、创建一个FastDFS的客户端
+            FastDFSClient fastDFSClient = null;
+
+            fastDFSClient = new FastDFSClient("classpath:client.conf");
+            //3、执行上传处理
+            String idCard1Path = host+fastDFSClient.uploadFile(idCard1.getBytes(), extName);
+            idCard1Path=idCard1Path+","+host+fastDFSClient.uploadFile(idCard2.getBytes(),extName1);
+            String driverCarPath=host+fastDFSClient.uploadFile(driverCar1.getBytes(), extName);
+            driverCarPath=driverCarPath+","+host+fastDFSClient.uploadFile(driverCar2.getBytes(), extName);
+            System.out.println(driverCarPath);
+            user.setIdcardimgs(idCard1Path);
+            user.setLicenseiimg(driverCarPath);
+            user.setName(name);
+            user.setAddress(address);
+            user.setIdcardnum(idCardNum);
+            userService.updateUser(user);
+            //4、拼接返回的url和ip地址，拼装成完整 的url
+             request.getSession().setAttribute("user",user);
+             return "redirect:toPcenter";
+        }
+        catch(Exception e)
+        {
+             e.printStackTrace();
+        }
+        return "redirect:toPcenter";
+    }
+    /**
+     * 去订单页面
+     */
+    @RequestMapping("/user/toOrderPage")
+    public String toOrderPage()
+    {
+        return "/user/order";
+    }
+    /**
+     *
+     *查询订单
+     */
+    @RequestMapping("/user/findOrderList/{state}")
+    public String findOrderList(HttpServletRequest request,@PathVariable("state") int state)
+    {
+        List<LeaseQueryVo> leases=leaseService.findLeaseList(state);
+        request.getSession().setAttribute("lease",leases);
+        return "redirect:toOrderPage";
     }
 }
