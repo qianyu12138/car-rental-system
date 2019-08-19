@@ -47,10 +47,14 @@
             <dl>
                 <table>
 
-                    <dt class="content-title "><a class="btn-info btn-lg  " href="${pageContext.request.contextPath}/user/findOrderList/">全部</a>
-                        <a class="btn-info btn-lg  " href="${pageContext.request.contextPath}/user/findOrderList/"/>租赁中</a>
-                        <a class="btn-info  btn-lg " href="${pageContext.request.contextPath}/user/findOrderList/">已完成</a>
-                        <a class="btn-info  btn-lg  " href="${pageContext.request.contextPath}/user/findOrderList/">等待付款</a></dt>
+                    <dt class="content-title ">
+                        <a class="btn-info btn-lg"  href="${pageContext.request.contextPath}/order/findOrderList/1">全部</a>
+                        <a class="btn-info btn-lg" href="${pageContext.request.contextPath}/order/findOrderList/1">等待付款</a>
+                        <a class="btn-info  btn-lg" href="${pageContext.request.contextPath}/order/findOrderList/2">预定成功</a>
+                        <a class="btn-info  btn-lg " href="${pageContext.request.contextPath}/order/findOrderList/3">租赁中</a>
+                        <a class="btn-info  btn-lg " href="${pageContext.request.contextPath}/order/findOrderList/4">已完成</a>
+                        <a class="btn-info  btn-lg " href="${pageContext.request.contextPath}/order/findOrderList/5">已取消</a>
+                    </dt>
                     <tr class="tableth">
 
                         <th class="col-lg-6">订单信息</th>
@@ -59,28 +63,44 @@
                         <th class="col-lg-2">状态</th>
 
                     </tr>
-                    <c:forEach items="leases" var="lease">
+                    <c:forEach items="${leases}" var="lease">
                     <tr class="tabletr">
                         <td>
-                            <img class="img left-float" src="${pageContext.request.contextPath}/images/car-1.jpg"><br>
-                            <span> <strong></strong></span>
-                            <br><span class="decs">三厢/1.5自动 | 乘坐5人</span>
-                            <br><span class="decs">订单号：15661147068763</span></br>
+                            <img class="img left-float" src="${pageContext.request.contextPath}/${lease.carfirstimg}">
+                            <br>
+                            &nbsp;<span> <strong>${lease.car.cname}</strong></span>
+                            <br>  &nbsp;<span class="decs">三厢/1.5自动 | 乘坐5人</span>
+                            <br>   &nbsp;<span class="decs">订单号：${lease.lease.lid}</span></br>
                         </td>
                         <td>
                             <br><br>
-                            <span>天津 - 滨海机场店</span><br>
-                            <span class="decs">2019-08-19 10:00</span><br>
-                            <span>天津 - 滨海机场店</span><br>
-                            <span class="decs">2019-08-21 10:00</span><br>
+                            <span>${lease.lease.receiveaddress}</span><br>
+                            <span class="decs">${lease.lease.createtime}</span><br>
+                            <span>${lease.lease.returnaddress}</span><br>
+                            <span class="decs">${lease.lease.returntime}</span><br>
                             <br>
                             <br>
                         </td>
                         <td>
-                            <span class="price">318元</span>
+                            <span class="price">${lease.lease.totalprice}</span>
                         </td>
                         <td>
-                            <span class="decs status">已完成</span><br>
+                            <c:if test="${lease.lease.state==1}">
+                                <span class="decs status">等待付款</span><br>
+                            </c:if>
+                            <c:if test="${lease.lease.state==2}">
+                                <span class="decs status">预定成功</span><br>
+                            </c:if>
+                            <c:if test="${lease.lease.state==3}">
+                                <span class="decs status">租赁中</span><br>
+                            </c:if>
+                            <c:if test="${lease.lease.state==4}">
+                                <span class="decs status">已完成</span><br>
+                            </c:if>
+                            <c:if test="${lease.lease.state==5}">
+                                <span class="decs status">已取消</span><br>
+                            </c:if>
+
                             <a href="#" class="btn-md btn-link">查看详情</a>
                         </td>
                     </tr>

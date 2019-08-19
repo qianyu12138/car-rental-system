@@ -20,10 +20,10 @@ padding: 10px;
     text-overflow: ellipsis;
 }
 .status{
-    font-size: 22px;
+    font-size: 20px;
 }
 .price{
-    font-size: 30px;
+    font-size: 28px;
     color: #fabe00;
     font-weight: bold;
 }

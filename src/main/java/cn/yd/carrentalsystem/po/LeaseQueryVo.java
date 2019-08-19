@@ -1,15 +1,16 @@
 package cn.yd.carrentalsystem.po;
 
 public class LeaseQueryVo {
-    private LeaseCustom leaseCustom;
+    private Lease lease;
 
-    public LeaseCustom getLeaseCustom() {
-        return leaseCustom;
+    public Lease getLease() {
+        return lease;
     }
 
-    public void setLeaseCustom(LeaseCustom leaseCustom) {
-        this.leaseCustom = leaseCustom;
+    public void setLease(Lease lease) {
+        this.lease = lease;
     }
+
     private Car car;
 
     public Car getCar() {
@@ -28,5 +29,14 @@ public class LeaseQueryVo {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    private String carfirstimg;
+
+    public String getCarfirstimg() {
+        return carfirstimg;
+    }
+
+    public void setCarfirstimg(String carfirstimg) {
+        this.carfirstimg = carfirstimg;
     }
 }

@@ -28,8 +28,7 @@ public class UserController {
 private String host;
     @Autowired
     private UserService userService;
-    @Autowired
-    private LeaseService leaseService;
+
 
     @ResponseBody
     @RequestMapping("/regist")
@@ -72,22 +71,24 @@ private String host;
 
         return "{\"isExist\":"+isExist+"}";
     }
+
+
     /**
-     *  去个人中心页面
+     *  去身份认证页面
      */
 
-    @RequestMapping("/user/toPcenter")
-    public  String  toPcenter(HttpServletRequest request)
+    @RequestMapping("/user/identitySAuth")
+    public  String  identitySAuth(HttpServletRequest request)
     {
         User user = (User) request.getSession().getAttribute("user");
         if (user.getState().equals("1"))
         {
             String idCard[]=user.getIdcardimgs().split(",");
             String driverCard[]=user.getLicenseiimg().split(",");
-            request.setAttribute("idCard1",idCard[0]);
-            request.setAttribute("idCard2",idCard[1]);
-            request.setAttribute("driverCard1",driverCard[0]);
-            request.setAttribute("driverCard2",driverCard[0]);
+            request.setAttribute("idCard1",host+idCard[0]);
+            request.setAttribute("idCard2",host+idCard[1]);
+            request.setAttribute("driverCard1",host+driverCard[0]);
+            request.setAttribute("driverCard2",host+driverCard[0]);
             return "user/authenticationAccountT";
         }
         return "user/authenticationAccount";
@@ -115,7 +116,7 @@ private String host;
        User user= (User) request.getSession().getAttribute("user");
 
        userService.changePwd(user,newPassword);
-        return  "redirect:toPcenter";
+        return  "redirect:/order/findAllOrderList";
     }
 
     /**
@@ -153,10 +154,10 @@ private String host;
 
             fastDFSClient = new FastDFSClient("classpath:client.conf");
             //3、执行上传处理
-            String idCard1Path = host+fastDFSClient.uploadFile(idCard1.getBytes(), extName);
-            idCard1Path=idCard1Path+","+host+fastDFSClient.uploadFile(idCard2.getBytes(),extName1);
-            String driverCarPath=host+fastDFSClient.uploadFile(driverCar1.getBytes(), extName);
-            driverCarPath=driverCarPath+","+host+fastDFSClient.uploadFile(driverCar2.getBytes(), extName);
+            String idCard1Path = fastDFSClient.uploadFile(idCard1.getBytes(), extName);
+            idCard1Path=idCard1Path+","+fastDFSClient.uploadFile(idCard2.getBytes(),extName1);
+            String driverCarPath=fastDFSClient.uploadFile(driverCar1.getBytes(), extName);
+            driverCarPath=driverCarPath+","+fastDFSClient.uploadFile(driverCar2.getBytes(), extName);
             System.out.println(driverCarPath);
             user.setIdcardimgs(idCard1Path);
             user.setLicenseiimg(driverCarPath);
@@ -166,31 +167,13 @@ private String host;
             userService.updateUser(user);
             //4、拼接返回的url和ip地址，拼装成完整 的url
              request.getSession().setAttribute("user",user);
-             return "redirect:toPcenter";
+             return "redirect:/order/findAllOrderList";
         }
         catch(Exception e)
         {
              e.printStackTrace();
         }
-        return "redirect:toPcenter";
+        return "redirect:/order/findAllOrderList";
     }
-    /**
-     * 去订单页面
-     */
-    @RequestMapping("/user/toOrderPage")
-    public String toOrderPage()
-    {
-        return "/user/order";
-    }
-    /**
-     *
-     *查询订单
-     */
-    @RequestMapping("/user/findOrderList/{state}")
-    public String findOrderList(HttpServletRequest request,@PathVariable("state") int state)
-    {
-        List<LeaseQueryVo> leases=leaseService.findLeaseList(state);
-        request.getSession().setAttribute("lease",leases);
-        return "redirect:toOrderPage";
-    }
+
 }

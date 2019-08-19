@@ -24,6 +24,23 @@ public class Lease {
 
     private String returnaddress;
 
+    @Override
+    public String toString() {
+        return "Lease{" +
+                "lid=" + lid +
+                ", state=" + state +
+                ", uid=" + uid +
+                ", cid=" + cid +
+                ", createtime=" + createtime +
+                ", receivetime=" + receivetime +
+                ", returntime=" + returntime +
+                ", contactphone='" + contactphone + '\'' +
+                ", receiveaddress='" + receiveaddress + '\'' +
+                ", returnaddress='" + returnaddress + '\'' +
+                ", totalprice=" + totalprice +
+                '}';
+    }
+
     private BigDecimal totalprice;
 
     public Integer getLid() {
