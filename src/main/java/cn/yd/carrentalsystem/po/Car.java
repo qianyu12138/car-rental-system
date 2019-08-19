@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 public class Car {
     private Integer cid;
-
     private String cname;
 
     private Integer kid;

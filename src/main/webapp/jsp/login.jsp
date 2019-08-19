@@ -25,7 +25,7 @@
     <div class="bg-img"></div>
     <div class="transparent"></div>
     <div class="loginBox">
-        <form action="${pageContext.request.contextPath }/user/login" class="form-horizontal" onsubmit="return validate();" method="post">
+        <form action="${pageContext.request.contextPath }/login" class="form-horizontal" onsubmit="return validate();" method="post">
 
             <div class="heading">用户登录</div>
             <div class="form-group">

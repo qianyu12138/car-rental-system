@@ -8,4 +8,8 @@ public interface UserService {
     void regist(String phone, String password);
 
     User login(String phone, String password);
+
+    void changePwd(User user, String newPassword);
+
+    void updateUser(User user);
 }
