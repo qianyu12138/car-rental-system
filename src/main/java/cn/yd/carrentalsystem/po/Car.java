@@ -19,6 +19,16 @@ public class Car {
 
     private Integer sitnumber;
 
+    private Float displacement;
+
+    private Integer navigator;
+
+    private String tankcapacity;
+
+    private Integer automatic;
+
+    private Integer skylight;
+
     private Float deposit;
 
     private String state;
@@ -89,6 +99,46 @@ public class Car {
 
     public void setSitnumber(Integer sitnumber) {
         this.sitnumber = sitnumber;
+    }
+
+    public Float getDisplacement() {
+        return displacement;
+    }
+
+    public void setDisplacement(Float displacement) {
+        this.displacement = displacement;
+    }
+
+    public Integer getNavigator() {
+        return navigator;
+    }
+
+    public void setNavigator(Integer navigator) {
+        this.navigator = navigator;
+    }
+
+    public String getTankcapacity() {
+        return tankcapacity;
+    }
+
+    public void setTankcapacity(String tankcapacity) {
+        this.tankcapacity = tankcapacity == null ? null : tankcapacity.trim();
+    }
+
+    public Integer getAutomatic() {
+        return automatic;
+    }
+
+    public void setAutomatic(Integer automatic) {
+        this.automatic = automatic;
+    }
+
+    public Integer getSkylight() {
+        return skylight;
+    }
+
+    public void setSkylight(Integer skylight) {
+        this.skylight = skylight;
     }
 
     public Float getDeposit() {

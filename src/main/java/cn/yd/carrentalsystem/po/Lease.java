@@ -15,8 +15,6 @@ public class Lease {
 
     private Date returntime;
 
-    private Integer limittime;
-
     private String contactphone;
 
     private String receiveaddress;
@@ -69,14 +67,6 @@ public class Lease {
 
     public void setReturntime(Date returntime) {
         this.returntime = returntime;
-    }
-
-    public Integer getLimittime() {
-        return limittime;
-    }
-
-    public void setLimittime(Integer limittime) {
-        this.limittime = limittime;
     }
 
     public String getContactphone() {

@@ -625,6 +625,316 @@ public class CarExample {
             return (Criteria) this;
         }
 
+        public Criteria andDisplacementIsNull() {
+            addCriterion("displacement is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplacementIsNotNull() {
+            addCriterion("displacement is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplacementEqualTo(Float value) {
+            addCriterion("displacement =", value, "displacement");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplacementNotEqualTo(Float value) {
+            addCriterion("displacement <>", value, "displacement");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplacementGreaterThan(Float value) {
+            addCriterion("displacement >", value, "displacement");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplacementGreaterThanOrEqualTo(Float value) {
+            addCriterion("displacement >=", value, "displacement");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplacementLessThan(Float value) {
+            addCriterion("displacement <", value, "displacement");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplacementLessThanOrEqualTo(Float value) {
+            addCriterion("displacement <=", value, "displacement");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplacementIn(List<Float> values) {
+            addCriterion("displacement in", values, "displacement");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplacementNotIn(List<Float> values) {
+            addCriterion("displacement not in", values, "displacement");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplacementBetween(Float value1, Float value2) {
+            addCriterion("displacement between", value1, value2, "displacement");
+            return (Criteria) this;
+        }
+
+        public Criteria andDisplacementNotBetween(Float value1, Float value2) {
+            addCriterion("displacement not between", value1, value2, "displacement");
+            return (Criteria) this;
+        }
+
+        public Criteria andNavigatorIsNull() {
+            addCriterion("navigator is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNavigatorIsNotNull() {
+            addCriterion("navigator is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNavigatorEqualTo(Integer value) {
+            addCriterion("navigator =", value, "navigator");
+            return (Criteria) this;
+        }
+
+        public Criteria andNavigatorNotEqualTo(Integer value) {
+            addCriterion("navigator <>", value, "navigator");
+            return (Criteria) this;
+        }
+
+        public Criteria andNavigatorGreaterThan(Integer value) {
+            addCriterion("navigator >", value, "navigator");
+            return (Criteria) this;
+        }
+
+        public Criteria andNavigatorGreaterThanOrEqualTo(Integer value) {
+            addCriterion("navigator >=", value, "navigator");
+            return (Criteria) this;
+        }
+
+        public Criteria andNavigatorLessThan(Integer value) {
+            addCriterion("navigator <", value, "navigator");
+            return (Criteria) this;
+        }
+
+        public Criteria andNavigatorLessThanOrEqualTo(Integer value) {
+            addCriterion("navigator <=", value, "navigator");
+            return (Criteria) this;
+        }
+
+        public Criteria andNavigatorIn(List<Integer> values) {
+            addCriterion("navigator in", values, "navigator");
+            return (Criteria) this;
+        }
+
+        public Criteria andNavigatorNotIn(List<Integer> values) {
+            addCriterion("navigator not in", values, "navigator");
+            return (Criteria) this;
+        }
+
+        public Criteria andNavigatorBetween(Integer value1, Integer value2) {
+            addCriterion("navigator between", value1, value2, "navigator");
+            return (Criteria) this;
+        }
+
+        public Criteria andNavigatorNotBetween(Integer value1, Integer value2) {
+            addCriterion("navigator not between", value1, value2, "navigator");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityIsNull() {
+            addCriterion("tankCapacity is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityIsNotNull() {
+            addCriterion("tankCapacity is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityEqualTo(String value) {
+            addCriterion("tankCapacity =", value, "tankcapacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityNotEqualTo(String value) {
+            addCriterion("tankCapacity <>", value, "tankcapacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityGreaterThan(String value) {
+            addCriterion("tankCapacity >", value, "tankcapacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityGreaterThanOrEqualTo(String value) {
+            addCriterion("tankCapacity >=", value, "tankcapacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityLessThan(String value) {
+            addCriterion("tankCapacity <", value, "tankcapacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityLessThanOrEqualTo(String value) {
+            addCriterion("tankCapacity <=", value, "tankcapacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityLike(String value) {
+            addCriterion("tankCapacity like", value, "tankcapacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityNotLike(String value) {
+            addCriterion("tankCapacity not like", value, "tankcapacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityIn(List<String> values) {
+            addCriterion("tankCapacity in", values, "tankcapacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityNotIn(List<String> values) {
+            addCriterion("tankCapacity not in", values, "tankcapacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityBetween(String value1, String value2) {
+            addCriterion("tankCapacity between", value1, value2, "tankcapacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTankcapacityNotBetween(String value1, String value2) {
+            addCriterion("tankCapacity not between", value1, value2, "tankcapacity");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutomaticIsNull() {
+            addCriterion("automatic is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutomaticIsNotNull() {
+            addCriterion("automatic is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutomaticEqualTo(Integer value) {
+            addCriterion("automatic =", value, "automatic");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutomaticNotEqualTo(Integer value) {
+            addCriterion("automatic <>", value, "automatic");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutomaticGreaterThan(Integer value) {
+            addCriterion("automatic >", value, "automatic");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutomaticGreaterThanOrEqualTo(Integer value) {
+            addCriterion("automatic >=", value, "automatic");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutomaticLessThan(Integer value) {
+            addCriterion("automatic <", value, "automatic");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutomaticLessThanOrEqualTo(Integer value) {
+            addCriterion("automatic <=", value, "automatic");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutomaticIn(List<Integer> values) {
+            addCriterion("automatic in", values, "automatic");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutomaticNotIn(List<Integer> values) {
+            addCriterion("automatic not in", values, "automatic");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutomaticBetween(Integer value1, Integer value2) {
+            addCriterion("automatic between", value1, value2, "automatic");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutomaticNotBetween(Integer value1, Integer value2) {
+            addCriterion("automatic not between", value1, value2, "automatic");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkylightIsNull() {
+            addCriterion("skylight is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkylightIsNotNull() {
+            addCriterion("skylight is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkylightEqualTo(Integer value) {
+            addCriterion("skylight =", value, "skylight");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkylightNotEqualTo(Integer value) {
+            addCriterion("skylight <>", value, "skylight");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkylightGreaterThan(Integer value) {
+            addCriterion("skylight >", value, "skylight");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkylightGreaterThanOrEqualTo(Integer value) {
+            addCriterion("skylight >=", value, "skylight");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkylightLessThan(Integer value) {
+            addCriterion("skylight <", value, "skylight");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkylightLessThanOrEqualTo(Integer value) {
+            addCriterion("skylight <=", value, "skylight");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkylightIn(List<Integer> values) {
+            addCriterion("skylight in", values, "skylight");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkylightNotIn(List<Integer> values) {
+            addCriterion("skylight not in", values, "skylight");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkylightBetween(Integer value1, Integer value2) {
+            addCriterion("skylight between", value1, value2, "skylight");
+            return (Criteria) this;
+        }
+
+        public Criteria andSkylightNotBetween(Integer value1, Integer value2) {
+            addCriterion("skylight not between", value1, value2, "skylight");
+            return (Criteria) this;
+        }
+
         public Criteria andDepositIsNull() {
             addCriterion("deposit is null");
             return (Criteria) this;

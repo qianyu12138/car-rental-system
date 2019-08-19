@@ -10,6 +10,11 @@
     <result column="price" property="price" jdbcType="DECIMAL" />
     <result column="licenseNumber" property="licensenumber" jdbcType="VARCHAR" />
     <result column="sitNumber" property="sitnumber" jdbcType="INTEGER" />
+    <result column="displacement" property="displacement" jdbcType="REAL" />
+    <result column="navigator" property="navigator" jdbcType="INTEGER" />
+    <result column="tankCapacity" property="tankcapacity" jdbcType="VARCHAR" />
+    <result column="automatic" property="automatic" jdbcType="INTEGER" />
+    <result column="skylight" property="skylight" jdbcType="INTEGER" />
     <result column="deposit" property="deposit" jdbcType="REAL" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="startAddress" property="startaddress" jdbcType="VARCHAR" />
@@ -74,8 +79,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    cid, cname, kid, imgs, `desc`, price, licenseNumber, sitNumber, deposit, state, startAddress,
-    endAddress
+    cid, cname, kid, imgs, desc, price, licenseNumber, sitNumber, displacement, navigator, 
+    tankCapacity, automatic, skylight, deposit, state, startAddress, endAddress
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.yd.carrentalsystem.po.CarExample" >
     select
@@ -109,15 +114,17 @@
   </delete>
   <insert id="insert" parameterType="cn.yd.carrentalsystem.po.Car" >
     insert into car (cid, cname, kid, 
-      imgs, `desc`, price,
-      licenseNumber, sitNumber, deposit, 
-      state, startAddress, endAddress
-      )
+      imgs, desc, price, 
+      licenseNumber, sitNumber, displacement, 
+      navigator, tankCapacity, automatic, 
+      skylight, deposit, state, 
+      startAddress, endAddress)
     values (#{cid,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, #{kid,jdbcType=INTEGER}, 
       #{imgs,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
-      #{licensenumber,jdbcType=VARCHAR}, #{sitnumber,jdbcType=INTEGER}, #{deposit,jdbcType=REAL}, 
-      #{state,jdbcType=VARCHAR}, #{startaddress,jdbcType=VARCHAR}, #{endaddress,jdbcType=VARCHAR}
-      )
+      #{licensenumber,jdbcType=VARCHAR}, #{sitnumber,jdbcType=INTEGER}, #{displacement,jdbcType=REAL}, 
+      #{navigator,jdbcType=INTEGER}, #{tankcapacity,jdbcType=VARCHAR}, #{automatic,jdbcType=INTEGER}, 
+      #{skylight,jdbcType=INTEGER}, #{deposit,jdbcType=REAL}, #{state,jdbcType=VARCHAR}, 
+      #{startaddress,jdbcType=VARCHAR}, #{endaddress,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.yd.carrentalsystem.po.Car" >
     insert into car
@@ -135,7 +142,7 @@
         imgs,
       </if>
       <if test="desc != null" >
-        `desc`,
+        desc,
       </if>
       <if test="price != null" >
         price,
@@ -145,6 +152,21 @@
       </if>
       <if test="sitnumber != null" >
         sitNumber,
+      </if>
+      <if test="displacement != null" >
+        displacement,
+      </if>
+      <if test="navigator != null" >
+        navigator,
+      </if>
+      <if test="tankcapacity != null" >
+        tankCapacity,
+      </if>
+      <if test="automatic != null" >
+        automatic,
+      </if>
+      <if test="skylight != null" >
+        skylight,
       </if>
       <if test="deposit != null" >
         deposit,
@@ -184,6 +206,21 @@
       <if test="sitnumber != null" >
         #{sitnumber,jdbcType=INTEGER},
       </if>
+      <if test="displacement != null" >
+        #{displacement,jdbcType=REAL},
+      </if>
+      <if test="navigator != null" >
+        #{navigator,jdbcType=INTEGER},
+      </if>
+      <if test="tankcapacity != null" >
+        #{tankcapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="automatic != null" >
+        #{automatic,jdbcType=INTEGER},
+      </if>
+      <if test="skylight != null" >
+        #{skylight,jdbcType=INTEGER},
+      </if>
       <if test="deposit != null" >
         #{deposit,jdbcType=REAL},
       </if>
@@ -220,7 +257,7 @@
         imgs = #{record.imgs,jdbcType=VARCHAR},
       </if>
       <if test="record.desc != null" >
-        `desc` = #{record.desc,jdbcType=VARCHAR},
+        desc = #{record.desc,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null" >
         price = #{record.price,jdbcType=DECIMAL},
@@ -230,6 +267,21 @@
       </if>
       <if test="record.sitnumber != null" >
         sitNumber = #{record.sitnumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.displacement != null" >
+        displacement = #{record.displacement,jdbcType=REAL},
+      </if>
+      <if test="record.navigator != null" >
+        navigator = #{record.navigator,jdbcType=INTEGER},
+      </if>
+      <if test="record.tankcapacity != null" >
+        tankCapacity = #{record.tankcapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.automatic != null" >
+        automatic = #{record.automatic,jdbcType=INTEGER},
+      </if>
+      <if test="record.skylight != null" >
+        skylight = #{record.skylight,jdbcType=INTEGER},
       </if>
       <if test="record.deposit != null" >
         deposit = #{record.deposit,jdbcType=REAL},
@@ -254,10 +306,15 @@
       cname = #{record.cname,jdbcType=VARCHAR},
       kid = #{record.kid,jdbcType=INTEGER},
       imgs = #{record.imgs,jdbcType=VARCHAR},
-      `desc` = #{record.desc,jdbcType=VARCHAR},
+      desc = #{record.desc,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
       licenseNumber = #{record.licensenumber,jdbcType=VARCHAR},
       sitNumber = #{record.sitnumber,jdbcType=INTEGER},
+      displacement = #{record.displacement,jdbcType=REAL},
+      navigator = #{record.navigator,jdbcType=INTEGER},
+      tankCapacity = #{record.tankcapacity,jdbcType=VARCHAR},
+      automatic = #{record.automatic,jdbcType=INTEGER},
+      skylight = #{record.skylight,jdbcType=INTEGER},
       deposit = #{record.deposit,jdbcType=REAL},
       state = #{record.state,jdbcType=VARCHAR},
       startAddress = #{record.startaddress,jdbcType=VARCHAR},
@@ -279,7 +336,7 @@
         imgs = #{imgs,jdbcType=VARCHAR},
       </if>
       <if test="desc != null" >
-        `desc` = #{desc,jdbcType=VARCHAR},
+        desc = #{desc,jdbcType=VARCHAR},
       </if>
       <if test="price != null" >
         price = #{price,jdbcType=DECIMAL},
@@ -289,6 +346,21 @@
       </if>
       <if test="sitnumber != null" >
         sitNumber = #{sitnumber,jdbcType=INTEGER},
+      </if>
+      <if test="displacement != null" >
+        displacement = #{displacement,jdbcType=REAL},
+      </if>
+      <if test="navigator != null" >
+        navigator = #{navigator,jdbcType=INTEGER},
+      </if>
+      <if test="tankcapacity != null" >
+        tankCapacity = #{tankcapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="automatic != null" >
+        automatic = #{automatic,jdbcType=INTEGER},
+      </if>
+      <if test="skylight != null" >
+        skylight = #{skylight,jdbcType=INTEGER},
       </if>
       <if test="deposit != null" >
         deposit = #{deposit,jdbcType=REAL},
@@ -310,10 +382,15 @@
     set cname = #{cname,jdbcType=VARCHAR},
       kid = #{kid,jdbcType=INTEGER},
       imgs = #{imgs,jdbcType=VARCHAR},
-      `desc` = #{desc,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       licenseNumber = #{licensenumber,jdbcType=VARCHAR},
       sitNumber = #{sitnumber,jdbcType=INTEGER},
+      displacement = #{displacement,jdbcType=REAL},
+      navigator = #{navigator,jdbcType=INTEGER},
+      tankCapacity = #{tankcapacity,jdbcType=VARCHAR},
+      automatic = #{automatic,jdbcType=INTEGER},
+      skylight = #{skylight,jdbcType=INTEGER},
       deposit = #{deposit,jdbcType=REAL},
       state = #{state,jdbcType=VARCHAR},
       startAddress = #{startaddress,jdbcType=VARCHAR},

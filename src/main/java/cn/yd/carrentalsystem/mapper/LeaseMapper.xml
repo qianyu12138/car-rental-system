@@ -8,7 +8,6 @@
     <result column="cid" property="cid" jdbcType="INTEGER" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
     <result column="returnTime" property="returntime" jdbcType="TIMESTAMP" />
-    <result column="limitTime" property="limittime" jdbcType="INTEGER" />
     <result column="contactPhone" property="contactphone" jdbcType="VARCHAR" />
     <result column="receiveAddress" property="receiveaddress" jdbcType="VARCHAR" />
     <result column="returnAddress" property="returnaddress" jdbcType="VARCHAR" />
@@ -72,8 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    lid, state, uid, cid, createTime, returnTime, limitTime, contactPhone, receiveAddress, 
-    returnAddress
+    lid, state, uid, cid, createTime, returnTime, contactPhone, receiveAddress, returnAddress
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.yd.carrentalsystem.po.LeaseExample" >
     select
@@ -108,12 +106,12 @@
   <insert id="insert" parameterType="cn.yd.carrentalsystem.po.Lease" >
     insert into lease (lid, state, uid, 
       cid, createTime, returnTime, 
-      limitTime, contactPhone, receiveAddress, 
-      returnAddress)
+      contactPhone, receiveAddress, returnAddress
+      )
     values (#{lid,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
       #{cid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{returntime,jdbcType=TIMESTAMP}, 
-      #{limittime,jdbcType=INTEGER}, #{contactphone,jdbcType=VARCHAR}, #{receiveaddress,jdbcType=VARCHAR}, 
-      #{returnaddress,jdbcType=VARCHAR})
+      #{contactphone,jdbcType=VARCHAR}, #{receiveaddress,jdbcType=VARCHAR}, #{returnaddress,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.yd.carrentalsystem.po.Lease" >
     insert into lease
@@ -135,9 +133,6 @@
       </if>
       <if test="returntime != null" >
         returnTime,
-      </if>
-      <if test="limittime != null" >
-        limitTime,
       </if>
       <if test="contactphone != null" >
         contactPhone,
@@ -167,9 +162,6 @@
       </if>
       <if test="returntime != null" >
         #{returntime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="limittime != null" >
-        #{limittime,jdbcType=INTEGER},
       </if>
       <if test="contactphone != null" >
         #{contactphone,jdbcType=VARCHAR},
@@ -209,9 +201,6 @@
       <if test="record.returntime != null" >
         returnTime = #{record.returntime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.limittime != null" >
-        limitTime = #{record.limittime,jdbcType=INTEGER},
-      </if>
       <if test="record.contactphone != null" >
         contactPhone = #{record.contactphone,jdbcType=VARCHAR},
       </if>
@@ -234,7 +223,6 @@
       cid = #{record.cid,jdbcType=INTEGER},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
       returnTime = #{record.returntime,jdbcType=TIMESTAMP},
-      limitTime = #{record.limittime,jdbcType=INTEGER},
       contactPhone = #{record.contactphone,jdbcType=VARCHAR},
       receiveAddress = #{record.receiveaddress,jdbcType=VARCHAR},
       returnAddress = #{record.returnaddress,jdbcType=VARCHAR}
@@ -260,9 +248,6 @@
       <if test="returntime != null" >
         returnTime = #{returntime,jdbcType=TIMESTAMP},
       </if>
-      <if test="limittime != null" >
-        limitTime = #{limittime,jdbcType=INTEGER},
-      </if>
       <if test="contactphone != null" >
         contactPhone = #{contactphone,jdbcType=VARCHAR},
       </if>
@@ -282,7 +267,6 @@
       cid = #{cid,jdbcType=INTEGER},
       createTime = #{createtime,jdbcType=TIMESTAMP},
       returnTime = #{returntime,jdbcType=TIMESTAMP},
-      limitTime = #{limittime,jdbcType=INTEGER},
       contactPhone = #{contactphone,jdbcType=VARCHAR},
       receiveAddress = #{receiveaddress,jdbcType=VARCHAR},
       returnAddress = #{returnaddress,jdbcType=VARCHAR}

@@ -465,66 +465,6 @@ public class LeaseExample {
             return (Criteria) this;
         }
 
-        public Criteria andLimittimeIsNull() {
-            addCriterion("limitTime is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimittimeIsNotNull() {
-            addCriterion("limitTime is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimittimeEqualTo(Integer value) {
-            addCriterion("limitTime =", value, "limittime");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimittimeNotEqualTo(Integer value) {
-            addCriterion("limitTime <>", value, "limittime");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimittimeGreaterThan(Integer value) {
-            addCriterion("limitTime >", value, "limittime");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimittimeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("limitTime >=", value, "limittime");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimittimeLessThan(Integer value) {
-            addCriterion("limitTime <", value, "limittime");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimittimeLessThanOrEqualTo(Integer value) {
-            addCriterion("limitTime <=", value, "limittime");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimittimeIn(List<Integer> values) {
-            addCriterion("limitTime in", values, "limittime");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimittimeNotIn(List<Integer> values) {
-            addCriterion("limitTime not in", values, "limittime");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimittimeBetween(Integer value1, Integer value2) {
-            addCriterion("limitTime between", value1, value2, "limittime");
-            return (Criteria) this;
-        }
-
-        public Criteria andLimittimeNotBetween(Integer value1, Integer value2) {
-            addCriterion("limitTime not between", value1, value2, "limittime");
-            return (Criteria) this;
-        }
-
         public Criteria andContactphoneIsNull() {
             addCriterion("contactPhone is null");
             return (Criteria) this;
