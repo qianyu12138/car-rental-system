@@ -1,19 +1,19 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>选车列表</title>
-    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap.min.css">
-    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-theme.min.css">
-    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/jquery.raty.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/jquery.raty.css">
 
-    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/reset.css">
-    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/common.css">
-    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/carList.css">
+    <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/reset.css">--%>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/carList.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HHNwksT3c9XuGE9iwPrL0LLgSF0KzQsg"></script>
@@ -127,8 +127,8 @@
             <div class="single-car clearfloat">
                 <img class="car-img left-float" src="${pageContext.request.contextPath}/images/car-1.jpg">
                 <dl class="car-desc-box left-float">
-                    <dt class="car-name">${c.cname}</dt>
-                    <dd class="car-desc">${c.desc}</dd>
+                    <dt class="car-name"><a class="title-a" href="${pageContext.request.contextPath}/toCarDetail?cid=${c.cid}">${c.cname}</a></dt>
+                    <dd class="car-desc">${c.cdesc}</dd>
                     <dd class="car-gear-auto">自动挡</dd>
                     <dd class="car-gear">手动挡</dd>
                 </dl>

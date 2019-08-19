@@ -11,7 +11,7 @@ public class Car {
 
     private String imgs;
 
-    private String desc;
+    private String cdesc;
 
     private BigDecimal price;
 
@@ -69,12 +69,12 @@ public class Car {
         this.imgs = imgs == null ? null : imgs.trim();
     }
 
-    public String getDesc() {
-        return desc;
+    public String getCdesc() {
+        return cdesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setCdesc(String cdesc) {
+        this.cdesc = cdesc == null ? null : cdesc.trim();
     }
 
     public BigDecimal getPrice() {

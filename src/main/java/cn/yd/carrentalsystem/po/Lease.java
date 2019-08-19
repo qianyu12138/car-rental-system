@@ -1,5 +1,6 @@
 package cn.yd.carrentalsystem.po;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Lease {
@@ -13,6 +14,8 @@ public class Lease {
 
     private Date createtime;
 
+    private Date receivetime;
+
     private Date returntime;
 
     private String contactphone;
@@ -20,6 +23,8 @@ public class Lease {
     private String receiveaddress;
 
     private String returnaddress;
+
+    private BigDecimal totalprice;
 
     public Integer getLid() {
         return lid;
@@ -61,6 +66,14 @@ public class Lease {
         this.createtime = createtime;
     }
 
+    public Date getReceivetime() {
+        return receivetime;
+    }
+
+    public void setReceivetime(Date receivetime) {
+        this.receivetime = receivetime;
+    }
+
     public Date getReturntime() {
         return returntime;
     }
@@ -91,5 +104,13 @@ public class Lease {
 
     public void setReturnaddress(String returnaddress) {
         this.returnaddress = returnaddress == null ? null : returnaddress.trim();
+    }
+
+    public BigDecimal getTotalprice() {
+        return totalprice;
+    }
+
+    public void setTotalprice(BigDecimal totalprice) {
+        this.totalprice = totalprice;
     }
 }

@@ -1,5 +1,6 @@
 package cn.yd.carrentalsystem.po;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -405,6 +406,66 @@ public class LeaseExample {
             return (Criteria) this;
         }
 
+        public Criteria andReceivetimeIsNull() {
+            addCriterion("receiveTime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivetimeIsNotNull() {
+            addCriterion("receiveTime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivetimeEqualTo(Date value) {
+            addCriterion("receiveTime =", value, "receivetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivetimeNotEqualTo(Date value) {
+            addCriterion("receiveTime <>", value, "receivetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivetimeGreaterThan(Date value) {
+            addCriterion("receiveTime >", value, "receivetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivetimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("receiveTime >=", value, "receivetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivetimeLessThan(Date value) {
+            addCriterion("receiveTime <", value, "receivetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivetimeLessThanOrEqualTo(Date value) {
+            addCriterion("receiveTime <=", value, "receivetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivetimeIn(List<Date> values) {
+            addCriterion("receiveTime in", values, "receivetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivetimeNotIn(List<Date> values) {
+            addCriterion("receiveTime not in", values, "receivetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivetimeBetween(Date value1, Date value2) {
+            addCriterion("receiveTime between", value1, value2, "receivetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivetimeNotBetween(Date value1, Date value2) {
+            addCriterion("receiveTime not between", value1, value2, "receivetime");
+            return (Criteria) this;
+        }
+
         public Criteria andReturntimeIsNull() {
             addCriterion("returnTime is null");
             return (Criteria) this;
@@ -672,6 +733,66 @@ public class LeaseExample {
 
         public Criteria andReturnaddressNotBetween(String value1, String value2) {
             addCriterion("returnAddress not between", value1, value2, "returnaddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalpriceIsNull() {
+            addCriterion("totalPrice is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalpriceIsNotNull() {
+            addCriterion("totalPrice is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalpriceEqualTo(BigDecimal value) {
+            addCriterion("totalPrice =", value, "totalprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalpriceNotEqualTo(BigDecimal value) {
+            addCriterion("totalPrice <>", value, "totalprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalpriceGreaterThan(BigDecimal value) {
+            addCriterion("totalPrice >", value, "totalprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalpriceGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("totalPrice >=", value, "totalprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalpriceLessThan(BigDecimal value) {
+            addCriterion("totalPrice <", value, "totalprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalpriceLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("totalPrice <=", value, "totalprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalpriceIn(List<BigDecimal> values) {
+            addCriterion("totalPrice in", values, "totalprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalpriceNotIn(List<BigDecimal> values) {
+            addCriterion("totalPrice not in", values, "totalprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalpriceBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("totalPrice between", value1, value2, "totalprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalpriceNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("totalPrice not between", value1, value2, "totalprice");
             return (Criteria) this;
         }
     }

@@ -1,19 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>车辆详情</title>
-    <link rel="stylesheet"type="text/css" href="../../css/common/bootstrap.min.css">
-    <link rel="stylesheet"type="text/css" href="../../css/common/bootstrap-theme.min.css">
-    <link rel="stylesheet"type="text/css" href="../../css/common/jquery.raty.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/common/jquery.raty.css">
 
-    <link rel="stylesheet"type="text/css" href="../../css/common/reset.css">
-    <link rel="stylesheet"type="text/css" href="../../css/common/common.css">
-    <link rel="stylesheet"type="text/css" href="../../css/carDetail.css">
-    <script type="text/javascript" src="../../js/common/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/carDetail.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HHNwksT3c9XuGE9iwPrL0LLgSF0KzQsg"></script>
-    <script type="text/javascript" src="../../js/common/jquery.raty.js"></script>
-    <script type="text/javascript" src="../../js/carDetail.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/jquery.raty.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/carDetail.js"></script>
 </head>
 <body>
     <div class="header-box"></div>
@@ -24,11 +27,13 @@
     <div class="main-content">
         <div class="public-container clearfloat">
             <div class="car-desc-box left-float">
-                <div class="car-title">别克英朗/三厢/1.5自动</div>
+                <div class="car-title">${carCustom.cname}</div>
                 <div class="car-img-box">
-                    <img class="car-img-big" src="../../images/car-show-1.jpg">
+                    <img class="car-img-big" src="${pageContext.request.contextPath}/images/car-show-1.jpg">
                     <ul class="clearfloat car-img-small-box">
-                        <li class="left-float"><a href="javascript:void(0)" onclick="changeCarImg(this);"><img class="car-img-small" src="../../images/car-show-1.jpg"></a></li>
+                        <c:forEach items="${carCustom.imgPaths}" var="img">
+                        <li class="left-float"><a href="javascript:void(0)" onclick="changeCarImg(this);"><img class="car-img-small" src="${pageContext.request.contextPath}/${img}"></a></li>
+                        </c:forEach>
                         <li class="left-float"><a href="javascript:void(0)" onclick="changeCarImg(this);"><img class="car-img-small" src="../../images/car-show-2.jpg"></a></li>
                         <li class="left-float"><a href="javascript:void(0)" onclick="changeCarImg(this);"><img class="car-img-small" src="../../images/car-show-3.jpg"></a></li>
                         <li class="left-float"><a href="javascript:void(0)" onclick="changeCarImg(this);"><img class="car-img-small" src="../../images/car-show-4.jpg"></a></li>
@@ -36,11 +41,11 @@
                 </div>
                 <div class="car-base-info-box">
                     <dl>
-                        <dt class="base-info-title">别克英朗租车基本信息</dt>
+                        <dt class="base-info-title">${carCustom.cname}租车基本信息</dt>
                         <dd class="base-info-content">
                             <table class="base-info-content-box">
                                 <tr>
-                                    <td><img src="../../images/car-conf/brand.png"> 品牌：别克</td>
+                                    <td><img src="../../images/car-conf/brand.png"> 品牌：${carCustom.kind.kname}</td>
                                     <td><img src="../../images/car-conf/model.png"> 车系：英朗</td>
                                 </tr>
                                 <tr>
@@ -53,28 +58,20 @@
                 </div>
                 <div class="car-base-info-box">
                     <dl>
-                        <dt class="base-info-title">别克英朗租车配置信息</dt>
+                        <dt class="base-info-title">${carCustom.cname}租车配置信息</dt>
                         <dd class="base-info-content">
                             <table class="base-info-content-box">
                                 <tr>
-                                    <td><img src="../../images/car-conf/seat.png"> 座位数：5</td>
-                                    <td><img src="../../images/car-conf/door.png"> 车门数：4</td>
+                                    <td><img src="${pageContext.request.contextPath}/images/car-conf/seat.png"> 座位数：${carCustom.sitnumber}</td>
+                                    <td><img src="${pageContext.request.contextPath}/images/car-conf/displacement.png"> 排量：${carCustom.displacement}T</td>
                                 </tr>
                                 <tr>
-                                    <td><img src="../../images/car-conf/displacement.png"> 排量：1111</td>
-                                    <td><img src="../../images/car-conf/navigator.png"> 导航仪：有</td>
+                                    <td><img src="${pageContext.request.contextPath}/images/car-conf/navigator.png"> 油箱：${carCustom.tankcapacity}</td>
+                                    <td><img src="${pageContext.request.contextPath}/images/car-conf/gear.png"> 变速箱：${carCustom.automatic==1?'自动':'手动'}</td>
                                 </tr>
                                 <tr>
-                                    <td><img src="../../images/car-conf/pdc.png"> 倒车雷达：有</td>
-                                    <td><img src="../../images/car-conf/driven.png"> 驱动模式：前驱</td>
-                                </tr>
-                                <tr>
-                                    <td><img src="../../images/car-conf/navigator.png"> 油箱：40</td>
-                                    <td><img src="../../images/car-conf/gear.png"> 变速箱：自动</td>
-                                </tr>
-                                <tr>
-                                    <td><img src="../../images/car-conf/sky.png"> 天窗：有</td>
-                                    <td><img src="../../images/car-conf/cell.png"> 安全气囊：有</td>
+                                    <td><img src="${pageContext.request.contextPath}/images/car-conf/sky.png"> 天窗：${carCustom.skylight==1?'有':'无'}</td>
+                                    <td><img src="${pageContext.request.contextPath}/images/car-conf/navigator.png"> 导航仪：${carCustom.navigator==1?'有':'无'}</td>
                                 </tr>
                             </table>
                         </dd>
