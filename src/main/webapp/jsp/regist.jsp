@@ -22,7 +22,7 @@
                 dataType:"json",
                 url:"${pageContext.request.contextPath }/user/getUserExist/"+$(this).val(),
                 success:function (data) {
-                    if(data.isExist=="true") {
+                    if(data.isExist==true) {
                         $(".phoneError").html("用户名已存在");
                         $(".registBtn").attr("disabled",true)
                     }
