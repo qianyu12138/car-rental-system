@@ -64,3 +64,14 @@ function switchChange(link) {
         $(img).attr("alt", "switch-on");
     }
 }
+
+/**
+ * 动态改变租期
+ */
+function chg(){
+    $("#rentDay").html(getYMDHMS($("#startTime").val(),$("#endTime").val()))
+}
+$(function(){
+    $("#endTime").change(chg);
+    $("#startTime").change(chg);
+})

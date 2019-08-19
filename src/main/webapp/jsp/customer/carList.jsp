@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +19,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HHNwksT3c9XuGE9iwPrL0LLgSF0KzQsg"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/jquery.raty.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/getSubDay.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/carList.js"></script>
 </head>
 <script type="text/javascript">
@@ -54,13 +56,13 @@
         </div>
         <div class="choice-date left-float">
             <div class="choice-date-block"><span class="date-text">取车时间</span><!--
-                --><input readonly value="${startTime}" placeholder="请选择开始日期" class="date-choice" type="text"></div>
+                --><input form="conditionForm" readonly id="startTime" name="startTime" value="${startTime}" placeholder="请选择开始日期" class="date-choice" type="text"></div>
             <div class="choice-date-block"><span class="date-text">还车时间</span><!--
-                --><input readonly value="${endTime}" placeholder="请选择结束日期" class="date-choice" type="text"></div>
+                --><input form="conditionForm" readonly id="endTime" name="endTime" value="${endTime}" placeholder="请选择结束日期" class="date-choice" type="text"></div>
         </div>
         <img class="date-to-img left-float" src="${pageContext.request.contextPath}/images/dateToV.png" alt="至">
         <div class="choice-submit clearfloat">
-            <p class="rent-time">租期：<span class="red-text">2天</span>，不限里程</p>
+            <p class="rent-time">租期：<span id="rentDay" class="red-text">-</span>天，不限里程</p>
             <input type="submit" form="conditionForm" class="choice-btn" value="立即选车">
         </div>
     </div>

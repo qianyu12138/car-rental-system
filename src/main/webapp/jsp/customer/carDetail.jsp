@@ -78,7 +78,7 @@ pageEncoding="UTF-8"%>
                     </dl>
                 </div>
                 <div class="order-btn-box">
-                    <button class="order-btn">立刻预定</button>
+                    <button class="order-btn" onclick="window.location.href='${pageContext.request.contextPath}/order/toOrderPreview?cid=${carCustom.cid}'">立刻预定</button>
                 </div>
             </div>
             <div class="car-store left-float">

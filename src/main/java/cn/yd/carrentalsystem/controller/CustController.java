@@ -54,8 +54,10 @@ public class CustController {
     }
 
     @RequestMapping("/addCondition")
-    public String addCondition(HttpSession session,QueryVo vo){
+    public String addCondition(HttpSession session,QueryVo vo,String startTime, String endTime){
         session.setAttribute("vo", vo);
+        session.setAttribute("startTime",startTime);
+        session.setAttribute("endTime",endTime);
         return "redirect:/toCarList";
     }
 

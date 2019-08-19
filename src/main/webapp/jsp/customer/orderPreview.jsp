@@ -1,66 +1,95 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>订单预览</title>
-    <link rel="stylesheet"type="text/css" href="../../css/common/bootstrap.min.css">
-    <link rel="stylesheet"type="text/css" href="../../css/common/bootstrap-theme.min.css">
+    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap.min.css">
+    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-theme.min.css">
 
-    <link rel="stylesheet"type="text/css" href="../../css/common/reset.css">
-    <link rel="stylesheet"type="text/css" href="../../css/common/common.css">
-    <link rel="stylesheet"type="text/css" href="../../css/orderPreview.css">
-    <script type="text/javascript" src="../../js/common/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="../../js/orderPreview.js"></script>
+    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/reset.css">
+    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/common.css">
+    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/orderPreview.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/orderPreview.js"></script>
 </head>
+<script>
+    $(function () {
+        $('.date-choice').datetimepicker({
+            autoclose: true,
+            startDate: new Date()
+        });
+    })
+</script>
 <body>
     <div class="header-box"></div>
     <script>
-        $(".header-box").load("../common/public-header.html");
+        $(".header-box").load("${pageContext.request.contextPath}/jsp/common/public-header.jsp");
     </script>
 
     <div class="main-content">
         <div class="public-container car-container">
             <div class="car-content clearfloat">
-                <img class="car-img left-float" src="../../images/car-1.jpg">
+                <img class="car-img left-float" src="${pageContext.request.contextPath}/${carCustom.imgPaths[0]}">
                 <div class="car-desc-box left-float">
                     <dl>
-                        <dt class="car-name">大众朗逸</dt>
-                        <dd class="car-desc">三厢|1.6自动|乘坐5人</dd>
-                        <dd><button class="conf-btn">查看配置信息</button></dd>
+                        <dt class="car-name">${carCustom.cname}</dt>
+                        <dd class="car-desc">${carCustom.cdesc}</dd>
+                        <dd><button class="conf-btn" onclick="window.location.href='${pageContext.request.contextPath}/toCarDetail?cid=${carCustom.cid}'">查看配置信息</button></dd>
                     </dl>
                 </div>
                 <div class="date-address-box left-float">
                     <div class="date-address-title date-address-common clearfloat">
                         <img class="icon-common left-float" src="../../images/date-address/get-car.png"> <p class="text-common title-text left-float">取车</p><br>
                     </div>
-                    <div class="date-text date-address-common clearfloat">
-                        <img class="icon-common left-float" src="../../images/date-address/date.png"> <p class="text-common left-float">2018-01-08 10:00</p><br>
-                    </div>
                     <div class="address-text date-address-common clearfloat">
-                        <img class="icon-common left-float" src="../../images/date-address/address.png"> <p class="text-common left-float">武汉 天河机场店12333333333333333</p>
+                        <img class="icon-common left-float" src="../../images/date-address/address.png"> <p class="text-common left-float">${carCustom.startaddress}</p>
                     </div>
                 </div>
                 <div class="date-address-box left-float">
                     <div class="date-address-title date-address-common clearfloat">
                         <img class="icon-common left-float" src="../../images/date-address/return-car.png"> <p class="text-common title-text left-float">还车</p><br>
                     </div>
-                    <div class="date-text date-address-common clearfloat">
-                        <img class="icon-common left-float" src="../../images/date-address/date.png"> <p class="text-common left-float">2018-01-08 10:00</p><br>
-                    </div>
                     <div class="address-text date-address-common clearfloat">
-                        <img class="icon-common left-float" src="../../images/date-address/address.png"> <p class="text-common left-float">武汉 天河机场店12333333333333333</p>
+                        <img class="icon-common left-float" src="../../images/date-address/address.png"> <p class="text-common left-float">${carCustom.endaddress}</p>
                     </div>
                 </div>
+            </div>
+
+			<div class="price-content">
+                <form action="">
+                	<div class="form-group">
+                		<label>取车详细地址(不填默认网点取车)</label>
+                		<input class="form-control" type="text" value="${vo.startAddress}"/>
+                	</div>
+                	<div class="form-group">
+                		<label>还车详细地址(不填默认网点还车)</label>
+                		<input class="form-control" type="text" value="${vo.endAddress}"/>
+                	</div>
+                	<div class="form-group">
+                		<label>取车时间</label>
+                		<input class="form-control date-choice" readonly type="text" value="${startTime}"/>
+                	</div>
+                	<div class="form-group">
+                		<label>还车时间</label>
+                		<input class="form-control date-choice" readonly type="text" value="${endTime}"/>
+                	</div>
+                	<div class="form-group">
+                		<label>联系电话</label>
+                		<input class="form-control" type="text"/>
+                	</div>
+                </form>
             </div>
 
             <div class="price-content">
                 <dl>
                     <dt class="price-title">费用明细</dt>
                     <dd class="price-text clearfloat"><p class="left-float">车辆租赁费</p><p class="sub-price right-float">&yen;98</p><p class="calc-price right-float">98x2</p></dd>
-                    <dd class="price-text clearfloat"><p class="left-float">基本保险费</p><p class="sub-price right-float">&yen;110</p><p class="calc-price right-float">110x2</p></dd>
-                    <dd class="price-text clearfloat"><p class="left-float"><label for="nodebuct" class="nodebuct-label">不计免赔险（非强制性）</label><input id="nodebuct" type="checkbox"></p><p class="sub-price right-float">&yen;40</p><p class="calc-price right-float">40x2</p></dd>
                     <dd class="price-text clearfloat"><p class="left-float">手续费</p><p class="sub-price right-float">&yen;20</p></dd>
                     <dd class="price-text clearfloat"><p class="left-float">合计</p><p class="sub-price right-float">&yen;450</p></dd>
+                    <dd class="price-text clearfloat"><p class="left-float">押金</p><p class="sub-price right-float">&yen;110</p></dd>
                     <dd class="total-text clearfloat"><p class="left-float">预付款<span class="real-money">&yen;30</span></p> <button class="submit-btn right-float">提交订单</button></dd>
                 </dl>
             </div>
