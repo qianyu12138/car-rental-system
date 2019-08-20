@@ -7,6 +7,7 @@ pageEncoding="UTF-8"%>
     <title>订单预览</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-datetimepicker.min.css">
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/reset.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/common.css">

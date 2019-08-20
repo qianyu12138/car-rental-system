@@ -101,7 +101,7 @@
                     </c:forEach>
                     <div class="form-group">
                         <input type="text" name="keyWord" value="${vo.keyWord}" class="form-control" placeholder="关键字" form="conditionForm"/><br />
-                        <button class="btn btn-default form-control">搜索</button>
+                        <button form="conditionForm" class="btn btn-default form-control">搜索</button>
                     </div>
                 </div>
             </div>
@@ -137,7 +137,7 @@
                     <span class="car-price-text">&yen;${c.price}</span><span class="day-avg">/日均</span>
                 </div>
                 <div class="choice-btn-box left-float">
-                    <button class="choice-btn">租&nbsp;车</button>
+                    <button class="choice-btn" onclick="window.location.href='${pageContext.request.contextPath}/order/toOrderPreview?cid=${c.cid}'">租&nbsp;车</button>
                 </div>
             </div>
             </c:forEach>
@@ -148,6 +148,7 @@
 <div class="footer-box"></div>
 <script>
     $(".footer-box").load("${pageContext.request.contextPath}/jsp/common/public-footer.html");
+    chg();
 </script>
 
 <script>

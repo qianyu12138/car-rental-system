@@ -1,10 +1,7 @@
 package cn.yd.carrentalsystem.controller;
 
 import cn.yd.carrentalsystem.fastdfs.FastDFSClient;
-import cn.yd.carrentalsystem.po.Lease;
-import cn.yd.carrentalsystem.po.LeaseQueryVo;
 import cn.yd.carrentalsystem.po.User;
-import cn.yd.carrentalsystem.service.LeaseService;
 import cn.yd.carrentalsystem.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import sun.security.util.Password;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class UserController {
@@ -44,10 +37,8 @@ private String host;
     public String toRegist(){
         return "regist";
     }
-    @RequestMapping("/user/toLogin")
-    public  String toLogin()
-    {
-
+    @RequestMapping("/toLogin")
+    public  String toLogin(){
         return "login";
     }
 
