@@ -4,15 +4,16 @@ import cn.yd.carrentalsystem.mapper.CarMapper;
 import cn.yd.carrentalsystem.mapper.LeaseMapper;
 import cn.yd.carrentalsystem.po.*;
 import cn.yd.carrentalsystem.service.LeaseService;
+import cn.yd.carrentalsystem.utils.CommonUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import cn.yd.carrentalsystem.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -86,9 +87,17 @@ public class LeaseServiceImpl implements LeaseService {
     public LeaseCustom findLeaseCustomByLid(Integer lid) {
         Lease lease = leaseMapper.selectByPrimaryKey(lid);
         Car car = carMapper.selectByPrimaryKey(lease.getCid());
+        CarCustom carCustom = new CarCustom();
+        if(car.getImgs()!=null) {
+            String[] imgPathsArr = car.getImgs().split(";");
+            List<String> imgPaths = Arrays.asList(imgPathsArr);
+            carCustom.setImgPaths(imgPaths);
+        }
+        CommonUtils.BeantoBean(car, carCustom);
+
         LeaseCustom leaseCustom = new LeaseCustom();
         CommonUtils.BeantoBean(lease, leaseCustom);
-        leaseCustom.setCar(car);
+        leaseCustom.setCarCustom(carCustom);
         return leaseCustom;
     }
 }

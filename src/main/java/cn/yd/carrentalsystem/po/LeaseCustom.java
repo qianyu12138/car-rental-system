@@ -1,13 +1,13 @@
 package cn.yd.carrentalsystem.po;
 
 public class LeaseCustom extends Lease{
-    private Car car;
+    private CarCustom carCustom;
 
-    public Car getCar() {
-        return car;
+    public CarCustom getCarCustom() {
+        return carCustom;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarCustom(CarCustom carCustom) {
+        this.carCustom = carCustom;
     }
 }

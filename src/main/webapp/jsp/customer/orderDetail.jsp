@@ -25,12 +25,12 @@ pageEncoding="UTF-8"%>
     <div class="main-content">
         <div class="public-container car-container">
             <div class="car-content clearfloat">
-                <img class="car-img left-float" src="${pageContext.request.contextPath}/${carCustom.imgPaths[0]}">
+                <img class="car-img left-float" src="${pageContext.request.contextPath}/${leaseCustom.carCustom.imgPaths[0]}">
                 <div class="car-desc-box left-float">
                     <dl>
-                        <dt class="car-name">${carCustom.cname}</dt>
-                        <dd class="car-desc">${carCustom.cdesc}</dd>
-                        <dd><button class="conf-btn" onclick="window.location.href='${pageContext.request.contextPath}/toCarDetail?cid=${carCustom.cid}'">查看配置信息</button></dd>
+                        <dt class="car-name">${leaseCustom.carCustom.cname}</dt>
+                        <dd class="car-desc">${leaseCustom.carCustom.cdesc}</dd>
+                        <dd><button class="conf-btn" onclick="window.location.href='${pageContext.request.contextPath}/toCarDetail?cid=${leaseCustom.carCustom.cid}'">查看配置信息</button></dd>
                     </dl>
                 </div>
                 <div class="date-address-box left-float">
@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%>
                         <img class="icon-common left-float" src="../../images/date-address/get-car.png"> <p class="text-common title-text left-float">取车</p><br>
                     </div>
                     <div class="address-text date-address-common clearfloat">
-                        <img class="icon-common left-float" src="../../images/date-address/address.png"> <p class="text-common left-float">${carCustom.startaddress}</p>
+                        <img class="icon-common left-float" src="../../images/date-address/address.png"> <p class="text-common left-float">${leaseCustom.carCustom.startaddress}</p>
                     </div>
                 </div>
                 <div class="date-address-box left-float">
@@ -46,7 +46,7 @@ pageEncoding="UTF-8"%>
                         <img class="icon-common left-float" src="../../images/date-address/return-car.png"> <p class="text-common title-text left-float">还车</p><br>
                     </div>
                     <div class="address-text date-address-common clearfloat">
-                        <img class="icon-common left-float" src="../../images/date-address/address.png"> <p class="text-common left-float">${carCustom.endaddress}</p>
+                        <img class="icon-common left-float" src="../../images/date-address/address.png"> <p class="text-common left-float">${leaseCustom.carCustom.endaddress}</p>
                     </div>
                 </div>
             </div>
