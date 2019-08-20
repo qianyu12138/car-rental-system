@@ -6,6 +6,7 @@ import cn.yd.carrentalsystem.po.*;
 import cn.yd.carrentalsystem.service.LeaseService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import cn.yd.carrentalsystem.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -73,5 +74,21 @@ public class LeaseServiceImpl implements LeaseService {
         BigDecimal totalPrice = new BigDecimal(day).multiply(car.getPrice());
         lease.setTotalprice(totalPrice);
         leaseMapper.insert(lease);
+    }
+
+    @Override
+    public Lease findLeaseByLid(Integer lid) {
+        Lease lease = leaseMapper.selectByPrimaryKey(lid);
+        return lease;
+    }
+
+    @Override
+    public LeaseCustom findLeaseCustomByLid(Integer lid) {
+        Lease lease = leaseMapper.selectByPrimaryKey(lid);
+        Car car = carMapper.selectByPrimaryKey(lease.getCid());
+        LeaseCustom leaseCustom = new LeaseCustom();
+        CommonUtils.BeantoBean(lease, leaseCustom);
+        leaseCustom.setCar(car);
+        return leaseCustom;
     }
 }
