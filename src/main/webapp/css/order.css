@@ -1,3 +1,7 @@
+body{
+    font: 12px/1.5 Arial,"Microsoft yahei",Helvetica,Verdana,SimHei,sans-serif;
+}
+
 .tableth{
     background: #aac5e7;
     font-size: 20px;
@@ -20,10 +24,10 @@ padding: 10px;
     text-overflow: ellipsis;
 }
 .status{
-    font-size: 20px;
+    font-size: 18px;
 }
 .price{
-    font-size: 28px;
+    font-size: 25px;
     color: #fabe00;
     font-weight: bold;
 }

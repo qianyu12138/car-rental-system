@@ -38,7 +38,9 @@ private String host;
         return "regist";
     }
     @RequestMapping("/toLogin")
-    public  String toLogin(){
+    public  String toLogin()
+    {
+
         return "login";
     }
 
@@ -50,6 +52,11 @@ private String host;
             return "login";
         }
         request.getSession().setAttribute("user", user);
+        if(user.getState().equals("2"))
+        {
+            return "system/index";
+        }
+
         return "index";
     }
 
@@ -158,13 +165,13 @@ private String host;
             userService.updateUser(user);
             //4、拼接返回的url和ip地址，拼装成完整 的url
              request.getSession().setAttribute("user",user);
-             return "redirect:/order/findAllOrderList";
+             return "redirect:/order/findOrderList/0";
         }
         catch(Exception e)
         {
              e.printStackTrace();
         }
-        return "redirect:/order/findAllOrderList";
+        return "redirect:/order/findOrderList/0";
     }
 
 }

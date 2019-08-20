@@ -4,6 +4,8 @@ import cn.yd.carrentalsystem.mapper.CarMapper;
 import cn.yd.carrentalsystem.mapper.LeaseMapper;
 import cn.yd.carrentalsystem.po.*;
 import cn.yd.carrentalsystem.service.LeaseService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -22,14 +24,19 @@ public class LeaseServiceImpl implements LeaseService {
     @Autowired(required = false)
     private CarMapper carMapper;
     @Override
-    public List<LeaseQueryVo> findLeaseList(int state) {
+    public PageBean<LeaseQueryVo> findLeaseList(int state,int pc,int ps) {
+        PageBean<LeaseQueryVo> pageBean=new PageBean<LeaseQueryVo>();
         List<LeaseQueryVo> leaseQueryVos=new ArrayList<>();
+        PageHelper.startPage(pc,ps);
         LeaseExample example=new LeaseExample();
+        example.setOrderByClause("lid desc");
         LeaseExample.Criteria criteria=example.createCriteria();
         if(state!=0) {
             criteria.andStateEqualTo(state);
         }
+
         List<Lease>leases=leaseMapper.selectByExample(example);
+
         for (Lease lease:leases)
         {
          LeaseQueryVo leaseQueryVo=new LeaseQueryVo();
@@ -41,7 +48,21 @@ public class LeaseServiceImpl implements LeaseService {
          leaseQueryVos.add(leaseQueryVo);
         }
 
-        return  leaseQueryVos;
+        pageBean.setResultList(leaseQueryVos);
+        PageInfo<LeaseQueryVo> info=new PageInfo<LeaseQueryVo>(leaseQueryVos);
+        pageBean.setPageInfo(info);
+        int count=leaseMapper.countByExample(example);
+        pageBean.getPageInfo().setTotal(count);
+        pageBean.getPageInfo().setPages(((count-1)/ps)+1);
+        pageBean.getPageInfo().setPageNum(pc);
+         int[] nums=new int[pageBean.getPageInfo().getPages()];
+         for (int i=0;i<nums.length;i++)
+         {
+             nums[i]=i+1;
+         }
+         pageBean.getPageInfo().setNavigatepageNums(nums);
+        pageBean.setUrl(""+state);
+        return  pageBean;
     }
 
     @Override

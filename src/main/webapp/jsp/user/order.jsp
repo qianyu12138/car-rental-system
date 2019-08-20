@@ -48,7 +48,7 @@
                 <table>
 
                     <dt class="content-title ">
-                        <a class="btn-info btn-lg"  href="${pageContext.request.contextPath}/order/findOrderList/1">全部</a>
+                        <a class="btn-info btn-lg"  href="${pageContext.request.contextPath}/order/findOrderList/0">全部</a>
                         <a class="btn-info btn-lg" href="${pageContext.request.contextPath}/order/findOrderList/1">等待付款</a>
                         <a class="btn-info  btn-lg" href="${pageContext.request.contextPath}/order/findOrderList/2">预定成功</a>
                         <a class="btn-info  btn-lg " href="${pageContext.request.contextPath}/order/findOrderList/3">租赁中</a>
@@ -63,7 +63,7 @@
                         <th class="col-lg-2">状态</th>
 
                     </tr>
-                    <c:forEach items="${leases}" var="lease">
+                    <c:forEach items="${pageBean.resultList}" var="lease">
                     <tr class="tabletr">
                         <td>
                             <img class="img left-float" src="${pageContext.request.contextPath}/${lease.carfirstimg}">
@@ -93,6 +93,7 @@
                             </c:if>
                             <c:if test="${lease.lease.state==3}">
                                 <span class="decs status">租赁中</span><br>
+
                             </c:if>
                             <c:if test="${lease.lease.state==4}">
                                 <span class="decs status">已完成</span><br>
@@ -106,12 +107,33 @@
                     </tr>
                     </c:forEach>
 
+
+
                 </table>
             </dl>
+             <center>
+            <ul class="pagination" >
+                <c:if test="${!(pageBean.pageInfo.pageNum==1)}">
+                    <li><a class="btn-success" href="<c:url value="${pageContext.request.contextPath }/order/findOrderList/${pageBean.url}" />?pc=${pageBean.pageInfo.pageNum-1}">&laquo;</a></li>
+                </c:if>
+
+                 <c:forEach items="${pageBean.pageInfo.navigatepageNums}" var="page">
+                     <li><a class="btn-success" href="<c:url value="${pageContext.request.contextPath }/order/findOrderList/${pageBean.url}" />?pc=${page}">${page}</a></li>
+                 </c:forEach>
 
 
+
+                <c:if test="${!(pageBean.pageInfo.pageNum==pageBean.pageInfo.pages)}">
+                    <li><a class="btn-success" href="<c:url value="${pageContext.request.contextPath }/order/findOrderList/${pageBean.url}" />?pc=${pageBean.pageInfo.pageNum+1}">&raquo;</a></li>
+
+                </c:if>
+
+            </ul>
+             </center>
         </div>
+
     </div>
+
 </div>
 
 <!--尾部-->
