@@ -72,9 +72,8 @@ pageEncoding="UTF-8"%>
             </div>
 
             <form id="leaseForm" action="${pageContext.request.contextPath}/order/makeLease" method="post"></form>
-
+            <input form="leaseForm" name="cid" type="hidden" value="${carCustom.cid}">
 			<div class="price-content">
-                <form action="">
                 	<div class="form-group">
                 		<label>取车详细地址(不填默认网点取车)</label>
                 		<input form="leaseForm" name="receiveaddress" class="form-control" type="text" value="${vo.startAddress}"/>
@@ -95,7 +94,6 @@ pageEncoding="UTF-8"%>
                 		<label>联系电话</label>
                 		<input form="leaseForm" name="contactphone" class="form-control" required type="text"/>
                 	</div>
-                </form>
             </div>
 
             <div class="price-content">

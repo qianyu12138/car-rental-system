@@ -102,7 +102,7 @@
                                 <span class="decs status">已取消</span><br>
                             </c:if>
 
-                            <a href="#" class="btn-md btn-link">查看详情</a>
+                            <a href="${pageContext.request.contextPath}/toOrderDetail?lid=${lease.lease.lid}" class="btn-md btn-link">查看详情</a>
                         </td>
                     </tr>
                     </c:forEach>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +21,18 @@ pageEncoding="UTF-8"%>
     <div class="header-box"></div>
     <script>
         $(".header-box").load("${pageContext.request.contextPath}/jsp/common/public-header.jsp");
+        function chg(){
+            var totalDay = getYMDHMS($("#startTime").val(),$("#endTime").val());
+            $("#rentDay").html(totalDay);
+            var price = ${carCustom.price}*totalDay;
+            $("#price").html(price);
+
+            var totalPrice = price + 20;
+            $("#totalPrice").html(totalPrice);
+        }
+        $(function () {
+            chg();
+        })
     </script>
 
     <div class="main-content">
@@ -51,29 +64,27 @@ pageEncoding="UTF-8"%>
                 </div>
             </div>
 
-            <form id="leaseForm" action="${pageContext.request.contextPath}/order/makeLease" method="post"></form>
-
 			<div class="price-content">
                 <form action="">
                 	<div class="form-group">
                 		<label>取车详细地址(不填默认网点取车)</label>
-                		<input form="leaseForm" name="receiveaddress" class="form-control" type="text" value="${vo.startAddress}"/>
+                		<input class="form-control" readonly type="text" value="${vo.startAddress}"/>
                 	</div>
                 	<div class="form-group">
                 		<label>还车详细地址(不填默认网点还车)</label>
-                		<input form="leaseForm" name="returnaddress" class="form-control" type="text" value="${vo.endAddress}"/>
+                		<input class="form-control" readonly type="text" value="${vo.endAddress}"/>
                 	</div>
                 	<div class="form-group">
                 		<label>取车时间</label>
-                		<input form="leaseForm" name="receivetime" class="form-control date-choice" readonly required id="startTime" type="text" value="${startTime}"/>
+                		<input class="form-control" readonly id="startTime" type="text" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${leaseCustom.receivetime}" />"/>
                 	</div>
                 	<div class="form-group">
                 		<label>还车时间</label>
-                		<input form="leaseForm" name="returntime" class="form-control date-choice" readonly required id="endTime" type="text" value="${endTime}"/>
+                		<input class="form-control" readonly id="endTime" type="text" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${leaseCustom.returntime}" />"/>
                 	</div>
                 	<div class="form-group">
                 		<label>联系电话</label>
-                		<input form="leaseForm" name="contactphone" class="form-control" required type="text"/>
+                		<input class="form-control" readonly type="text" value="${leaseCustom.contactphone}"/>
                 	</div>
                 </form>
             </div>
@@ -84,7 +95,7 @@ pageEncoding="UTF-8"%>
                     <dd class="price-text clearfloat"><p class="left-float">车辆租赁费</p><p class="sub-price right-float"><span id="price">-</span>元</p><p class="calc-price right-float">${carCustom.price}x<span id="rentDay">2</span></p></dd>
                     <dd class="price-text clearfloat"><p class="left-float">手续费</p><p class="sub-price right-float">&yen;20</p></dd>
                     <dd class="price-text clearfloat"><p class="left-float">合计</p><p class="sub-price right-float">&yen;<span id="totalPrice">-</span></p></dd>
-                    <dd class="price-text clearfloat"><p class="left-float">押金</p><p class="sub-price right-float">&yen;${carCustom.deposit}</p></dd>
+                    <dd class="price-text clearfloat"><p class="left-float">押金</p><p class="sub-price right-float">&yen;${leaseCustom.carCustom.deposit}</p></dd>
                 </dl>
             </div>
 

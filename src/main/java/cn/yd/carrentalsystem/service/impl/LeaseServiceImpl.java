@@ -72,6 +72,7 @@ public class LeaseServiceImpl implements LeaseService {
         Long dateInterval = lease.getReturntime().getTime()-lease.getReceivetime().getTime();
         double day = Math.ceil(dateInterval / (24 * 60 * 60 * 1000));
         Car car = carMapper.selectByPrimaryKey(lease.getCid());
+        System.out.println(car);
         BigDecimal totalPrice = new BigDecimal(day).multiply(car.getPrice());
         lease.setTotalprice(totalPrice);
         leaseMapper.insert(lease);

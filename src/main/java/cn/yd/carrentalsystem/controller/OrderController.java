@@ -51,7 +51,7 @@ public class OrderController {
         lease.setCid(cid);
         lease.setCreatetime(new Date());
         lease.setUid(((User)session.getAttribute("user")).getUid());
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
         lease.setReceivetime(format.parse(receivetime));
         lease.setReturntime(format.parse(returntime));
