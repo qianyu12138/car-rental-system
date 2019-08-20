@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface LeaseService {
     List<LeaseQueryVo> findLeaseList(int state);
+
+    void addLease(Lease lease);
 }

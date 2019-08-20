@@ -5,12 +5,12 @@ pageEncoding="UTF-8"%>
 <head>
     <meta charset="UTF-8">
     <title>订单预览</title>
-    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap.min.css">
-    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-theme.min.css">
 
-    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/reset.css">
-    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/common/common.css">
-    <link rel="stylesheet"type="text/css" href="${pageContext.request.contextPath}/css/orderPreview.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/orderPreview.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/getSubDay.js"></script>
@@ -70,27 +70,29 @@ pageEncoding="UTF-8"%>
                 </div>
             </div>
 
+            <form id="leaseForm" action="${pageContext.request.contextPath}/order/makeLease" method="post"></form>
+
 			<div class="price-content">
                 <form action="">
                 	<div class="form-group">
                 		<label>取车详细地址(不填默认网点取车)</label>
-                		<input class="form-control" type="text" value="${vo.startAddress}"/>
+                		<input form="leaseForm" name="receiveaddress" class="form-control" type="text" value="${vo.startAddress}"/>
                 	</div>
                 	<div class="form-group">
                 		<label>还车详细地址(不填默认网点还车)</label>
-                		<input class="form-control" type="text" value="${vo.endAddress}"/>
+                		<input form="leaseForm" name="returnaddress" class="form-control" type="text" value="${vo.endAddress}"/>
                 	</div>
                 	<div class="form-group">
                 		<label>取车时间</label>
-                		<input class="form-control date-choice" readonly id="startTime" type="text" value="${startTime}"/>
+                		<input form="leaseForm" name="receivetime" class="form-control date-choice" readonly required id="startTime" type="text" value="${startTime}"/>
                 	</div>
                 	<div class="form-group">
                 		<label>还车时间</label>
-                		<input class="form-control date-choice" readonly id="endTime" type="text" value="${endTime}"/>
+                		<input form="leaseForm" name="returntime" class="form-control date-choice" readonly required id="endTime" type="text" value="${endTime}"/>
                 	</div>
                 	<div class="form-group">
                 		<label>联系电话</label>
-                		<input class="form-control" type="text"/>
+                		<input form="leaseForm" name="contactphone" class="form-control" required type="text"/>
                 	</div>
                 </form>
             </div>
@@ -102,7 +104,7 @@ pageEncoding="UTF-8"%>
                     <dd class="price-text clearfloat"><p class="left-float">手续费</p><p class="sub-price right-float">&yen;20</p></dd>
                     <dd class="price-text clearfloat"><p class="left-float">合计</p><p class="sub-price right-float">&yen;<span id="totalPrice">-</span></p></dd>
                     <dd class="price-text clearfloat"><p class="left-float">押金</p><p class="sub-price right-float">&yen;${carCustom.deposit}</p></dd>
-                    <dd class="total-text clearfloat"><p class="left-float">预付款<span class="real-money">&yen;30</span></p> <button class="submit-btn right-float">提交订单</button></dd>
+                    <dd class="total-text clearfloat"><p class="left-float">预付款<span class="real-money">&yen;30</span></p> <button form="leaseForm" class="submit-btn right-float">提交订单</button></dd>
                 </dl>
             </div>
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +17,9 @@ public class LeaseServiceImpl implements LeaseService {
 
     @Value("${Host}")
     private String host;
-    @Autowired
-   private   LeaseMapper leaseMapper;
-    @Autowired
+    @Autowired(required = false)
+    private LeaseMapper leaseMapper;
+    @Autowired(required = false)
     private CarMapper carMapper;
     @Override
     public List<LeaseQueryVo> findLeaseList(int state) {
@@ -41,5 +42,15 @@ public class LeaseServiceImpl implements LeaseService {
         }
 
         return  leaseQueryVos;
+    }
+
+    @Override
+    public void addLease(Lease lease) {
+        Long dateInterval = lease.getReturntime().getTime()-lease.getReceivetime().getTime();
+        double day = Math.ceil(dateInterval / (24 * 60 * 60 * 1000));
+        Car car = carMapper.selectByPrimaryKey(lease.getCid());
+        BigDecimal totalPrice = new BigDecimal(day).multiply(car.getPrice());
+        lease.setTotalprice(totalPrice);
+        leaseMapper.insert(lease);
     }
 }

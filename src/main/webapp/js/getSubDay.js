@@ -10,6 +10,6 @@ function getYMDHMS(startTimeStr, endTimeStr) {
     var dateEnd = new Date(endTimeStr.replace(/-/g,'/'));
     var dateInterval = dateEnd.getTime() - dateStart.getTime() //获取时间差毫秒
     //计算出相差天数
-    var days = Math.floor(dateInterval / (24 * 60 * 60 * 1000))+1;
+    var days = Math.ceil(dateInterval / (24 * 60 * 60 * 1000));
     return days;
 }
