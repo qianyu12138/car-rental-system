@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/jquery.raty.css">
 
     <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/reset.css">--%>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/common.css">
@@ -51,7 +50,7 @@
         </div>
         <div class="left-float car-to-img">
             <img src="${pageContext.request.contextPath}/images/car-to.jpg">
-            <p>qawfqfqfdr</p>
+            <p>${host}</p>
         </div>
         <div class="choice-date left-float">
             <div class="choice-date-block"><span class="date-text">取车时间</span><!--
@@ -126,7 +125,7 @@
         <div class="car-content left-float">
             <c:forEach items="${cars}" var="c">
             <div class="single-car clearfloat">
-                <img class="car-img left-float" src="${pageContext.request.contextPath}/images/car-1.jpg">
+                <img class="car-img left-float" src="${host}${c.imgPaths[0]}">
                 <dl class="car-desc-box left-float">
                     <dt class="car-name"><a class="title-a" href="${pageContext.request.contextPath}/toCarDetail?cid=${c.cid}">${c.cname}</a></dt>
                     <dd class="car-desc">${c.cdesc}</dd>
@@ -147,7 +146,7 @@
 
 <div class="footer-box"></div>
 <script>
-    $(".footer-box").load("${pageContext.request.contextPath}/jsp/common/public-footer.html");
+    $(".footer-box").load("${pageContext.request.contextPath}/jsp/common/public-footer.jsp");
     chg();
 </script>
 

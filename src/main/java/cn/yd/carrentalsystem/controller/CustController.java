@@ -1,6 +1,5 @@
 package cn.yd.carrentalsystem.controller;
 
-import cn.yd.carrentalsystem.po.Car;
 import cn.yd.carrentalsystem.po.CarCustom;
 import cn.yd.carrentalsystem.po.Kind;
 import cn.yd.carrentalsystem.po.QueryVo;
@@ -43,7 +42,7 @@ public class CustController {
 
         QueryVo vo = (QueryVo) session.getAttribute("vo");
         System.out.println(vo);
-        List<Car> cars = carService.getCarListByQueryVo(vo);
+        List<CarCustom> cars = carService.getCarListByQueryVo(vo);
 
         List<Kind> kinds = kindService.getAllKinds();
 

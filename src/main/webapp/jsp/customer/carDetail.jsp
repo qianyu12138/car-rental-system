@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
 <body>
     <div class="header-box"></div>
     <script>
-        $(".header-box").load("../common/public-header.html");
+        $(".header-box").load("${pageContext.request.contextPath}/jsp/common/public-header.jsp");
     </script>
 
     <div class="main-content">
@@ -29,14 +29,11 @@ pageEncoding="UTF-8"%>
             <div class="car-desc-box left-float">
                 <div class="car-title">${carCustom.cname}</div>
                 <div class="car-img-box">
-                    <img class="car-img-big" src="${pageContext.request.contextPath}/images/car-show-1.jpg">
+                    <img class="car-img-big" src="${host}${carCustom.imgPaths[0]}">
                     <ul class="clearfloat car-img-small-box">
                         <c:forEach items="${carCustom.imgPaths}" var="img">
-                        <li class="left-float"><a href="javascript:void(0)" onclick="changeCarImg(this);"><img class="car-img-small" src="${pageContext.request.contextPath}/${img}"></a></li>
+                        <li class="left-float"><a href="javascript:void(0)" onclick="changeCarImg(this);"><img class="car-img-small" src="${host}${img}"></a></li>
                         </c:forEach>
-                        <li class="left-float"><a href="javascript:void(0)" onclick="changeCarImg(this);"><img class="car-img-small" src="../../images/car-show-2.jpg"></a></li>
-                        <li class="left-float"><a href="javascript:void(0)" onclick="changeCarImg(this);"><img class="car-img-small" src="../../images/car-show-3.jpg"></a></li>
-                        <li class="left-float"><a href="javascript:void(0)" onclick="changeCarImg(this);"><img class="car-img-small" src="../../images/car-show-4.jpg"></a></li>
                     </ul>
                 </div>
                 <div class="car-base-info-box">

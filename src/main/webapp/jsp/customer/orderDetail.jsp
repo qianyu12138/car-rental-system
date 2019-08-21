@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
     <div class="main-content">
         <div class="public-container car-container">
             <div class="car-content clearfloat">
-                <img class="car-img left-float" src="${pageContext.request.contextPath}/${leaseCustom.carCustom.imgPaths[0]}">
+                <img class="car-img left-float" src="${host}${leaseCustom.carCustom.imgPaths[0]}">
                 <div class="car-desc-box left-float">
                     <dl>
                         <dt class="car-name">${leaseCustom.carCustom.cname}</dt>
@@ -113,14 +113,23 @@ pageEncoding="UTF-8"%>
                     <dd class="price-text clearfloat"><p class="left-float">押金</p><p class="sub-price right-float">&yen;${leaseCustom.carCustom.deposit}</p></dd>
                 </dl>
             </div>
-            
-            <c:if test="${leaseCustom.state==4}">
-            <div class="price-content">
-                <dl>
-                    <dd class="total-text clearfloat"><button class="submit-btn right-float">申请还车</button></dd>
-                </dl>
-            </div>
-            </c:if>
+
+            <c:choose>
+                <c:when test="${leaseCustom.state==4}">
+                    <div class="price-content">
+                        <dl>
+                            <dd class="total-text clearfloat"><button class="submit-btn right-float" onclick="window.location.href='${pageContext.request.contextPath}/order/returnApply?lid=${leaseCustom.lid}'">申请还车</button></dd>
+                        </dl>
+                    </div>
+                </c:when>
+                <c:when test="${leaseCustom.state==1}">
+                    <div class="price-content">
+                        <dl>
+                            <dd class="total-text clearfloat"><button class="submit-btn right-float">取消订单</button></dd>
+                        </dl>
+                    </div>
+                </c:when>
+            </c:choose>
 
             <div class="caution-content">
                 <div class="caution-title">常见问题</div>

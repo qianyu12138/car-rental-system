@@ -45,7 +45,7 @@ pageEncoding="UTF-8"%>
     <div class="main-content">
         <div class="public-container car-container">
             <div class="car-content clearfloat">
-                <img class="car-img left-float" src="${pageContext.request.contextPath}/${carCustom.imgPaths[0]}">
+                <img class="car-img left-float" src="${host}${carCustom.imgPaths[0]}">
                 <div class="car-desc-box left-float">
                     <dl>
                         <dt class="car-name">${carCustom.cname}</dt>

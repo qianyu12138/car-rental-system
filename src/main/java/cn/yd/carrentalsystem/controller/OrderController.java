@@ -4,7 +4,6 @@ import cn.yd.carrentalsystem.po.*;
 import cn.yd.carrentalsystem.service.CarService;
 import cn.yd.carrentalsystem.service.LeaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,12 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class OrderController {
@@ -64,6 +61,17 @@ public class OrderController {
         lease.setContactphone(contactphone);
 
         leaseService.addLease(lease);
+
+        return "redirect:/order/findOrderList/0";
+    }
+
+    @RequestMapping("/order/returnApply")
+    public String returnApply(Integer lid,HttpSession session){
+        LeaseCustom leaseCustom = leaseService.findLeaseCustomByLid(lid);
+        User user = (User) session.getAttribute("user");
+        if(!user.getUid().equals(leaseCustom.getUid()))
+            return null;
+        leaseService.returnApply(lid);
 
         return "redirect:/order/findOrderList/0";
     }

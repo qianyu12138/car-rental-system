@@ -106,4 +106,12 @@ public class LeaseServiceImpl implements LeaseService {
         leaseCustom.setCarCustom(carCustom);
         return leaseCustom;
     }
+
+    @Override
+    public void returnApply(Integer lid) {
+        Lease newLease = new Lease();
+        newLease.setLid(lid);
+        newLease.setState(5);
+        leaseMapper.updateByPrimaryKeySelective(newLease);
+    }
 }
