@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +25,7 @@ pageEncoding="UTF-8"%>
         function chg(){
             var totalDay = getYMDHMS($("#startTime").val(),$("#endTime").val());
             $("#rentDay").html(totalDay);
-            var price = ${carCustom.price}*totalDay;
+            var price = ${leaseCustom.carCustom.price}*totalDay;
             $("#price").html(price);
 
             var totalPrice = price + 20;
@@ -65,28 +66,42 @@ pageEncoding="UTF-8"%>
             </div>
 
 			<div class="price-content">
-                <form action="">
-                	<div class="form-group">
-                		<label>取车详细地址(不填默认网点取车)</label>
-                		<input class="form-control" readonly type="text" value="${vo.startAddress}"/>
-                	</div>
-                	<div class="form-group">
-                		<label>还车详细地址(不填默认网点还车)</label>
-                		<input class="form-control" readonly type="text" value="${vo.endAddress}"/>
-                	</div>
-                	<div class="form-group">
-                		<label>取车时间</label>
-                		<input class="form-control" readonly id="startTime" type="text" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${leaseCustom.receivetime}" />"/>
-                	</div>
-                	<div class="form-group">
-                		<label>还车时间</label>
-                		<input class="form-control" readonly id="endTime" type="text" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${leaseCustom.returntime}" />"/>
-                	</div>
-                	<div class="form-group">
-                		<label>联系电话</label>
-                		<input class="form-control" readonly type="text" value="${leaseCustom.contactphone}"/>
-                	</div>
-                </form>
+                <div class="form-group">
+                    <label>当前订单状态：
+                    <c:choose>
+                        <c:when test="${leaseCustom.state==1}">订单已提交，等待审核中</c:when>
+                        <c:when test="${leaseCustom.state==2}">订单审核成功，请在指定时间提车</c:when>
+                        <c:when test="${leaseCustom.state==3}">车辆租赁中</c:when>
+                        <c:when test="${leaseCustom.state==4}">还车申请提交成功，等待审核中</c:when>
+                        <c:when test="${leaseCustom.state==5}">订单完成</c:when>
+                        <c:when test="${leaseCustom.state==6}">订单已取消</c:when>
+                    </c:choose>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>订单创建时间</label>
+                    <input class="form-control" readonly type="text" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${leaseCustom.createtime}" />"/>
+                </div>
+                <div class="form-group">
+                    <label>取车详细地址(不填默认网点取车)</label>
+                    <input class="form-control" readonly type="text" value="${vo.startAddress}"/>
+                </div>
+                <div class="form-group">
+                    <label>还车详细地址(不填默认网点还车)</label>
+                    <input class="form-control" readonly type="text" value="${vo.endAddress}"/>
+                </div>
+                <div class="form-group">
+                    <label>取车时间</label>
+                    <input class="form-control" readonly id="startTime" type="text" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${leaseCustom.receivetime}" />"/>
+                </div>
+                <div class="form-group">
+                    <label>还车时间</label>
+                    <input class="form-control" readonly id="endTime" type="text" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${leaseCustom.returntime}" />"/>
+                </div>
+                <div class="form-group">
+                    <label>联系电话</label>
+                    <input class="form-control" readonly type="text" value="${leaseCustom.contactphone}"/>
+                </div>
             </div>
 
             <div class="price-content">
@@ -98,6 +113,14 @@ pageEncoding="UTF-8"%>
                     <dd class="price-text clearfloat"><p class="left-float">押金</p><p class="sub-price right-float">&yen;${leaseCustom.carCustom.deposit}</p></dd>
                 </dl>
             </div>
+            
+            <c:if test="${leaseCustom.state==4}">
+            <div class="price-content">
+                <dl>
+                    <dd class="total-text clearfloat"><button class="submit-btn right-float">申请还车</button></dd>
+                </dl>
+            </div>
+            </c:if>
 
             <div class="caution-content">
                 <div class="caution-title">常见问题</div>

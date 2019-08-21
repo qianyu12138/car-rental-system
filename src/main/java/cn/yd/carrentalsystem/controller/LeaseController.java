@@ -15,13 +15,7 @@ public class LeaseController {
     @Autowired
     private LeaseService leaseService;
 
-    @RequestMapping("/toOrderPreview")
-    public String toOrderPreview(Integer cid, Model model){
-        model.addAttribute("cid", cid);
-        return "customer/orderPreview";
-    }
-
-    @RequestMapping("/toOrderDetail")
+    @RequestMapping("/order/toOrderDetail")
     public String toOrderDetail(Integer lid, Model model, HttpSession session){
         LeaseCustom leaseCustom = leaseService.findLeaseCustomByLid(lid);
         User user = (User) session.getAttribute("user");
