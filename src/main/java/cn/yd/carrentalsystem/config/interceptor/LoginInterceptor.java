@@ -18,7 +18,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         if(user==null) {
             response.sendRedirect("/toLogin");
             return false;
-        }else if(user.getState()=="0"){
+        }else if(user.getState().equals("0")){
             response.sendRedirect("/user/identitySAuth");
             return false;
         }else{

@@ -2,6 +2,7 @@ package cn.yd.carrentalsystem.service.impl;
 
 import cn.yd.carrentalsystem.mapper.CarMapper;
 import cn.yd.carrentalsystem.mapper.LeaseMapper;
+import cn.yd.carrentalsystem.mapper.UserMapper;
 import cn.yd.carrentalsystem.po.*;
 import cn.yd.carrentalsystem.service.LeaseService;
 import cn.yd.carrentalsystem.utils.CommonUtils;
@@ -25,6 +26,8 @@ public class LeaseServiceImpl implements LeaseService {
     private LeaseMapper leaseMapper;
     @Autowired(required = false)
     private CarMapper carMapper;
+    @Autowired
+    private UserMapper userMapper;
     @Override
     public PageBean<LeaseQueryVo> findLeaseList(int state,int pc,int ps) {
         PageBean<LeaseQueryVo> pageBean=new PageBean<LeaseQueryVo>();
@@ -48,6 +51,8 @@ public class LeaseServiceImpl implements LeaseService {
          leaseQueryVo.setCar(car);
          leaseQueryVo.setCarfirstimg(host+car.getImgs().split(";")[0]);
          leaseQueryVos.add(leaseQueryVo);
+         User user=userMapper.selectByPrimaryKey(lease.getUid());
+         leaseQueryVo.setUser(user);
         }
 
         pageBean.setResultList(leaseQueryVos);
