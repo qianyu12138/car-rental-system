@@ -20,7 +20,7 @@
             $.ajax({
                 method:"GET",
                 dataType:"json",
-                url:"${pageContext.request.contextPath }/user/getUserExist/"+$(this).val(),
+                url:"${pageContext.request.contextPath }/getUserExist/"+$(this).val(),
                 success:function (data) {
                     if(data.isExist==true) {
                         $(".phoneError").html("用户名已存在");

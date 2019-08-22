@@ -4,7 +4,6 @@ import cn.yd.carrentalsystem.po.*;
 import cn.yd.carrentalsystem.service.CarService;
 import cn.yd.carrentalsystem.service.LeaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,12 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class OrderController {
@@ -59,7 +56,7 @@ public class OrderController {
 
     @RequestMapping("/order/makeLease")
     public String makeLease(Integer cid, String receiveaddress, String returnaddress, String receivetime,
-                            String returntime, String contactphone, HttpSession session) throws ParseException {
+                            String returntime, String contactphone, HttpSession session,Model model) throws ParseException {
         Lease lease = new Lease();
         lease.setCid(cid);
         lease.setCreatetime(new Date());
@@ -75,6 +72,7 @@ public class OrderController {
 
         leaseService.addLease(lease);
 
+        model.addAttribute("tip", "订单提交成功");
         return "redirect:/order/findOrderList/0";
     }
     /**
@@ -82,7 +80,6 @@ public class OrderController {
      */
     @RequestMapping("/order/audit")
     public String audit(@RequestParam(value = "s") int state, @RequestParam(value = "l" ) int lid)
-
     {
         leaseService.updateState(state,lid);
         if (state==2)
@@ -97,7 +94,19 @@ public class OrderController {
         {
             return "redirect:findOrderList/0";
         }
-       return "404";
+        return "404";
 
+    }
+
+    @RequestMapping("/order/returnApply")
+    public String returnApply(Integer lid,HttpSession session,Model model){
+        LeaseCustom leaseCustom = leaseService.findLeaseCustomByLid(lid);
+        User user = (User) session.getAttribute("user");
+        if(!user.getUid().equals(leaseCustom.getUid()))
+        return null;
+        leaseService.returnApply(lid);
+
+        model.addAttribute("tip", "还车申请提交成功");
+        return "/order/findOrderList/0";
     }
 }

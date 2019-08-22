@@ -26,7 +26,7 @@ public class LeaseServiceImpl implements LeaseService {
     private LeaseMapper leaseMapper;
     @Autowired(required = false)
     private CarMapper carMapper;
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userMapper;
     @Override
     public PageBean<LeaseQueryVo> findLeaseList(int state,int pc,int ps) {
@@ -113,5 +113,13 @@ public class LeaseServiceImpl implements LeaseService {
         lease.setState(state);
         leaseMapper.updateByPrimaryKey(lease);
 
+    }
+
+    @Override
+    public void returnApply(Integer lid) {
+        Lease newLease = new Lease();
+        newLease.setLid(lid);
+        newLease.setState(5);
+        leaseMapper.updateByPrimaryKeySelective(newLease);
     }
 }

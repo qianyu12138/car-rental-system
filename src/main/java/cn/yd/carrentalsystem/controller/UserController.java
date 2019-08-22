@@ -33,7 +33,7 @@ private String host;
         }
         return "{\"status\":1}";
     }
-    @RequestMapping("toRegist")
+    @RequestMapping("/toRegist")
     public String toRegist(){
         return "regist";
     }
@@ -63,7 +63,7 @@ private String host;
 
 
     @ResponseBody
-    @RequestMapping("/user/getUserExist/{name}")
+    @RequestMapping("/getUserExist/{name}")
     public String getUserExist(@PathVariable("name") String username){
         boolean isExist = userService.getUserExist(username);
 
