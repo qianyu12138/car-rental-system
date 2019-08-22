@@ -6,17 +6,17 @@ import cn.yd.carrentalsystem.service.LeaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.crypto.dsig.DigestMethod;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.UUID;
 
 @Controller
@@ -71,8 +71,17 @@ public class OrderController {
         lease.setUid(((User)session.getAttribute("user")).getUid());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-        lease.setReceivetime(format.parse(receivetime));
-        lease.setReturntime(format.parse(returntime));
+        Date returnTime = format.parse(returntime);
+        Date receiveTime = format.parse(receivetime);
+        lease.setReceivetime(receiveTime);
+        if(receiveTime.before(returnTime))
+            lease.setReturntime(returnTime);
+        else {
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime(receiveTime);
+            calendar.add(calendar.DATE,1);
+            lease.setReturntime(calendar.getTime());
+        }
         lease.setReceiveaddress(receiveaddress);
         lease.setReturnaddress(returnaddress);
         lease.setState(1);
@@ -111,10 +120,27 @@ public class OrderController {
         LeaseCustom leaseCustom = leaseService.findLeaseCustomByLid(lid);
         User user = (User) session.getAttribute("user");
         if(!user.getUid().equals(leaseCustom.getUid()))
-        return null;
+            return null;
         leaseService.returnApply(lid);
 
         model.addAttribute("tip", "还车申请提交成功");
-        return "/order/findOrderList/0";
+        return "forward:/order/findOrderList/0";
+    }
+
+    /**
+     * 取消订单
+     */
+    @RequestMapping("/order/cancelLease")
+    public String cancelLease(String lid,HttpSession session,Model model){
+        LeaseCustom leaseCustom = leaseService.findLeaseCustomByLid(lid);
+        User user = (User) session.getAttribute("user");
+        if(!user.getUid().equals(leaseCustom.getUid()))
+            return null;
+        if(leaseService.findLeaseByLid(lid).getState()!=1)
+            return null;
+        leaseService.updateState(6, lid);
+
+        model.addAttribute("tip", "取消订单成功");
+        return "forward:/order/findOrderList/0";
     }
 }

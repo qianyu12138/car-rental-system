@@ -19,6 +19,14 @@ pageEncoding="UTF-8"%>
 <script>
     function chg(){
         var totalDay = getYMDHMS($("#startTime").val(),$("#endTime").val());
+        if(totalDay<=0) {
+            alert("请填写正确的时间段");
+            $("#endTime").html("");
+            $("#rentDay").html("-");
+            $("#price").html("-");
+            $("#totalPrice").html("-");
+            return;
+        }
         $("#rentDay").html(totalDay);
         var price = ${carCustom.price}*totalDay;
         $("#price").html(price);

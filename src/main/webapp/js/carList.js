@@ -69,7 +69,14 @@ function switchChange(link) {
  * 动态改变租期
  */
 function chg(){
-    $("#rentDay").html(getYMDHMS($("#startTime").val(),$("#endTime").val()))
+    var totalDay = getYMDHMS($("#startTime").val(),$("#endTime").val());
+    if(totalDay<=0) {
+        alert("请填写正确的时间段");
+        $("#endTime").html("");
+        $("#rentDay").html("-");
+        return;
+    }
+    $("#rentDay").html(totalDay);
 }
 $(function(){
     $("#endTime").change(chg);

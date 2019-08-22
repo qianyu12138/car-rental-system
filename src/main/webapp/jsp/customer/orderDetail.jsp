@@ -125,7 +125,7 @@ pageEncoding="UTF-8"%>
                 <c:when test="${leaseCustom.state==1}">
                     <div class="price-content">
                         <dl>
-                            <dd class="total-text clearfloat"><button class="submit-btn right-float">取消订单</button></dd>
+                            <dd class="total-text clearfloat"><button class="submit-btn right-float" onclick="window.location.href='${pageContext.request.contextPath}/order/cancelLease?lid=${leaseCustom.lid}'">取消订单</button></dd>
                         </dl>
                     </div>
                 </c:when>

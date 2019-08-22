@@ -4,6 +4,7 @@ import cn.yd.carrentalsystem.mapper.UserMapper;
 import cn.yd.carrentalsystem.po.User;
 import cn.yd.carrentalsystem.po.UserExample;
 import cn.yd.carrentalsystem.service.UserService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,9 +62,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void regist(String phone, String password) {
+
+        password = DigestUtils.md5Hex(password);
         User user = new User();
         user.setPhone(phone);
         user.setPassword(password);
+        user.setState("0");
         userMapper.insert(user);
     }
 }

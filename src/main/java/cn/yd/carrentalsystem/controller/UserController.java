@@ -3,6 +3,7 @@ package cn.yd.carrentalsystem.controller;
 import cn.yd.carrentalsystem.fastdfs.FastDFSClient;
 import cn.yd.carrentalsystem.po.User;
 import cn.yd.carrentalsystem.service.UserService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,6 +55,8 @@ private String host;
      */
     @RequestMapping("/login")
     public String login(HttpServletRequest request, String phone, String password) {
+
+        password = DigestUtils.md5Hex(password);
         User user = userService.login(phone, password);
         if (user == null) {
             request.setAttribute("er", "账号或密码错误");
@@ -139,7 +142,7 @@ public  String toMenu()
     public String changePwd(HttpServletRequest request,String newPassword)
     {
        User user= (User) request.getSession().getAttribute("user");
-
+        newPassword = DigestUtils.md5Hex(newPassword);
        userService.changePwd(user,newPassword);
         return  "redirect:/order/findAllOrderList";
     }
