@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>租借申请</title>
+    <title>还车申请</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-theme.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/themes/default/easyui.css" type="text/css">
@@ -56,7 +56,7 @@
 
             <td><a href="javascript:void(0)" onclick="showCar(${lease.lease.lid})" class="easyui-linkbutton" iconCls="icon-tip" plain="true">车辆信息</a></td>
             <td>
-                <a href="${pageContext.request.contextPath}/order/audit?s=2&&l=${lease.lease.lid}" class="easyui-linkbutton" iconCls="icon-ok" plain="true">通过</a>
+                <a href="${pageContext.request.contextPath}/order/audit?s=5&&l=${lease.lease.lid}" class="easyui-linkbutton" iconCls="icon-ok" plain="true">通过</a>
                 <a href="${pageContext.request.contextPath}/order/audit?s=6&&l=${lease.lease.lid}" class="easyui-linkbutton" iconCls="icon-no" plain="true">退审</a>
             </td>
         </tr>

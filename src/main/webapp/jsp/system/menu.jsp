@@ -41,7 +41,8 @@
         <div title="订单管理">
             <ul class="easyui-tree">
                 <li><a href="javascript:void(0)" onclick="addTab('订单列表','${pageContext.request.contextPath}/order/findOrderList/0')">订单列表</a></li>
-                <li><a href="javascript:void(0)" onclick="addTab('个体出租列表','renterList.html')">个体出租列表</a></li>
+                <li><a href="javascript:void(0)" onclick="addTab('租借申请<','${pageContext.request.contextPath}/order/findOrderList/1')">预定申请列表</a></li>
+                <li><a href="javascript:void(0)" onclick="addTab('还车申请','${pageContext.request.contextPath}/order/findOrderList/4')">还车申请列表</a></li>
             </ul>
         </div>
         <div title="门店管理">
@@ -65,16 +66,14 @@
 
 <script>
     function addTab(title, url){
-        if ($('#tt').tabs('exists', title)){
-            $('#tt').tabs('select', title);
-        } else {
+
             var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
             $('#tt').tabs('add',{
                 title:title,
                 content:content,
                 closable:true
             });
-        }
+
     }
 </script>
 </body>

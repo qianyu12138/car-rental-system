@@ -108,10 +108,10 @@ public class LeaseServiceImpl implements LeaseService {
     }
 
     @Override
-    public void returnApply(Integer lid) {
-        Lease newLease = new Lease();
-        newLease.setLid(lid);
-        newLease.setState(5);
-        leaseMapper.updateByPrimaryKeySelective(newLease);
+    public void updateState(int state, int lid) {
+        Lease lease=leaseMapper.selectByPrimaryKey(lid);
+        lease.setState(state);
+        leaseMapper.updateByPrimaryKey(lease);
+
     }
 }

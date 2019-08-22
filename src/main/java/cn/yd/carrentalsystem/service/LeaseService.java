@@ -5,6 +5,8 @@ import cn.yd.carrentalsystem.po.LeaseCustom;
 import cn.yd.carrentalsystem.po.LeaseQueryVo;
 import cn.yd.carrentalsystem.po.PageBean;
 
+import java.util.List;
+
 public interface LeaseService {
     PageBean<LeaseQueryVo> findLeaseList(int state,int pc,int ps);
 
@@ -14,5 +16,7 @@ public interface LeaseService {
 
     LeaseCustom findLeaseCustomByLid(Integer lid);
 
-    void returnApply(Integer lid);
+    void updateState(int state, int lid);
+
+
 }

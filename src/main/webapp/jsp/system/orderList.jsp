@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>租借申请</title>
+    <title>订单列表</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common/bootstrap-theme.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/themes/default/easyui.css" type="text/css">
@@ -36,13 +36,11 @@
         <th field="receiveaddress" width="150">配送地址</th>
 
         <th field="carinformation" width="80">车辆信息</th>
-        <th field="operate" width="120">操作</th>
+        <th field="operate" width="120">状态</th>
 
     </tr>
     </thead>
     <tbody>
-
-
         <c:forEach items="${pageBean.resultList}" var="lease">
         <tr>
 
@@ -53,11 +51,28 @@
             <td><fmt:formatDate value="${lease.lease.returntime}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></td>
             <td>${lease.lease.contactphone}</td>
             <td>${lease.lease.receiveaddress}</td>
-
             <td><a href="javascript:void(0)" onclick="showCar(${lease.lease.lid})" class="easyui-linkbutton" iconCls="icon-tip" plain="true">车辆信息</a></td>
             <td>
-                <a href="${pageContext.request.contextPath}/order/audit?s=2&&l=${lease.lease.lid}" class="easyui-linkbutton" iconCls="icon-ok" plain="true">通过</a>
-                <a href="${pageContext.request.contextPath}/order/audit?s=6&&l=${lease.lease.lid}" class="easyui-linkbutton" iconCls="icon-no" plain="true">退审</a>
+                <c:if test="${lease.lease.state==1}">
+                    <span class="decs status">审核中</span><br>
+                </c:if>
+                <c:if test="${lease.lease.state==2}">
+                    <span class="decs status">预定成功</span><br>
+                </c:if>
+                <c:if test="${lease.lease.state==3}">
+                    <span class="decs status">租赁中</span><br>
+
+                </c:if>
+                <c:if test="${lease.lease.state==4}">
+                    <span class="decs status">还车申请中</span><br>
+
+                </c:if>
+                <c:if test="${lease.lease.state==5}">
+                    <span class="decs status">已完成</span><br>
+                </c:if>
+                <c:if test="${lease.lease.state==6}">
+                    <span class="decs status">已取消</span><br>
+                </c:if>
             </td>
         </tr>
         </c:forEach>

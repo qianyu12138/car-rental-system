@@ -54,7 +54,7 @@ private String host;
         request.getSession().setAttribute("user", user);
         if(user.getState().equals("2"))
         {
-            return "system/index";
+            return "system/menu";
         }
 
         return "index";

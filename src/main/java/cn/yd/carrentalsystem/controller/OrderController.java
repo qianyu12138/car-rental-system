@@ -4,6 +4,7 @@ import cn.yd.carrentalsystem.po.*;
 import cn.yd.carrentalsystem.service.CarService;
 import cn.yd.carrentalsystem.service.LeaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class OrderController {
@@ -33,7 +36,17 @@ public class OrderController {
         Integer ps=4;
         PageBean<LeaseQueryVo> pageBean=leaseService.findLeaseList(state,pc,ps);
         request.setAttribute("pageBean",pageBean);
-        return    "system/rentalapplication";
+        User user = (User) request.getSession().getAttribute("user");
+        if (user.getState().equals("2")&&state==1) {
+            return "system/rentalapplication";
+        }
+        if (user.getState().equals("2")&&state==4) {
+            return "system/returnapplication";
+        }
+        if (user.getState().equals("2")&&state==0) {
+            return "system/orderList";
+        }
+        return "user/order";
     }
 
     @RequestMapping("/order/toOrderPreview")
@@ -64,15 +77,27 @@ public class OrderController {
 
         return "redirect:/order/findOrderList/0";
     }
+    /**
+     * 审核
+     */
+    @RequestMapping("/order/audit")
+    public String audit(@RequestParam(value = "s") int state, @RequestParam(value = "l" ) int lid)
 
-    @RequestMapping("/order/returnApply")
-    public String returnApply(Integer lid,HttpSession session){
-        LeaseCustom leaseCustom = leaseService.findLeaseCustomByLid(lid);
-        User user = (User) session.getAttribute("user");
-        if(!user.getUid().equals(leaseCustom.getUid()))
-            return null;
-        leaseService.returnApply(lid);
+    {
+        leaseService.updateState(state,lid);
+        if (state==2)
+        {
+            return "redirect:findOrderList/1";
+        }
+        if (state==5)
+        {
+            return "redirect:findOrderList/4";
+        }
+        if (state==6)
+        {
+            return "redirect:findOrderList/0";
+        }
+       return "404";
 
-        return "redirect:/order/findOrderList/0";
     }
 }
