@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Lease {
-    private Integer lid;
+    private String lid;
 
     private Integer state;
 
@@ -24,31 +24,14 @@ public class Lease {
 
     private String returnaddress;
 
-    @Override
-    public String toString() {
-        return "Lease{" +
-                "lid=" + lid +
-                ", state=" + state +
-                ", uid=" + uid +
-                ", cid=" + cid +
-                ", createtime=" + createtime +
-                ", receivetime=" + receivetime +
-                ", returntime=" + returntime +
-                ", contactphone='" + contactphone + '\'' +
-                ", receiveaddress='" + receiveaddress + '\'' +
-                ", returnaddress='" + returnaddress + '\'' +
-                ", totalprice=" + totalprice +
-                '}';
-    }
-
     private BigDecimal totalprice;
 
-    public Integer getLid() {
+    public String getLid() {
         return lid;
     }
 
-    public void setLid(Integer lid) {
-        this.lid = lid;
+    public void setLid(String lid) {
+        this.lid = lid == null ? null : lid.trim();
     }
 
     public Integer getState() {

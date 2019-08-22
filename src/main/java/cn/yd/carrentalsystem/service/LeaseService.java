@@ -10,11 +10,11 @@ public interface LeaseService {
 
     void addLease(Lease lease);
 
-    Lease findLeaseByLid(Integer lid);
+    Lease findLeaseByLid(String lid);
 
-    LeaseCustom findLeaseCustomByLid(Integer lid);
+    LeaseCustom findLeaseCustomByLid(String lid);
 
-    void updateState(int state, int lid);
+    void updateState(int state, String lid);
 
-    void returnApply(Integer lid);
+    void returnApply(String lid);
 }

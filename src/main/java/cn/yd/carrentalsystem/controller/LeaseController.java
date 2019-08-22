@@ -16,7 +16,7 @@ public class LeaseController {
     private LeaseService leaseService;
 
     @RequestMapping("/order/toOrderDetail")
-    public String toOrderDetail(Integer lid, Model model, HttpSession session){
+    public String toOrderDetail(String lid, Model model, HttpSession session){
         LeaseCustom leaseCustom = leaseService.findLeaseCustomByLid(lid);
         User user = (User) session.getAttribute("user");
         if(user.getUid().equals(leaseCustom.getUid()))

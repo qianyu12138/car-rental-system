@@ -6,15 +6,18 @@ import cn.yd.carrentalsystem.service.LeaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.crypto.dsig.DigestMethod;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 @Controller
 public class OrderController {
@@ -59,6 +62,10 @@ public class OrderController {
     public String makeLease(Integer cid, String receiveaddress, String returnaddress, String receivetime,
                             String returntime, String contactphone, HttpSession session,Model model) throws ParseException {
         Lease lease = new Lease();
+        String uuid=UUID.randomUUID().toString();
+        uuid=uuid.replaceAll("-","");
+        lease.setLid(uuid);
+
         lease.setCid(cid);
         lease.setCreatetime(new Date());
         lease.setUid(((User)session.getAttribute("user")).getUid());
@@ -80,7 +87,7 @@ public class OrderController {
      * 审核
      */
     @RequestMapping("/order/audit")
-    public String audit(@RequestParam(value = "s") int state, @RequestParam(value = "l" ) int lid)
+    public String audit(@RequestParam(value = "s") int state, @RequestParam(value = "l" ) String lid)
     {
         leaseService.updateState(state,lid);
         if (state==2)
@@ -100,7 +107,7 @@ public class OrderController {
     }
 
     @RequestMapping("/order/returnApply")
-    public String returnApply(Integer lid,HttpSession session,Model model){
+    public String returnApply(String lid,HttpSession session,Model model){
         LeaseCustom leaseCustom = leaseService.findLeaseCustomByLid(lid);
         User user = (User) session.getAttribute("user");
         if(!user.getUid().equals(leaseCustom.getUid()))

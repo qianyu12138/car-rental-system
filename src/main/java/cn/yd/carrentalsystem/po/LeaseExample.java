@@ -116,52 +116,62 @@ public class LeaseExample {
             return (Criteria) this;
         }
 
-        public Criteria andLidEqualTo(Integer value) {
+        public Criteria andLidEqualTo(String value) {
             addCriterion("lid =", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andLidNotEqualTo(Integer value) {
+        public Criteria andLidNotEqualTo(String value) {
             addCriterion("lid <>", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andLidGreaterThan(Integer value) {
+        public Criteria andLidGreaterThan(String value) {
             addCriterion("lid >", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andLidGreaterThanOrEqualTo(Integer value) {
+        public Criteria andLidGreaterThanOrEqualTo(String value) {
             addCriterion("lid >=", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andLidLessThan(Integer value) {
+        public Criteria andLidLessThan(String value) {
             addCriterion("lid <", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andLidLessThanOrEqualTo(Integer value) {
+        public Criteria andLidLessThanOrEqualTo(String value) {
             addCriterion("lid <=", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andLidIn(List<Integer> values) {
+        public Criteria andLidLike(String value) {
+            addCriterion("lid like", value, "lid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLidNotLike(String value) {
+            addCriterion("lid not like", value, "lid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLidIn(List<String> values) {
             addCriterion("lid in", values, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andLidNotIn(List<Integer> values) {
+        public Criteria andLidNotIn(List<String> values) {
             addCriterion("lid not in", values, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andLidBetween(Integer value1, Integer value2) {
+        public Criteria andLidBetween(String value1, String value2) {
             addCriterion("lid between", value1, value2, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andLidNotBetween(Integer value1, Integer value2) {
+        public Criteria andLidNotBetween(String value1, String value2) {
             addCriterion("lid not between", value1, value2, "lid");
             return (Criteria) this;
         }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.yd.carrentalsystem.mapper.LeaseMapper" >
   <resultMap id="BaseResultMap" type="cn.yd.carrentalsystem.po.Lease" >
-    <id column="lid" property="lid" jdbcType="INTEGER" />
+    <id column="lid" property="lid" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="INTEGER" />
     <result column="uid" property="uid" jdbcType="INTEGER" />
     <result column="cid" property="cid" jdbcType="INTEGER" />
@@ -90,15 +90,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from lease
-    where lid = #{lid,jdbcType=INTEGER}
+    where lid = #{lid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from lease
-    where lid = #{lid,jdbcType=INTEGER}
+    where lid = #{lid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="cn.yd.carrentalsystem.po.LeaseExample" >
     delete from lease
@@ -111,7 +111,7 @@
       cid, createTime, receiveTime, 
       returnTime, contactPhone, receiveAddress, 
       returnAddress, totalPrice)
-    values (#{lid,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
+    values (#{lid,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
       #{cid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{receivetime,jdbcType=TIMESTAMP}, 
       #{returntime,jdbcType=TIMESTAMP}, #{contactphone,jdbcType=VARCHAR}, #{receiveaddress,jdbcType=VARCHAR}, 
       #{returnaddress,jdbcType=VARCHAR}, #{totalprice,jdbcType=DECIMAL})
@@ -155,7 +155,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="lid != null" >
-        #{lid,jdbcType=INTEGER},
+        #{lid,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         #{state,jdbcType=INTEGER},
@@ -199,7 +199,7 @@
     update lease
     <set >
       <if test="record.lid != null" >
-        lid = #{record.lid,jdbcType=INTEGER},
+        lid = #{record.lid,jdbcType=VARCHAR},
       </if>
       <if test="record.state != null" >
         state = #{record.state,jdbcType=INTEGER},
@@ -238,7 +238,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update lease
-    set lid = #{record.lid,jdbcType=INTEGER},
+    set lid = #{record.lid,jdbcType=VARCHAR},
       state = #{record.state,jdbcType=INTEGER},
       uid = #{record.uid,jdbcType=INTEGER},
       cid = #{record.cid,jdbcType=INTEGER},
@@ -287,7 +287,7 @@
         totalPrice = #{totalprice,jdbcType=DECIMAL},
       </if>
     </set>
-    where lid = #{lid,jdbcType=INTEGER}
+    where lid = #{lid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.yd.carrentalsystem.po.Lease" >
     update lease
@@ -301,6 +301,6 @@
       receiveAddress = #{receiveaddress,jdbcType=VARCHAR},
       returnAddress = #{returnaddress,jdbcType=VARCHAR},
       totalPrice = #{totalprice,jdbcType=DECIMAL}
-    where lid = #{lid,jdbcType=INTEGER}
+    where lid = #{lid,jdbcType=VARCHAR}
   </update>
 </mapper>

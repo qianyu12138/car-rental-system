@@ -88,13 +88,13 @@ public class LeaseServiceImpl implements LeaseService {
     }
 
     @Override
-    public Lease findLeaseByLid(Integer lid) {
+    public Lease findLeaseByLid(String lid) {
         Lease lease = leaseMapper.selectByPrimaryKey(lid);
         return lease;
     }
 
     @Override
-    public LeaseCustom findLeaseCustomByLid(Integer lid) {
+    public LeaseCustom findLeaseCustomByLid(String lid) {
         Lease lease = leaseMapper.selectByPrimaryKey(lid);
         Car car = carMapper.selectByPrimaryKey(lease.getCid());
         CarCustom carCustom = new CarCustom();
@@ -112,7 +112,7 @@ public class LeaseServiceImpl implements LeaseService {
     }
 
     @Override
-    public void updateState(int state, int lid) {
+    public void updateState(int state, String lid) {
         Lease lease=leaseMapper.selectByPrimaryKey(lid);
         lease.setState(state);
         leaseMapper.updateByPrimaryKey(lease);
@@ -120,7 +120,7 @@ public class LeaseServiceImpl implements LeaseService {
     }
 
     @Override
-    public void returnApply(Integer lid) {
+    public void returnApply(String lid) {
         Lease newLease = new Lease();
         newLease.setLid(lid);
         newLease.setState(5);
