@@ -70,6 +70,7 @@ function switchChange(link) {
  */
 function chg(){
     var totalDay = getYMDHMS($("#startTime").val(),$("#endTime").val());
+    
     if(totalDay<=0) {
         alert("请填写正确的时间段");
         $("#endTime").val("");
