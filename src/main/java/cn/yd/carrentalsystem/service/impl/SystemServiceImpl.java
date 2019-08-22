@@ -113,7 +113,7 @@ public class SystemServiceImpl implements SystemService {
     }
     @Override
     public void addCar(Car car) throws Exception {
-        carMapper.insertSelective(car);
+        carMapper.insert(car);
     }
 
     @Override
@@ -259,10 +259,10 @@ public class SystemServiceImpl implements SystemService {
 
     @Override
     public void editKind(Kind kind) throws Exception {
-        kindMapper.updateByPrimaryKeySelective(kind);
+        kindMapper.updateByPrimaryKey(kind);
     }
     @Override
     public void addKind(Kind kind) throws Exception {
-        kindMapper.insertSelective(kind);
+        kindMapper.insert(kind);
     }
 }

@@ -141,7 +141,8 @@ public class SystemController {
     @RequestMapping("/addCar")
     public String addCar(HttpServletRequest request, MultipartFile carimg1, MultipartFile carimg2,
                          MultipartFile carimg3,@Validated Car car ) throws Exception{
-            systemService.addCar(car);
+
+            Integer cid=car.getCid();
             String originalFilename1 =carimg1.getOriginalFilename();
             String originalFilename2=carimg2.getOriginalFilename();
             String originalFilename3=carimg3.getOriginalFilename();
@@ -158,7 +159,8 @@ public class SystemController {
             carimg=carimg+";"+fastDFSClient.uploadFile(carimg2.getBytes(),extName1);
             carimg=carimg+";"+fastDFSClient.uploadFile(carimg2.getBytes(),extName2);
             car.setImgs(carimg);
-            systemService.editCar(car);
+        systemService.addCar(car);
+
 
         return "redirect:findCarAll";//重定向到查询列表方法
     }

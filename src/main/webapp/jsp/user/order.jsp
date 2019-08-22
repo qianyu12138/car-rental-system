@@ -121,23 +121,23 @@
             </dl>
              <center>
             <ul class="pagination" >
-                <c:if test="${!(pageBean.pageInfo.pageNum==1)}">
-                    <li><a class="btn-success" href="<c:url value="${pageContext.request.contextPath }/order/findOrderList/${pageBean.url}" />?pc=${pageBean.pageInfo.pageNum-1}">&laquo;</a></li>
-                </c:if>
+            <c:if test="${!(pageBean.pageInfo.pageNum==1)}">
+                <li><a class="btn-success" href="<c:url value="${pageContext.request.contextPath }/order/findOrderList/${pageBean.url}" />?pc=${pageBean.pageInfo.pageNum-1}">&laquo;</a></li>
+            </c:if>
 
-                 <c:forEach items="${pageBean.pageInfo.navigatepageNums}" var="page">
-                     <li><a class="btn-success" href="<c:url value="${pageContext.request.contextPath }/order/findOrderList/${pageBean.url}" />?pc=${page}">${page}</a></li>
-                 </c:forEach>
+            <c:forEach items="${pageBean.pageInfo.navigatepageNums}" var="page">
+                <li><a class="btn-success" href="<c:url value="${pageContext.request.contextPath }/order/findOrderList/${pageBean.url}" />?pc=${page}">${page}</a></li>
+            </c:forEach>
 
 
 
-                <c:if test="${!(pageBean.pageInfo.pageNum==pageBean.pageInfo.pages)}">
-                    <li><a class="btn-success" href="<c:url value="${pageContext.request.contextPath }/order/findOrderList/${pageBean.url}" />?pc=${pageBean.pageInfo.pageNum+1}">&raquo;</a></li>
+            <c:if test="${!(pageBean.pageInfo.pageNum==pageBean.pageInfo.pages)}">
+                <li><a class="btn-success" href="<c:url value="${pageContext.request.contextPath }/order/findOrderList/${pageBean.url}" />?pc=${pageBean.pageInfo.pageNum+1}">&raquo;</a></li>
 
-                </c:if>
+            </c:if>
 
-            </ul>
-             </center>
+        </ul>
+            </center>
         </div>
 
     </div>

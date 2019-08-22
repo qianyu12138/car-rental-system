@@ -21,4 +21,11 @@ public class KindServiceImpl implements KindService {
         List<Kind> kinds = kindMapper.selectByExample(new KindExample());
         return kinds;
     }
+    @Override
+    public int getKid(Integer id) {
+        Integer kid=kindMapper.getKid(id);
+        return kid;
+    }
+
+
 }

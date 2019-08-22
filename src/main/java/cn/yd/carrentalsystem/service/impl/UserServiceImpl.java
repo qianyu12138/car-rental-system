@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+
     @Override
     public boolean getUserExist(String username) {
 
@@ -71,4 +72,5 @@ public class UserServiceImpl implements UserService {
         user.setState("0");
         userMapper.insert(user);
     }
+
 }

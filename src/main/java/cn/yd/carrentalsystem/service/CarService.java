@@ -9,4 +9,6 @@ public interface CarService {
     List<CarCustom> getCarListByQueryVo(QueryVo vo);
 
     CarCustom getCarByCid(Integer cid);
+
+
 }

@@ -72,19 +72,19 @@ table#tab1{
 		</tr>
 		<tr>
 			<td>身份证正面：</td>
-			<td><img    class=" " id="idCard1" src="${idCard1}" width="130px" height="80px" ><input type="file"  name="idCard1" onchange="html5Reader(this,'idCard1')" class="content-file col-lg-3"  placeholder="未完待续"></td>
+			<td><img    class=" " id="idCard1" src="${idCard1}" width="130px" height="80px" ></td>
 		</tr>
 		<tr>
 			<td>身份证反面：</td>
-			<td><img   class="  " id="idCard2"src="${idCard2}" width="130px" height="80px" ><input type="file"  name="idCard2" onchange="html5Reader(this,'idCard2')" class="content-file col-lg-3"  placeholder="未完待续"></td>
+			<td><img   class="  " id="idCard2"src="${idCard2}" width="130px" height="80px" ></td>
 		</tr>
 		<tr>
 			<td>驾驶证正面：</td>
-			<td><img  class="" id="driverCar1" src="${driverCard1}" width="130px" height="80px" ><input type="file"  name="driverCard1" onchange="html5Reader(this,'driverCard1')" class="content-file col-lg-3"  placeholder="未完待续"></td>
+			<td><img  class="" id="driverCar1" src="${driverCard1}" width="130px" height="80px" ></td>
 		</tr>
 		<tr>
 			<td>驾驶证副页：</td>
-			<td><img   class="  "  id="driverCar2"  src="${driverCard2}" width="120px" height="80px" ><input type="file"  name="driverCard2" onchange="html5Reader(this,'driverCard2')" class="content-file col-lg-3"  placeholder="未完待续"></td>
+			<td><img   class="  "  id="driverCar2"  src="${driverCard2}" width="120px" height="80px" ></td>
 		</tr>
 	    <tr>  		
 	       	<td colspan="2">

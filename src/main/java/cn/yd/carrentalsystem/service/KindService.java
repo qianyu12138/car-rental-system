@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface KindService {
     List<Kind> getAllKinds();
+    int getKid(Integer id);
+
+
 }
