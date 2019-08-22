@@ -115,7 +115,7 @@ pageEncoding="UTF-8"%>
             </div>
 
             <c:choose>
-                <c:when test="${leaseCustom.state==4}">
+                <c:when test="${leaseCustom.state==3}">
                     <div class="price-content">
                         <dl>
                             <dd class="total-text clearfloat"><button class="submit-btn right-float" onclick="window.location.href='${pageContext.request.contextPath}/order/returnApply?lid=${leaseCustom.lid}'">申请还车</button></dd>

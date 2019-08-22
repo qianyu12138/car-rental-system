@@ -73,7 +73,7 @@ public class OrderController {
         leaseService.addLease(lease);
 
         model.addAttribute("tip", "订单提交成功");
-        return "redirect:/order/findOrderList/0";
+        return "forward:/order/findOrderList/0";
     }
     /**
      * 审核
