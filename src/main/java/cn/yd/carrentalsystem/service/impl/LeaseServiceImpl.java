@@ -9,7 +9,9 @@ import cn.yd.carrentalsystem.utils.CommonUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -28,6 +30,14 @@ public class LeaseServiceImpl implements LeaseService {
     private CarMapper carMapper;
     @Autowired(required = false)
     private UserMapper userMapper;
+
+    @Autowired
+    @Qualifier("leaseRedisTemplate")
+    private RedisTemplate<String, Lease> redisLeaseTemplate;
+    @Autowired
+    @Qualifier("carRedisTemplate")
+    private RedisTemplate<String, Car> redisCarTemplate;
+
     @Override
     public PageBean<LeaseQueryVo> findLeaseList(String ustate,int uid,int state,int pc,int ps) {
         PageBean<LeaseQueryVo> pageBean=new PageBean<LeaseQueryVo>();
@@ -81,22 +91,37 @@ public class LeaseServiceImpl implements LeaseService {
         Long dateInterval = lease.getReturntime().getTime()-lease.getReceivetime().getTime();
         double day = Math.ceil(dateInterval / (24 * 60 * 60 * 1000));
         Car car = carMapper.selectByPrimaryKey(lease.getCid());
-        System.out.println(car);
         BigDecimal totalPrice = new BigDecimal(day).multiply(car.getPrice());
         lease.setTotalprice(totalPrice);
         leaseMapper.insert(lease);
+
+        //redis缓存
+        redisLeaseTemplate.opsForValue().set("lease:"+lease.getLid(), lease);
+        //车辆租出状态
+        car.setState("2");
+        carMapper.updateByPrimaryKeySelective(car);
     }
 
     @Override
     public Lease findLeaseByLid(String lid) {
-        Lease lease = leaseMapper.selectByPrimaryKey(lid);
+        Lease lease = null;
+        lease = redisLeaseTemplate.opsForValue().get("lease:" + lid);
+        if(lease==null)
+            lease = leaseMapper.selectByPrimaryKey(lid);
         return lease;
     }
 
     @Override
     public LeaseCustom findLeaseCustomByLid(String lid) {
-        Lease lease = leaseMapper.selectByPrimaryKey(lid);
-        Car car = carMapper.selectByPrimaryKey(lease.getCid());
+        Lease lease = null;
+        lease = redisLeaseTemplate.opsForValue().get("lease:" + lid);
+        if(lease==null)
+            lease = leaseMapper.selectByPrimaryKey(lid);
+
+        Car car = null;
+        car = redisCarTemplate.opsForValue().get("car:"+lease.getCid());
+        if(car == null)
+            car = carMapper.selectByPrimaryKey(lease.getCid());
         CarCustom carCustom = new CarCustom();
         if(car.getImgs()!=null) {
             String[] imgPathsArr = car.getImgs().split(";");

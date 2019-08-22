@@ -43,7 +43,7 @@
         <script>
             $(".left-box").load("${pageContext.request.contextPath}/jsp/common/userLeftNav.jsp");
         </script>
-        <div>${tip}</div>
+        <div class="right-content left-float">${tip}</div>
         <!-- 右边内容 -->
         <div class="right-content left-float">
             <dl>

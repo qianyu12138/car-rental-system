@@ -106,7 +106,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.yd.carrentalsystem.po.Lease" >
+  <insert id="insert" parameterType="cn.yd.carrentalsystem.po.Lease" useGeneratedKeys="true" keyProperty="lid" >
     insert into lease (lid, state, uid, 
       cid, createTime, receiveTime, 
       returnTime, contactPhone, receiveAddress, 
@@ -116,7 +116,7 @@
       #{returntime,jdbcType=TIMESTAMP}, #{contactphone,jdbcType=VARCHAR}, #{receiveaddress,jdbcType=VARCHAR}, 
       #{returnaddress,jdbcType=VARCHAR}, #{totalprice,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="cn.yd.carrentalsystem.po.Lease" >
+  <insert id="insertSelective" parameterType="cn.yd.carrentalsystem.po.Lease" useGeneratedKeys="true" keyProperty="lid" >
     insert into lease
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="lid != null" >
