@@ -31,9 +31,24 @@ table#tab1{
 </style>
 </head>
 <body>
+<script type="text/javascript">
+	function html5Reader(file,imgid) {
 
+		var file = file.files[0];
+		var imgid=imgid;
+		var reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = function(e){
+			var pic = document.getElementById(imgid);
+			pic.src=this.result;
+			$("#"+imgid).show();
+		}
+	}
+
+
+</script>
 	<table id="tab1">
-	<form action="<c:url value='editUser'/>" method="post" enctype="multipart/form-data">
+	<form action="<c:url value='editUser'/>?user_uid=${user.uid }" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="uid" value="${user.uid }" />
 	   	<tr>
 	   		<td>手机号：</td>
@@ -61,15 +76,15 @@ table#tab1{
 		</tr>
 		<tr>
 			<td>身份证反面：</td>
-			<td><img   class="  " id="idCard2"src="${idCard2}" width="130px" height="80px" ><input type="file" name="file" /></td>
+			<td><img   class="  " id="idCard2"src="${idCard2}" width="130px" height="80px" ><input type="file"  name="idCard2" onchange="html5Reader(this,'idCard2')" class="content-file col-lg-3"  placeholder="未完待续"></td>
 		</tr>
 		<tr>
 			<td>驾驶证正面：</td>
-			<td><img  class="" id="driverCar1" src="${driverCard1}" width="130px" height="80px" ><input type="file" name="file" /></td>
+			<td><img  class="" id="driverCar1" src="${driverCard1}" width="130px" height="80px" ><input type="file"  name="driverCard1" onchange="html5Reader(this,'driverCard1')" class="content-file col-lg-3"  placeholder="未完待续"></td>
 		</tr>
 		<tr>
 			<td>驾驶证副页：</td>
-			<td><img   class="  "  id="driverCar2"  src="${driverCard2}" width="120px" height="80px" ><input type="file" name="file" /></td>
+			<td><img   class="  "  id="driverCar2"  src="${driverCard2}" width="120px" height="80px" ><input type="file"  name="driverCard2" onchange="html5Reader(this,'driverCard2')" class="content-file col-lg-3"  placeholder="未完待续"></td>
 		</tr>
 	    <tr>  		
 	       	<td colspan="2">

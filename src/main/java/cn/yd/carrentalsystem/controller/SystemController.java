@@ -72,7 +72,61 @@ public class SystemController {
     }
     //修改信息
     @RequestMapping("/editCar")
-    public String editCar(@Validated Car car) throws Exception{
+    public String editCar(MultipartFile carimg1, MultipartFile carimg2,
+                          MultipartFile carimg3,@Validated Car car,@RequestParam(value="car_cid",required=true,defaultValue="1")Integer cid) throws Exception{
+        Car car1=systemService.findCarById(cid);
+        String carimg[]=car1.getImgs().split(";");
+        String originalFilename1;
+        String originalFilename2;
+        String originalFilename3;
+        String originalFilename4;
+        if(carimg1!=null&&!carimg1.isEmpty()){
+            originalFilename1 = carimg1.getOriginalFilename();
+        }
+        else {
+            originalFilename1=carimg[0];
+        }
+        if(carimg2!=null&&!carimg2.isEmpty()){
+            originalFilename2 = carimg2.getOriginalFilename();
+        }
+        else {
+            originalFilename2=carimg[1];
+        }
+        if(carimg3!=null&&!carimg3.isEmpty()){
+            originalFilename3 = carimg3.getOriginalFilename();
+        }
+        else {
+            originalFilename3=carimg[0];
+        }
+        String extName = originalFilename1.substring(originalFilename1.lastIndexOf(".") + 1);
+        String extName1=originalFilename2.substring(originalFilename2.lastIndexOf(".") + 1);
+        String extName2=originalFilename3.substring(originalFilename3.lastIndexOf(".") + 1);
+
+        //2、创建一个FastDFS的客户端
+        FastDFSClient fastDFSClient = null;
+
+        fastDFSClient = new FastDFSClient("classpath:client.conf");
+        //3、执行上传处理
+        String carImg;
+        if(carimg1!=null&&!carimg1.isEmpty()){
+            carImg = fastDFSClient.uploadFile(carimg1.getBytes(), extName);
+        }
+        else{
+            carImg=carimg[0];
+        }
+        if(carimg2!=null&&!carimg2.isEmpty()){
+            carImg=carImg+";"+fastDFSClient.uploadFile(carimg2.getBytes(),extName1);
+        }
+        else{
+            carImg=carImg+";"+carimg[1];
+        }
+        if(carimg3!=null&&!carimg3.isEmpty()){
+            carImg=carImg+";"+fastDFSClient.uploadFile(carimg3.getBytes(),extName2);
+        }
+        else{
+           carImg=carImg+";"+carimg[2];
+        }
+        car.setImgs(carImg);
         systemService.editCar(car);
         return "redirect:findCarAll";//重定向到查询列表方法
     }
@@ -102,12 +156,9 @@ public class SystemController {
             //3、执行上传处理
             String carimg = fastDFSClient.uploadFile(carimg1.getBytes(), extName);
             carimg=carimg+";"+fastDFSClient.uploadFile(carimg2.getBytes(),extName1);
-        carimg=carimg+";"+fastDFSClient.uploadFile(carimg2.getBytes(),extName2);
-            System.out.println(carimg);
+            carimg=carimg+";"+fastDFSClient.uploadFile(carimg2.getBytes(),extName2);
             car.setImgs(carimg);
             systemService.editCar(car);
-            //4、拼接返回的url和ip地址，拼装成完整 的url
-            request.getSession().setAttribute("car",car);
 
         return "redirect:findCarAll";//重定向到查询列表方法
     }
@@ -165,7 +216,7 @@ public class SystemController {
     }
 
     @RequestMapping("toUpdateUser")
-    public String toUpdateItems(Model model,HttpServletRequest request,@RequestParam(value="user_uid",required=true,defaultValue="1") Integer uid) throws Exception{
+    public String toUpdateUser(Model model,HttpServletRequest request,@RequestParam(value="user_uid",required=true,defaultValue="1") Integer uid) throws Exception{
 
         //查询商品
         User user = systemService.findUserById(uid);
@@ -180,7 +231,78 @@ public class SystemController {
     }
     //修改信息
     @RequestMapping("/editUser")
-    public String editItems(@Validated User user) throws Exception{
+    public String editUser(@Validated User user,MultipartFile idCard1,MultipartFile idCard2,
+                            MultipartFile driverCard1,MultipartFile driverCard2,@RequestParam(value="user_uid",required=true,defaultValue="1") Integer uid) throws Exception{
+        User user1=systemService.findUserById(uid);
+        String idCard[]=user1.getIdcardimgs().split(",");
+        String driverCard[]=user1.getLicenseiimg().split(",");
+        String originalFilename1;
+        String originalFilename2;
+        String originalFilename3;
+        String originalFilename4;
+        if(idCard1!=null&&!idCard1.isEmpty()){
+           originalFilename1 = idCard1.getOriginalFilename();
+        }
+        else {
+            originalFilename1=idCard[0];
+        }
+        if(idCard2!=null&&!idCard2.isEmpty()){
+            originalFilename2 = idCard2.getOriginalFilename();
+        }
+        else {
+            originalFilename2=idCard[1];
+        }
+        if(driverCard1!=null&&!driverCard1.isEmpty()){
+            originalFilename3 = driverCard1.getOriginalFilename();
+        }
+        else {
+            originalFilename3=driverCard[0];
+        }
+        if(driverCard2!=null&&!driverCard2.isEmpty()){
+           originalFilename4 = driverCard2.getOriginalFilename();
+        }
+        else {
+           originalFilename4=idCard[1];
+        }
+
+        String extName = originalFilename1.substring(originalFilename1.lastIndexOf(".") + 1);
+        String extName1=originalFilename2.substring(originalFilename2.lastIndexOf(".") + 1);
+        String extName2=originalFilename3.substring(originalFilename3.lastIndexOf(".") + 1);
+        String extName3=originalFilename4.substring(originalFilename4.lastIndexOf(".") + 1);
+
+        //2、创建一个FastDFS的客户端
+        FastDFSClient fastDFSClient = null;
+
+        fastDFSClient = new FastDFSClient("classpath:client.conf");
+        //3、执行上传处理
+        String idCard1Path;
+        String driverCarPath;
+        if(idCard1!=null&&!idCard1.isEmpty()){
+            idCard1Path = fastDFSClient.uploadFile(idCard1.getBytes(), extName);
+        }
+        else{
+            idCard1Path=idCard[0];
+        }
+        if(idCard2!=null&&!idCard2.isEmpty()){
+            idCard1Path=idCard1Path+","+fastDFSClient.uploadFile(idCard2.getBytes(),extName1);
+        }
+        else{
+            idCard1Path=idCard1Path+","+idCard[1];
+        }
+        if(driverCard1!=null&&!driverCard1.isEmpty()){
+            driverCarPath=fastDFSClient.uploadFile(driverCard1.getBytes(), extName2);
+        }
+        else{
+            driverCarPath=driverCard[0];
+        }
+        if(driverCard2!=null&&!driverCard2.isEmpty()){
+            driverCarPath=driverCarPath+","+fastDFSClient.uploadFile(driverCard2.getBytes(), extName3);
+        }
+        else{
+           driverCarPath=driverCarPath+","+driverCard[1];
+        }
+        user.setIdcardimgs(idCard1Path);
+        user.setLicenseiimg(driverCarPath);
         systemService.editUser(user);
         return "redirect:findUserAll";//重定向到查询列表方法
     }

@@ -56,11 +56,11 @@
 		<tr>
 			<td>车辆图片：</td>
 			<td>
-				<input type="file"  name="carimg1" onchange="html5Reader(this,'carimg1')" class="content-file col-lg-3"  placeholder="未完待续">
+				点击添加第一张<input type="file"  name="carimg1" onchange="html5Reader(this,'carimg1')" class="content-file col-lg-3"  >
 				<img  hidden  class=" col-lg-offset-2 " id="carimg1" src="" width="130px" height="80px" >
-				<input type="file"  name="carimg2" onchange="html5Reader(this,'carimg2')" class="content-file col-lg-3"  placeholder="未完待续">
+				点击添加第二张<input type="file"  name="carimg2" onchange="html5Reader(this,'carimg2')" class="content-file col-lg-3"  >
 				<img  hidden  class=" col-lg-offset-2 " id="carimg2" src="" width="130px" height="80px" >
-				<input type="file"  name="carimg3" onchange="html5Reader(this,'carimg3')" class="content-file col-lg-3"  placeholder="未完待续">
+				点击添加第三张<input type="file"  name="carimg3" onchange="html5Reader(this,'carimg3')" class="content-file col-lg-3"  placeholder="未完待续">
 				<img  hidden  class=" col-lg-offset-2 " id="carimg3" src="" width="130px" height="80px" >
 			</td>
 		</tr>

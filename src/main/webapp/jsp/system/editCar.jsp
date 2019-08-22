@@ -31,21 +31,43 @@ table#tab1{
 </style>
 </head>
 <body>
+<script type="text/javascript">
+	function html5Reader(file,imgid) {
 
+		var file = file.files[0];
+		var imgid=imgid;
+		var reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = function(e){
+			var pic = document.getElementById(imgid);
+			pic.src=this.result;
+			$("#"+imgid).show();
+		}
+	}
+
+
+</script>
 	<table id="tab1">
-	<form action="<c:url value='editCar'/>" method="post" enctype="multipart/form-data">
+	<form action="<c:url value='editCar'/>?car_cid=${car.cid }" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="cid" value="${car.cid }" />
 	   	<tr>
 	   		<td>车辆名称：</td>
-	       	<td><input type="text" name="canme" value="${car.cname }" /></td>
+	       	<td><input type="text" name="cname" value="${car.cname }" /></td>
 	    </tr>
 		<tr>
 			<td>车辆图片：</td>
 			<td>
-				<img    class=" " id="carimg1" src="${carimg1}" width="130px" height="80px" >
-				<img   class="  " id="carimg2"src="${carimg2}" width="130px" height="80px" >
-				<img  class="" id="carimg3" src="${carimg3}" width="130px" height="80px" >
-				<input type="file" name="file" />
+				<img    class=" " name="carimg1" src="${carimg1}" width="130px" height="80px" >
+				<img   class="  " name="carimg2"src="${carimg2}" width="130px" height="80px" >
+				<img  class="" name="carimg3" src="${carimg3}" width="130px" height="80px" >
+				<br />
+				点击修改第一张<input type="file"  name="carimg1" onchange="html5Reader(this,'carimg1')"   >
+				<img  hidden  class=" col-lg-offset-2 " id="carimg1" src="" width="130px" height="80px" >
+				点击修改第二张<input type="file"  name="carimg2" onchange="html5Reader(this,'carimg2')"  >
+				<img  hidden  class=" col-lg-offset-2 " id="carimg2" src="" width="130px" height="80px" >
+				<br/>
+				点击修改第三张<input type="file"  name="carimg3" onchange="html5Reader(this,'carimg3')"  >
+				<img  hidden  class=" col-lg-offset-2 " id="carimg3" src="" width="130px" height="80px" >
 			</td>
 		</tr>
 	    <tr>
@@ -89,7 +111,7 @@ table#tab1{
 		</tr>
 		<tr>
 			<td>押金</td>
-			<td><input type="text" name="idcardnum" value="${car.deposit }" /></td>
+			<td><input type="text" name="deposit" value="${car.deposit }" /></td>
 		</tr>
 	    <tr>  		
 	       	<td colspan="2">
