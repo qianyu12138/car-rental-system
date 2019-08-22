@@ -36,15 +36,16 @@ public class OrderController {
         Integer ps=4;
 
         User user = (User) request.getSession().getAttribute("user");
+        User guser= (User) request.getSession().getAttribute("guser");
         PageBean<LeaseQueryVo> pageBean=leaseService.findLeaseList(user.getState(), user.getUid(),state,pc,ps);
         request.setAttribute("pageBean",pageBean);
-        if (user.getState().equals("2")&&state==1) {
+        if (guser!=null&&state==1) {
             return "system/rentalapplication";
         }
-        if (user.getState().equals("2")&&state==4) {
+        if (guser!=null&&state==4) {
             return "system/returnapplication";
         }
-        if (user.getState().equals("2")&&state==0) {
+        if (guser!=null&&state==0) {
             return "system/orderList";
         }
         return "user/order";
