@@ -56,8 +56,12 @@
             <td>${user.address }</td>
             <td>${user.idcardnum }</td>
             <td>
-                <a href="<c:url value="/useridentitySAuth" />?user_uid=${user.uid}" class="easyui-linkbutton" iconCls="icon-ok" plain="true">认证信息</a>
-                <a href="<c:url value="editstate" />?user_uid=${user.uid}" class="easyui-linkbutton" iconCls="icon-ok" plain="true">激活</a>
+                <c:if test="${user.idcardimgs!=null&&!user.idcardimgs.isEmpty()}">
+                    <a href="<c:url value="/useridentitySAuth" />?user_uid=${user.uid}" class="easyui-linkbutton" iconCls="icon-ok" plain="true">认证信息</a>
+                </c:if>
+                <c:if test="${user.state==0}">
+                    <a href="<c:url value="editstate" />?user_uid=${user.uid}" class="easyui-linkbutton" iconCls="icon-ok" plain="true">激活</a>
+                </c:if>
                 <a href="<c:url value="deleteUser" />?user_uid=${user.uid}" class="easyui-linkbutton" iconCls="icon-no" plain="true">删除</a>
                 <a href="<c:url value="toUpdateUser"/>?user_uid=${user.uid }" id="failBtn" class="easyui-linkbutton" iconCls="icon-edit" plain="true" >修改</a><br/><br/>
             </td>

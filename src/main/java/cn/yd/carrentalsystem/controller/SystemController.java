@@ -30,7 +30,7 @@ public class SystemController {
     @RequestMapping("/findCarAll")
     public String findCarAll(HttpServletRequest request, CarQueryVo carQueryVo, @RequestParam(value="pc",required=true,defaultValue="1") Integer pc)throws Exception{
 
-        Integer ps = 2;
+        Integer ps = 4;
         PageBean<Car> pageBean = systemService.findCarAll(pc,ps,carQueryVo);
         request.setAttribute("pageBean", pageBean);
         return "system/carList";
@@ -38,7 +38,7 @@ public class SystemController {
     @RequestMapping("/findCar")
     public String findCar(HttpServletRequest request, CarQueryVo carQueryVo, @RequestParam(value="pc",required=true,defaultValue="1") Integer pc)throws Exception{
 
-        Integer ps = 2;
+        Integer ps = 4;
         PageBean<Car> pageBean = systemService.findCar(pc,ps,carQueryVo);
         request.setAttribute("pageBean", pageBean);
         //查询数据表获取所有商品信息
@@ -178,7 +178,7 @@ public class SystemController {
     @RequestMapping("/findUserAll")
     public String findUserAll(HttpServletRequest request, UserQueryVo userQueryVo, @RequestParam(value="pc",required=true,defaultValue="1") Integer pc)throws Exception{
 
-        Integer ps = 2;
+        Integer ps = 4;
         PageBean<User> pageBean = systemService.findUserAll(pc,ps,userQueryVo);
         request.setAttribute("pageBean", pageBean);
         //查询数据表获取所有商品信息
@@ -188,7 +188,7 @@ public class SystemController {
     @RequestMapping("/findUser")
     public String findUser(HttpServletRequest request, UserQueryVo userQueryVo, @RequestParam(value="pc",required=true,defaultValue="1") Integer pc)throws Exception{
 
-        Integer ps = 2;
+        Integer ps = 4;
         PageBean<User> pageBean = systemService.findUser(pc,ps,userQueryVo);
         request.setAttribute("pageBean", pageBean);
         //查询数据表获取所有商品信息
