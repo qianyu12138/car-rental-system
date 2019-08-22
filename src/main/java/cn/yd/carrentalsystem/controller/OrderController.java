@@ -31,9 +31,10 @@ public class OrderController {
     public String findOrderList(HttpServletRequest request, @PathVariable("state") int state, @RequestParam(value = "pc",required=true,defaultValue ="1") Integer pc)
     {
         Integer ps=4;
-        PageBean<LeaseQueryVo> pageBean=leaseService.findLeaseList(state,pc,ps);
-        request.setAttribute("pageBean",pageBean);
+
         User user = (User) request.getSession().getAttribute("user");
+        PageBean<LeaseQueryVo> pageBean=leaseService.findLeaseList(user.getState(), user.getUid(),state,pc,ps);
+        request.setAttribute("pageBean",pageBean);
         if (user.getState().equals("2")&&state==1) {
             return "system/rentalapplication";
         }

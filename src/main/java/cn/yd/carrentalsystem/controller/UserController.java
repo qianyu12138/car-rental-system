@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -44,6 +45,13 @@ private String host;
         return "login";
     }
 
+    /**
+     * 登录
+     * @param request
+     * @param phone
+     * @param password
+     * @return
+     */
     @RequestMapping("/login")
     public String login(HttpServletRequest request, String phone, String password) {
         User user = userService.login(phone, password);
@@ -54,13 +62,32 @@ private String host;
         request.getSession().setAttribute("user", user);
         if(user.getState().equals("2"))
         {
-            return "system/menu";
+            return "redirect:toMenu";
         }
 
+        return "redirect:toIndex";
+    }
+
+    /**
+     * 去前台主页
+     * @return
+     */
+    @RequestMapping("toIndex")
+    public String toIndex()
+    {
         return "index";
     }
 
-
+    /**
+     *
+     *
+     * @return
+     */
+@RequestMapping("toMenu")
+public  String toMenu()
+{
+    return  "system/menu";
+}
 
     @ResponseBody
     @RequestMapping("/getUserExist/{name}")

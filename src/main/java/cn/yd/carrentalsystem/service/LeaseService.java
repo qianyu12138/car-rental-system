@@ -6,7 +6,7 @@ import cn.yd.carrentalsystem.po.LeaseQueryVo;
 import cn.yd.carrentalsystem.po.PageBean;
 
 public interface LeaseService {
-    PageBean<LeaseQueryVo> findLeaseList(int state,int pc,int ps);
+    PageBean<LeaseQueryVo> findLeaseList(String ustate,int uid,int state,int pc,int ps);
 
     void addLease(Lease lease);
 

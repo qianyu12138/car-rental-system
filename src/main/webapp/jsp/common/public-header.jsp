@@ -31,7 +31,7 @@
                 <li class="item right-float"><span class="hello-text">欢迎您，${user.name}(未激活)</span></li>
             </c:if>
                 <c:if test="${user.state=='1'}">
-                    <li class="item right-float"><a class="nav-link mycargo-link" href="${pageContext.request.contextPath }/order/findOrderList/1">我的Cargo</a></li>
+                    <li class="item right-float"><a class="nav-link mycargo-link" href="${pageContext.request.contextPath }/order/findOrderList/0">我的Cargo</a></li>
                     <li class="item right-float"><span class="hello-text">欢迎您，${user.name}</span></li>
                 </c:if>
 

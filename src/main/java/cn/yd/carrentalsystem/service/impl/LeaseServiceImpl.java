@@ -29,7 +29,7 @@ public class LeaseServiceImpl implements LeaseService {
     @Autowired(required = false)
     private UserMapper userMapper;
     @Override
-    public PageBean<LeaseQueryVo> findLeaseList(int state,int pc,int ps) {
+    public PageBean<LeaseQueryVo> findLeaseList(String ustate,int uid,int state,int pc,int ps) {
         PageBean<LeaseQueryVo> pageBean=new PageBean<LeaseQueryVo>();
         List<LeaseQueryVo> leaseQueryVos=new ArrayList<>();
         PageHelper.startPage(pc,ps);
@@ -38,6 +38,10 @@ public class LeaseServiceImpl implements LeaseService {
         LeaseExample.Criteria criteria=example.createCriteria();
         if(state!=0) {
             criteria.andStateEqualTo(state);
+        }
+        if (ustate.equals("1"))
+        {
+            criteria.andUidEqualTo(uid);
         }
 
         List<Lease>leases=leaseMapper.selectByExample(example);
