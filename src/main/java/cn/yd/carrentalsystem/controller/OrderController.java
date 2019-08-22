@@ -83,10 +83,19 @@ public class OrderController {
             calendar.add(calendar.DATE,1);
             lease.setReturntime(calendar.getTime());
         }
-        lease.setReceiveaddress(receiveaddress);
-        lease.setReturnaddress(returnaddress);
         lease.setState(1);
         lease.setContactphone(contactphone);
+
+        CarCustom car = carService.getCarByCid(cid);
+        if(receiveaddress.equals(""))
+            lease.setReceiveaddress("（网点取车）"+car.getStartaddress());
+        else
+            lease.setReceiveaddress(receiveaddress);
+
+        if(returnaddress.equals(""))
+            lease.setReturnaddress("（网点还车）"+car.getEndaddress());
+        else
+            lease.setReturnaddress(returnaddress);
 
         leaseService.addLease(lease);
 
