@@ -73,7 +73,7 @@
                             <br>
                             &nbsp;<span> <strong>${lease.car.cname}</strong></span>
                             <br>  &nbsp;<span class="decs">${lease.car.cdesc}</span>
-                            <br>   &nbsp;<span class="decs">订单号：${lease.lease.lid}</span></br>
+                            <br>   &nbsp;<span class="decs">${lease.lease.lid}</span></br>
                         </td>
                         <td>
                             <br><br>
