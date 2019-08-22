@@ -397,4 +397,15 @@
       endAddress = #{endaddress,jdbcType=VARCHAR}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
+  <update id="deleteCar" parameterType="cn.yd.carrentalsystem.po.Car" >
+    update car
+    set state = 3
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByState" resultMap="BaseResultMap" parameterType="cn.yd.carrentalsystem.po.CarExample" >
+    select
+    <include refid="Base_Column_List" />
+    from car
+    where state!= 3 or state is null
+  </select>
 </mapper>

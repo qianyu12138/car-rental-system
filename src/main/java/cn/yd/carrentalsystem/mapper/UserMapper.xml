@@ -272,4 +272,20 @@
       idCardImgs = #{idcardimgs,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+  <update id="updatestate" parameterType="cn.yd.carrentalsystem.po.User" >
+    update user
+    set state = 1
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="deleteUser" parameterType="cn.yd.carrentalsystem.po.User" >
+    update user
+    set state = 3
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByState" resultMap="BaseResultMap" parameterType="cn.yd.carrentalsystem.po.UserExample" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where state!= 3 or state is null
+  </select>
 </mapper>

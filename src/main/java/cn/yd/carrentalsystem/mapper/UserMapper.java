@@ -30,4 +30,12 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    int updateByExampleWithBLOBs(@Param("record") User record, @Param("example") UserExample example);
+
+    int updatestate(User record);
+
+    int deleteUser(User record);
+
+    List<User> selectByState(UserExample example);
 }

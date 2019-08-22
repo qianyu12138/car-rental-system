@@ -34,7 +34,7 @@
     <div class="easyui-accordion" region="west" split="true" title="功能" style="width:15%;">
         <div title="用户管理">
             <ul class="easyui-tree">
-                <li><a href="javascript:void(0)" onclick="addTab('用户列表','userList.html')">用户列表</a></li>
+                <li><a href="javascript:void(0)" onclick="addTab('用户列表','<c:url value="/findUserAll" />')"> 用户列表</a></li>
                 <li><a href="javascript:void(0)" onclick="addTab('个体出租列表','renterList.html')">个体出租列表</a></li>
             </ul>
         </div>
@@ -52,7 +52,8 @@
         </div>
         <div title="车库管理">
             <ul class="easyui-tree">
-                <li><a href="javascript:void(0)" onclick="addTab('车库列表','carList.html')">车库列表</a></li>
+                <li><a href="javascript:void(0)" onclick="addTab('车辆列表','<c:url value="/findCarAll" />')">车辆列表</a></li>
+                <li><a href="javascript:void(0)" onclick="addTab('类别列表','<c:url value="/findKindAll" />')">类别列表</a></li>
             </ul>
         </div>
     </div>

@@ -30,4 +30,7 @@ public interface KindMapper {
     int updateByPrimaryKeySelective(Kind record);
 
     int updateByPrimaryKey(Kind record);
+
+    int getKid(Integer kid);
+
 }

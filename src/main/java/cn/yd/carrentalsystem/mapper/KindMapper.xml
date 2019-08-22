@@ -161,4 +161,10 @@
     set kname = #{kname,jdbcType=VARCHAR}
     where kid = #{kid,jdbcType=INTEGER}
   </update>
+
+  <select id="getKid" parameterType="cn.yd.carrentalsystem.po.KindExample" resultType="java.lang.Integer" >
+    select kid from kind
+    where kid=#{kid,jdbcType=INTEGER}
+  </select>
+
 </mapper>

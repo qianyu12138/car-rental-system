@@ -27,4 +27,8 @@ public interface CarMapper {
     int updateByPrimaryKeySelective(Car record);
 
     int updateByPrimaryKey(Car record);
+
+    int deleteCar(Car record);
+
+    List<Car> selectByState(CarExample example);
 }
