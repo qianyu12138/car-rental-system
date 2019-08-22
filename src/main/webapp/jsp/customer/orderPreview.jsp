@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
         var totalDay = getYMDHMS($("#startTime").val(),$("#endTime").val());
         if(totalDay<=0) {
             alert("请填写正确的时间段");
-            $("#endTime").html("");
+            $("#endTime").val("");
             $("#rentDay").html("-");
             $("#price").html("-");
             $("#totalPrice").html("-");
