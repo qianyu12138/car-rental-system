@@ -30,16 +30,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(String phone, String password) {
-        List<User> users=new ArrayList<>();
+       List<User> users=new ArrayList<>();
 
-        if (getUserExist(phone))
-       {
-           UserExample userExample = new UserExample();
-           UserExample.Criteria criteria = userExample.createCriteria();
-           criteria.andPasswordEqualTo(password);
-           users=userMapper.selectByExample(userExample);
+       UserExample userExample = new UserExample();
+       UserExample.Criteria criteria = userExample.createCriteria();
+       criteria.andPasswordEqualTo(password);
+       criteria.andPhoneEqualTo(phone);
+       users=userMapper.selectByExample(userExample);
 
-       }
         if (users.size()==0)
         {
             return null;
