@@ -64,6 +64,7 @@ public class UserServiceImpl implements UserService {
     public void regist(String phone, String password) {
 
         password = DigestUtils.md5Hex(password);
+
         User user = new User();
         user.setPhone(phone);
         user.setPassword(password);

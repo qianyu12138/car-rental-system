@@ -62,7 +62,15 @@ private String host;
             request.setAttribute("er", "账号或密码错误");
             return "login";
         }
-        request.getSession().setAttribute("user", user);
+        if (user.getState().equals("2"))
+        {
+            request.getSession().setAttribute("guser",user);
+        }
+        if (user.getState().equals("1")||user.getState().equals("0"))
+        {
+            request.getSession().setAttribute("user", user);
+        }
+
         if(user.getState().equals("2"))
         {
             return "redirect:toMenu";
