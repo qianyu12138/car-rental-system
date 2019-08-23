@@ -84,11 +84,11 @@ pageEncoding="UTF-8"%>
                 </div>
                 <div class="form-group">
                     <label>取车详细地址(不填默认网点取车)</label>
-                    <input class="form-control" readonly type="text" value="${vo.startAddress}"/>
+                    <input class="form-control" readonly type="text" value="${leaseCustom.createaddress}"/>
                 </div>
                 <div class="form-group">
                     <label>还车详细地址(不填默认网点还车)</label>
-                    <input class="form-control" readonly type="text" value="${vo.endAddress}"/>
+                    <input class="form-control" readonly type="text" value="${leaseCustom.receivetaddress}"/>
                 </div>
                 <div class="form-group">
                     <label>取车时间</label>
