@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user) {
-        user.setState("1");
+
         userMapper.updateByPrimaryKey(user);
     }
 
