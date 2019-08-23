@@ -140,19 +140,28 @@
 			<td><input type="text" name="deposit"  /></td>
 		</tr>
 		<tr>
+			<td>是否热卖</td>
+			<td><input type="radio" name="ishot" checked=true value="1"  />是<input type="radio" name="ishot" value="0" />否</td>
+		</tr>
+		<tr>
+			<td>状态</td>
+			<td><input type="radio" name="state" checked=true value="1"  />上架<input type="radio" name="state" value="0" />下架<input type="radio" name="state" value="2" />租出</td>
+		</tr>
+        <tr>
+            <td>起始地址</td>
+            <td><input type="text" name="startaddress"  /></td>
+        </tr>
+        <tr>
+            <td>目的地址</td>
+            <td><input type="text" name="endaddress"  /></td>
+        </tr>
+		<tr>
 			<td colspan="2">
 				<input type="reset" name="reset" value="重置" />
 				<input type="submit" name="submit" value="保存"  />
 			</td>
 		</tr>
-		<tr>
-			<td>起始地址</td>
-			<td><input type="text" name="startaddress"  /></td>
-		</tr>
-		<tr>
-			<td>目的地址</td>
-			<td><input type="text" name="endaddress"  /></td>
-		</tr>
+
 	</form>
 </table>
 </body>

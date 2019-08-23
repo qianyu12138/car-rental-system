@@ -143,6 +143,25 @@ table#tab1{
 			<td>押金</td>
 			<td><input type="text" name="deposit" value="${car.deposit }" /></td>
 		</tr>
+		<tr>
+			<td>是否热卖</td>
+			<td><c:if test="${car.ishot==1}"><input type="radio" name="ishot" checked=true value="1"  />是<input type="radio" name="ishot" value="0" />否</c:if>
+				<c:if test="${car.ishot==0}"><input type="radio" name="ishot" value="1"  />是<input type="radio" name="ishot" value="0" checked=true />否</c:if></td>
+		</tr>
+		<tr>
+		<td>状态</td>
+		<td><c:if test="${car.state==1}"><input type="radio" name="state" checked=true value="1"  />上架<input type="radio" name="state" value="0" />下架<input type="radio" name="state" value="2" />租出</c:if>
+			<c:if test="${car.state==0}"><input type="radio" name="state"  value="1"  />上架<input type="radio" name="state"checked=true value="0" />下架<input type="radio" name="state" value="2" />租出</c:if>
+			<c:if test="${car.state==2}"><input type="radio" name="state"  value="1"  />上架<input type="radio" name="state" value="0" />下架<input type="radio" name="state" value="2" checked=true/>租出</c:if></td>
+		</tr>
+		<tr>
+			<td>起始地址</td>
+			<td><input type="text" name="startaddress" value="${car.startaddress }" /></td>
+		</tr>
+		<tr>
+			<td>目的地址</td>
+			<td><input type="text" name="endaddress" value="${car.endaddress }" /></td>
+		</tr>
 	    <tr>  		
 	       	<td colspan="2">
 	       		<input type="reset" name="reset" value="重置" />

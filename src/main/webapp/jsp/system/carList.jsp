@@ -44,6 +44,9 @@
                 <th field="skylight" width="50">天窗</th>
                 <th field="deposit" width="50">押金</th>
                 <th field="state" width="50">状态</th>
+                <th field="ishot" width="50">是否热卖</th>
+                <th field="startaddress" width="150">起始地址</th>
+                <th field="endaddress" width="150">目的地址</th>
                 <th field="operate" width="300">操作</th>
             </tr>
         </thead>
@@ -62,7 +65,13 @@
                 <td>${car.automatic }</td>
                 <td>${car.skylight }</td>
                 <td>${car.deposit }</td>
-                <td>${car.state }</td>
+                <td><c:if test="${car.state==1 }">上架</c:if>
+                    <c:if test="${car.state ==2}">租出</c:if>
+                    <c:if test="${car.state==0 }">下架</c:if></td>
+                <td><c:if test="${car.ishot==0}">否</c:if>
+                    <c:if test="${car.ishot==1}">是</c:if></td>
+                <td>${car.startaddress}</td>
+                <td>${car.endaddress}</td>
                 <td>
                     <a href="<c:url value="carimg" />?car_cid=${car.cid}" class="easyui-linkbutton" iconCls="icon-ok" plain="true">车辆图片</a>
                     <a href="<c:url value="deleteCar" />?car_cid=${car.cid}" class="easyui-linkbutton" iconCls="icon-no" plain="true">删除</a>

@@ -52,7 +52,9 @@
 			<td>${user.phone }</td>
 			<td>${user.password }</td>
 			<td>${user.name }</td>
-            <td>${user.state }</td>
+            <td><c:if test="${user.state==1}">已激活</c:if>
+                <c:if test="${user.state==0 }">未激活</c:if>
+                <c:if test="${user.state==2 }">管理员</c:if>   </td>
             <td>${user.address }</td>
             <td>${user.idcardnum }</td>
             <td>
@@ -78,7 +80,7 @@
     </table>
     <div class="toolbar" style="padding: 20px; position: relative;">
         <form id="form1" action="<c:url value="findUser" />" method="post"></form>
-        <form id="form2" action="<c:url value="findUserAll" />" method="post"></form>
+        <form id="form2" action="  " method="post"></form>
         <img src="../../images/system/username.png"> <input class="username" form="form1"  name="userCustom.uid"placeholder="用户编号查询">&nbsp;&nbsp;
         <img src="../../images/system/phone.png"> <input class="username" form="form1"  name="userCustom.name"placeholder="姓名查询">&nbsp;&nbsp;
         <img src="../../images/system/email.png"> <input class="username" form="form1"  name="userCustom.state" placeholder="账户状态查询">&nbsp;&nbsp;
