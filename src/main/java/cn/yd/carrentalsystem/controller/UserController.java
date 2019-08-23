@@ -1,6 +1,6 @@
 package cn.yd.carrentalsystem.controller;
 
-import cn.yd.carrentalsystem.fastdfs.FastDFSClient;
+import cn.yd.carrentalsystem.utils.FastDFSClient;
 import cn.yd.carrentalsystem.po.User;
 import cn.yd.carrentalsystem.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;

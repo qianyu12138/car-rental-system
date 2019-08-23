@@ -1,6 +1,6 @@
 package cn.yd.carrentalsystem.controller;
 
-import cn.yd.carrentalsystem.fastdfs.FastDFSClient;
+import cn.yd.carrentalsystem.utils.FastDFSClient;
 import cn.yd.carrentalsystem.po.*;
 import cn.yd.carrentalsystem.service.KindService;
 import cn.yd.carrentalsystem.service.SystemService;
@@ -139,26 +139,8 @@ public class SystemController {
     }
     //增加车辆
     @RequestMapping("/addCar")
-    public String addCar(HttpServletRequest request, MultipartFile carimg1, MultipartFile carimg2,
-                         MultipartFile carimg3,@Validated Car car ) throws Exception{
+    public String addCar(HttpServletRequest request,@Validated Car car ) throws Exception{
 
-            Integer cid=car.getCid();
-            String originalFilename1 =carimg1.getOriginalFilename();
-            String originalFilename2=carimg2.getOriginalFilename();
-            String originalFilename3=carimg3.getOriginalFilename();
-            String extName = originalFilename1.substring(originalFilename1.lastIndexOf(".") + 1);
-            String extName1=originalFilename2.substring(originalFilename2.lastIndexOf(".") + 1);
-            String extName2=originalFilename3.substring(originalFilename3.lastIndexOf(".") + 1);
-
-            //2、创建一个FastDFS的客户端
-            FastDFSClient fastDFSClient = null;
-
-            fastDFSClient = new FastDFSClient("classpath:client.conf");
-            //3、执行上传处理
-            String carimg = fastDFSClient.uploadFile(carimg1.getBytes(), extName);
-            carimg=carimg+";"+fastDFSClient.uploadFile(carimg2.getBytes(),extName1);
-            carimg=carimg+";"+fastDFSClient.uploadFile(carimg2.getBytes(),extName2);
-            car.setImgs(carimg);
         systemService.addCar(car);
 
 

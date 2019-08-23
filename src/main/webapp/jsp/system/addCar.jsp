@@ -29,6 +29,9 @@
 			margin-bottom:10px;
 		}
 	</style>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/kindeditor/themes/default/default.css" />
+	<script src="${pageContext.request.contextPath}/kindeditor/kindeditor-all-min.js"></script>
+	<script src="${pageContext.request.contextPath}/kindeditor/lang/zh-CN.js"></script>
 </head>
 <body>
 <script type="text/javascript">
@@ -45,6 +48,29 @@
 		}
 	}
 
+    KindEditor.ready(function(K) {
+        var editor = K.editor({
+            filePostName:"uploadFile",//上传组件名
+            uploadJson: '${pageContext.request.contextPath}/upload',//上传地址
+            allowFileManager : true
+        });
+        K('#J_selectMutiImage').click(function() {
+            editor.loadPlugin('multiimage', function() {
+                editor.plugin.multiImageDialog({
+                    clickFn : function(urlList) {
+                        var div = K('#J_imageView');
+                        div.html('');
+                        K.each(urlList, function(i, data) {
+                            div.append('<img src="${host}' + data.url + '" width="300px"/>');
+                            var imgs = K("#imgs-input");
+                            imgs.val(imgs.val()+data.url+";");
+                        });
+                        editor.hideDialog();
+                    }
+                });
+            });
+        });
+    });
 
 </script>
 <table id="tab1">
@@ -56,12 +82,9 @@
 		<tr>
 			<td>车辆图片：</td>
 			<td>
-				点击添加第一张<input type="file"  name="carimg1" onchange="html5Reader(this,'carimg1')" class="content-file col-lg-3"  >
-				<img  hidden  class=" col-lg-offset-2 " id="carimg1" src="" width="130px" height="80px" >
-				点击添加第二张<input type="file"  name="carimg2" onchange="html5Reader(this,'carimg2')" class="content-file col-lg-3"  >
-				<img  hidden  class=" col-lg-offset-2 " id="carimg2" src="" width="130px" height="80px" >
-				点击添加第三张<input type="file"  name="carimg3" onchange="html5Reader(this,'carimg3')" class="content-file col-lg-3"  placeholder="未完待续">
-				<img  hidden  class=" col-lg-offset-2 " id="carimg3" src="" width="130px" height="80px" >
+				<input type="hidden" name="imgs" id="imgs-input"/>
+				<input type="button" id="J_selectMutiImage" value="批量上传" />
+				<div id="J_imageView"></div>
 			</td>
 		</tr>
 		<tr>

@@ -1,4 +1,4 @@
-package cn.yd.carrentalsystem.fastdfs;
+package cn.yd.carrentalsystem.utils;
 
 import org.csource.common.NameValuePair;
 import org.csource.fastdfs.ClientGlobal;
