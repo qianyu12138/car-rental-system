@@ -3,6 +3,7 @@ package cn.yd.carrentalsystem.controller;
 import cn.yd.carrentalsystem.po.*;
 import cn.yd.carrentalsystem.service.CarService;
 import cn.yd.carrentalsystem.service.LeaseService;
+import net.minidev.json.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +48,9 @@ public class OrderController {
         if (user.getState().equals("2")&&state==0) {
             return "system/orderList";
         }
+        if (user.getState().equals("2")&&state==3) {
+            return "system/getCar";
+        }
         return "user/order";
     }
 
@@ -55,6 +59,7 @@ public class OrderController {
         //用户状态校验
         CarCustom carCustom = carService.getCarByCid(cid);
         model.addAttribute("carCustom", carCustom);
+
         return "customer/orderPreview";
     }
 

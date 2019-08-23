@@ -28,11 +28,7 @@
     </div>
     <div class="index-choice">
         <form id="form" action="<c:url value='${pageContext.request.contextPath}/conditionSubmit'/>" method="post" ></form>
-        <div class="choice-nav clearfloat">
-            <div class="nav-common nav-random left-float"><p class="nav-text">上门取送</p></div>
-            <div class="nav-common nav-specify left-float"><p class="nav-text">到店取还</p></div>
-            <div class="nav-common nav-discount left-float"><p class="nav-text">特价优惠</p></div>
-        </div>
+
         <div class="choice-address">
             <div class="choice-address-block"><span class="address-text get-address-text">取车</span><input  form="form"    name="deliveryAddress"class="address-choice" placeholder="请输入送车上门地址"></div>
             <div class="choice-address-block"><span class="address-text return-address-text">还车</span><input form="form" class="address-choice"  name="pickUpAddress" placeholder="请输入上门取车地址"></div>
@@ -57,37 +53,21 @@
         </tr>
     </table>
 </div>
-<div class="index-content">
-    <div class="public-container index-content-box">
-        <div class="choice-common">
-            <p class="choice-title">短租自驾</p>
-            <div class="choice-img-common choice-img-1"></div>
-            <p class="choice-desc">24小时轻松取 / 还车</p>
-            <button class="choice-btn">我要租车</button>
-        </div><!--
-             --><div class="choice-common">
-        <p class="choice-title">短租自驾</p>
-        <div class="choice-img-common choice-img-2"></div>
-        <p class="choice-desc">24小时轻松取 / 还车</p>
-        <button class="choice-btn">我要租车</button>
-    </div><!--
-            --><div class="choice-common">
-        <p class="choice-title">短租自驾</p>
-        <div class="choice-img-common choice-img-3"></div>
-        <p class="choice-desc">24小时轻松取 / 还车</p>
-        <button class="choice-btn">我要租车</button>
-    </div><!--
-            --><div class="choice-common choice-final">
-        <p class="choice-title">短租自驾</p>
-        <div class="choice-img-common choice-img-4"></div>
-        <p class="choice-desc">24小时轻松取 / 还车</p>
-        <button class="choice-btn">我要租车</button>
-    </div><!--
-            -->
-    </div>
 
 </div>
+<center><br><br><br><span class="hotTiltle"><strong>热门车型大搜罗</strong></span><br><span class="hotfont">HOT车型，实时更新随看随租，值得您关注</span><br><br></center>
+<div class="hotbox">
 
+    <c:forEach items="${cars}" var="car">
+    <div class="hotcar left-float">
+        <span>${car.carCustom.cname}</span><br>
+        <span class="hotfont">${car.carCustom.cdesc}</span><br>
+        <br>
+        <a href="${pageContext.request.contextPath}/toCarDetail?cid=${car.carCustom.cid}"><img class="hotimg" src="${host}${car.firstImg}"></a>
+    </div>
+    </c:forEach>
+
+</div>
 <div class="footer-box"></div>
 <script>
     $(".footer-box").load("${pageContext.request.contextPath}/jsp/common/public-footer.jsp");

@@ -1,9 +1,11 @@
 package cn.yd.carrentalsystem.po;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Car {
+public class Car implements Serializable {
     private Integer cid;
+
     private String cname;
 
     private Integer kid;
@@ -35,6 +37,8 @@ public class Car {
     private String startaddress;
 
     private String endaddress;
+
+    private Integer ishot;
 
     public Integer getCid() {
         return cid;
@@ -170,5 +174,13 @@ public class Car {
 
     public void setEndaddress(String endaddress) {
         this.endaddress = endaddress == null ? null : endaddress.trim();
+    }
+
+    public Integer getIshot() {
+        return ishot;
+    }
+
+    public void setIshot(Integer ishot) {
+        this.ishot = ishot;
     }
 }

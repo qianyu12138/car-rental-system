@@ -16,6 +16,15 @@ public class CarQueryVo {
 
 	//接收批量商品修改信息
 	private List<Car> carList;
+	private String firstImg;
+
+	public String getFirstImg() {
+		return firstImg;
+	}
+
+	public void setFirstImg(String firstImg) {
+		this.firstImg = firstImg;
+	}
 
 	public List<Car> getCarList() {
 		return carList;

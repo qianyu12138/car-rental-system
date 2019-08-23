@@ -47,6 +47,7 @@ public class SystemController {
         return "system/carList";
     }
 
+
     //删除商品
     @RequestMapping("/deleteCar")
     public String deleteCar(Model model, @RequestParam(value="car_cid",required=true,defaultValue="1") Integer cid) throws Exception{

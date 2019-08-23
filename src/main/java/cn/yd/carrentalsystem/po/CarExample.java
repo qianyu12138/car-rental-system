@@ -1204,6 +1204,66 @@ public class CarExample {
             addCriterion("endAddress not between", value1, value2, "endaddress");
             return (Criteria) this;
         }
+
+        public Criteria andIshotIsNull() {
+            addCriterion("ishot is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIshotIsNotNull() {
+            addCriterion("ishot is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIshotEqualTo(Integer value) {
+            addCriterion("ishot =", value, "ishot");
+            return (Criteria) this;
+        }
+
+        public Criteria andIshotNotEqualTo(Integer value) {
+            addCriterion("ishot <>", value, "ishot");
+            return (Criteria) this;
+        }
+
+        public Criteria andIshotGreaterThan(Integer value) {
+            addCriterion("ishot >", value, "ishot");
+            return (Criteria) this;
+        }
+
+        public Criteria andIshotGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ishot >=", value, "ishot");
+            return (Criteria) this;
+        }
+
+        public Criteria andIshotLessThan(Integer value) {
+            addCriterion("ishot <", value, "ishot");
+            return (Criteria) this;
+        }
+
+        public Criteria andIshotLessThanOrEqualTo(Integer value) {
+            addCriterion("ishot <=", value, "ishot");
+            return (Criteria) this;
+        }
+
+        public Criteria andIshotIn(List<Integer> values) {
+            addCriterion("ishot in", values, "ishot");
+            return (Criteria) this;
+        }
+
+        public Criteria andIshotNotIn(List<Integer> values) {
+            addCriterion("ishot not in", values, "ishot");
+            return (Criteria) this;
+        }
+
+        public Criteria andIshotBetween(Integer value1, Integer value2) {
+            addCriterion("ishot between", value1, value2, "ishot");
+            return (Criteria) this;
+        }
+
+        public Criteria andIshotNotBetween(Integer value1, Integer value2) {
+            addCriterion("ishot not between", value1, value2, "ishot");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

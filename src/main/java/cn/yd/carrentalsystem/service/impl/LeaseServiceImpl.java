@@ -144,6 +144,19 @@ public class LeaseServiceImpl implements LeaseService {
     @Override
     public void updateState(int state, String lid) {
         Lease lease=leaseMapper.selectByPrimaryKey(lid);
+
+        if (state==6||state==5)
+        {
+            Car car=carMapper.selectByPrimaryKey(lease.getCid());
+            car.setState("1");
+            if (state==6)
+            {
+                String temp=car.getStartaddress();
+                car.setStartaddress(car.getEndaddress());
+                car.setEndaddress(temp);
+            }
+            carMapper.updateByPrimaryKey(car);
+        }
         lease.setState(state);
         leaseMapper.updateByPrimaryKey(lease);
 

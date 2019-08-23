@@ -43,11 +43,7 @@
                 <li><a href="javascript:void(0)" onclick="addTab('订单列表','${pageContext.request.contextPath}/order/findOrderList/0')">订单列表</a></li>
                 <li><a href="javascript:void(0)" onclick="addTab('租借申请<','${pageContext.request.contextPath}/order/findOrderList/1')">预定申请列表</a></li>
                 <li><a href="javascript:void(0)" onclick="addTab('还车申请','${pageContext.request.contextPath}/order/findOrderList/4')">还车申请列表</a></li>
-            </ul>
-        </div>
-        <div title="门店管理">
-            <ul class="easyui-tree">
-                <li><a href="javascript:void(0)" onclick="addTab('门店列表','#')">门店列表</a></li>
+                <li><a href="javascript:void(0)" onclick="addTab('取车列表','${pageContext.request.contextPath}/order/findOrderList/3')">确认取车列表</a></li>
             </ul>
         </div>
         <div title="车库管理">

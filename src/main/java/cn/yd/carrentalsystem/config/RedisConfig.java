@@ -45,4 +45,5 @@ public class RedisConfig {
         template.setConnectionFactory(redisConnectionFactory);
         return template;//RedisTemplate就是操作Redis数据库的对象，并不是模板什么的，不要直译英文单词
     }
+
 }

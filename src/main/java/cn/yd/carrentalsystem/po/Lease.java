@@ -1,9 +1,10 @@
 package cn.yd.carrentalsystem.po;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Lease {
+public class Lease implements Serializable {
     private String lid;
 
     private Integer state;

@@ -114,22 +114,22 @@ pageEncoding="UTF-8"%>
                 </dl>
             </div>
 
-            <c:choose>
-                <c:when test="${leaseCustom.state==3}">
+
+                <c:if test="${leaseCustom.state==3}">
                     <div class="price-content">
                         <dl>
                             <dd class="total-text clearfloat"><button class="submit-btn right-float" onclick="window.location.href='${pageContext.request.contextPath}/order/returnApply?lid=${leaseCustom.lid}'">申请还车</button></dd>
                         </dl>
                     </div>
-                </c:when>
-                <c:when test="${leaseCustom.state==1}">
+                </c:if>
+                <c:if test="${leaseCustom.state==1}">
                     <div class="price-content">
                         <dl>
                             <dd class="total-text clearfloat"><button class="submit-btn right-float" onclick="window.location.href='${pageContext.request.contextPath}/order/cancelLease?lid=${leaseCustom.lid}'">取消订单</button></dd>
                         </dl>
                     </div>
-                </c:when>
-            </c:choose>
+                </c:if>
+
 
             <div class="caution-content">
                 <div class="caution-title">常见问题</div>

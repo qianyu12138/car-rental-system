@@ -1,8 +1,13 @@
 package cn.yd.carrentalsystem.controller;
 
-import cn.yd.carrentalsystem.utils.FastDFSClient;
+
+import cn.yd.carrentalsystem.po.Car;
+import cn.yd.carrentalsystem.po.CarQueryVo;
+import cn.yd.carrentalsystem.po.QueryVo;
 import cn.yd.carrentalsystem.po.User;
+import cn.yd.carrentalsystem.service.CarService;
 import cn.yd.carrentalsystem.service.UserService;
+import cn.yd.carrentalsystem.utils.FastDFSClient;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -21,6 +27,8 @@ public class UserController {
 private String host;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CarService carService;
 
 
     @ResponseBody
@@ -67,16 +75,27 @@ private String host;
             return "redirect:toMenu";
         }
 
+
         return "redirect:toIndex";
     }
-
+/**
+ * 退出登录
+ */
+@RequestMapping("/user/loginout")
+public String loginout(HttpServletRequest request)
+{
+    request.getSession().removeAttribute("user");
+    return "redirect:toLogin";
+}
     /**
      * 去前台主页
      * @return
      */
     @RequestMapping("toIndex")
-    public String toIndex()
+    public String toIndex(HttpServletRequest request)
     {
+        List<CarQueryVo> cars=carService.getHotCars();
+        request.getSession().setAttribute("cars",cars);
         return "index";
     }
 
