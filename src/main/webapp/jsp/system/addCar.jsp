@@ -145,6 +145,14 @@
 				<input type="submit" name="submit" value="保存"  />
 			</td>
 		</tr>
+		<tr>
+			<td>起始地址</td>
+			<td><input type="text" name="startaddress"  /></td>
+		</tr>
+		<tr>
+			<td>目的地址</td>
+			<td><input type="text" name="endaddress"  /></td>
+		</tr>
 	</form>
 </table>
 </body>
