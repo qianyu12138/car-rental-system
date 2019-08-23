@@ -286,6 +286,6 @@
     select
     <include refid="Base_Column_List" />
     from user
-    where state!= 3 or state is null
+    where state!= 3 and state!=2
   </select>
 </mapper>
