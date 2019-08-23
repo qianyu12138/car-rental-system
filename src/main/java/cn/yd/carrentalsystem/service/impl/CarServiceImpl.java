@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Transactional
 @Service
@@ -91,6 +92,7 @@ public class CarServiceImpl implements CarService {
            RedisSerializer redisSerializer=new StringRedisSerializer();
            redisTemplate.setKeySerializer(redisSerializer);
            redisTemplate.opsForValue().set("hotlist",cars);
+           redisTemplate.expire("hotlist",600, TimeUnit.SECONDS);
 
        }
 
