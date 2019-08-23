@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,70 +64,66 @@ public class SystemController {
 
         //查询商品
         Car car = systemService.findCarById(cid);
-        model.addAttribute("car", car);//将商品信息存入域中
-        String carimg[]=car.getImgs().split(";");
-        request.setAttribute("carimg1",host+carimg[0]);
-        request.setAttribute("carimg2",host+carimg[1]);
-        request.setAttribute("carimg3",host+carimg[2]);
+        model.addAttribute("car", new CarCustom(car));//将商品信息存入域中
         return "system/editCar";
     }
     //修改信息
     @RequestMapping("/editCar")
     public String editCar(MultipartFile carimg1, MultipartFile carimg2,
-                          MultipartFile carimg3,@Validated Car car,@RequestParam(value="car_cid",required=true,defaultValue="1")Integer cid) throws Exception{
-        Car car1=systemService.findCarById(cid);
-        String carimg[]=car1.getImgs().split(";");
-        String originalFilename1;
-        String originalFilename2;
-        String originalFilename3;
-        String originalFilename4;
-        if(carimg1!=null&&!carimg1.isEmpty()){
-            originalFilename1 = carimg1.getOriginalFilename();
-        }
-        else {
-            originalFilename1=carimg[0];
-        }
-        if(carimg2!=null&&!carimg2.isEmpty()){
-            originalFilename2 = carimg2.getOriginalFilename();
-        }
-        else {
-            originalFilename2=carimg[1];
-        }
-        if(carimg3!=null&&!carimg3.isEmpty()){
-            originalFilename3 = carimg3.getOriginalFilename();
-        }
-        else {
-            originalFilename3=carimg[0];
-        }
-        String extName = originalFilename1.substring(originalFilename1.lastIndexOf(".") + 1);
-        String extName1=originalFilename2.substring(originalFilename2.lastIndexOf(".") + 1);
-        String extName2=originalFilename3.substring(originalFilename3.lastIndexOf(".") + 1);
-
-        //2、创建一个FastDFS的客户端
-        FastDFSClient fastDFSClient = null;
-
-        fastDFSClient = new FastDFSClient("classpath:client.conf");
-        //3、执行上传处理
-        String carImg;
-        if(carimg1!=null&&!carimg1.isEmpty()){
-            carImg = fastDFSClient.uploadFile(carimg1.getBytes(), extName);
-        }
-        else{
-            carImg=carimg[0];
-        }
-        if(carimg2!=null&&!carimg2.isEmpty()){
-            carImg=carImg+";"+fastDFSClient.uploadFile(carimg2.getBytes(),extName1);
-        }
-        else{
-            carImg=carImg+";"+carimg[1];
-        }
-        if(carimg3!=null&&!carimg3.isEmpty()){
-            carImg=carImg+";"+fastDFSClient.uploadFile(carimg3.getBytes(),extName2);
-        }
-        else{
-           carImg=carImg+";"+carimg[2];
-        }
-        car.setImgs(carImg);
+                          MultipartFile carimg3,@Validated Car car) throws Exception{
+//        Car car1=systemService.findCarById(cid);
+//        String carimg[]=car1.getImgs().split(";");
+//        String originalFilename1;
+//        String originalFilename2;
+//        String originalFilename3;
+//        String originalFilename4;
+//        if(carimg1!=null&&!carimg1.isEmpty()){
+//            originalFilename1 = carimg1.getOriginalFilename();
+//        }
+//        else {
+//            originalFilename1=carimg[0];
+//        }
+//        if(carimg2!=null&&!carimg2.isEmpty()){
+//            originalFilename2 = carimg2.getOriginalFilename();
+//        }
+//        else {
+//            originalFilename2=carimg[1];
+//        }
+//        if(carimg3!=null&&!carimg3.isEmpty()){
+//            originalFilename3 = carimg3.getOriginalFilename();
+//        }
+//        else {
+//            originalFilename3=carimg[0];
+//        }
+//        String extName = originalFilename1.substring(originalFilename1.lastIndexOf(".") + 1);
+//        String extName1=originalFilename2.substring(originalFilename2.lastIndexOf(".") + 1);
+//        String extName2=originalFilename3.substring(originalFilename3.lastIndexOf(".") + 1);
+//
+//        //2、创建一个FastDFS的客户端
+//        FastDFSClient fastDFSClient = null;
+//
+//        fastDFSClient = new FastDFSClient("classpath:client.conf");
+//        //3、执行上传处理
+//        String carImg;
+//        if(carimg1!=null&&!carimg1.isEmpty()){
+//            carImg = fastDFSClient.uploadFile(carimg1.getBytes(), extName);
+//        }
+//        else{
+//            carImg=carimg[0];
+//        }
+//        if(carimg2!=null&&!carimg2.isEmpty()){
+//            carImg=carImg+";"+fastDFSClient.uploadFile(carimg2.getBytes(),extName1);
+//        }
+//        else{
+//            carImg=carImg+";"+carimg[1];
+//        }
+//        if(carimg3!=null&&!carimg3.isEmpty()){
+//            carImg=carImg+";"+fastDFSClient.uploadFile(carimg3.getBytes(),extName2);
+//        }
+//        else{
+//           carImg=carImg+";"+carimg[2];
+//        }
+//        car.setImgs(carImg);
         systemService.editCar(car);
         return "redirect:findCarAll";//重定向到查询列表方法
     }
@@ -359,5 +356,18 @@ public class SystemController {
 
         systemService.addKind(kind);
         return "redirect:findKindAll";//重定向到查询列表方法
+    }
+
+    /**
+     * 删除图片
+     * @param cid 车辆id
+     * @param index 图片下标
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/deleteImg")
+    public String deleteImg(Integer cid,Integer index){
+        systemService.deleteImg(cid,index);
+        return "success";
     }
 }

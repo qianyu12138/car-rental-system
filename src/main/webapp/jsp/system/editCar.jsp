@@ -29,6 +29,10 @@ table#tab1{
 	margin-bottom:10px;
 }
 </style>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/kindeditor/themes/default/default.css" />
+	<script src="${pageContext.request.contextPath}/kindeditor/kindeditor-all-min.js"></script>
+	<script src="${pageContext.request.contextPath}/kindeditor/lang/zh-CN.js"></script>
+	<script src="${pageContext.request.contextPath}/js/common/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <script type="text/javascript">
@@ -44,11 +48,42 @@ table#tab1{
 			$("#"+imgid).show();
 		}
 	}
-
-
+	function deleteImg(a,cid,index){
+	    var r = confirm("确认删除此图片吗？");
+	    if(r == true){
+	        $.get("${pageContext.request.contextPath}/deleteImg?cid="+cid+"&index="+index,
+				function (data) {
+				alert("删除成功");
+				$(a).html("");
+            });
+		}
+	}
+    KindEditor.ready(function(K) {
+        var editor = K.editor({
+            filePostName:"uploadFile",//上传组件名
+            uploadJson: '${pageContext.request.contextPath}/upload',//上传地址
+            allowFileManager : true
+        });
+        K('#J_selectMutiImage').click(function() {
+            editor.loadPlugin('multiimage', function() {
+                editor.plugin.multiImageDialog({
+                    clickFn : function(urlList) {
+                        var div = K('#J_imageView');
+                        div.html('');
+                        K.each(urlList, function(i, data) {
+                            div.append('<img src="${host}' + data.url + '" width="300px"/>');
+                            var imgs = K("#imgs-input");
+                            imgs.val(imgs.val()+data.url+";");
+                        });
+                        editor.hideDialog();
+                    }
+                });
+            });
+        });
+    });
 </script>
 	<table id="tab1">
-	<form action="<c:url value='editCar'/>?car_cid=${car.cid }" method="post" enctype="multipart/form-data">
+	<form action="<c:url value='editCar'/>" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="cid" value="${car.cid }" />
 	   	<tr>
 	   		<td>车辆名称：</td>
@@ -57,17 +92,12 @@ table#tab1{
 		<tr>
 			<td>车辆图片：</td>
 			<td>
-				<img    class=" " name="carimg1" src="${carimg1}" width="130px" height="80px" >
-				<img   class="  " name="carimg2"src="${carimg2}" width="130px" height="80px" >
-				<img  class="" name="carimg3" src="${carimg3}" width="130px" height="80px" >
-				<br />
-				点击修改第一张<input type="file"  name="carimg1" onchange="html5Reader(this,'carimg1')"   >
-				<img  hidden  class=" col-lg-offset-2 " id="carimg1" src="" width="130px" height="80px" >
-				点击修改第二张<input type="file"  name="carimg2" onchange="html5Reader(this,'carimg2')"  >
-				<img  hidden  class=" col-lg-offset-2 " id="carimg2" src="" width="130px" height="80px" >
-				<br/>
-				点击修改第三张<input type="file"  name="carimg3" onchange="html5Reader(this,'carimg3')"  >
-				<img  hidden  class=" col-lg-offset-2 " id="carimg3" src="" width="130px" height="80px" >
+				<c:forEach items="${car.imgPaths}" var="img" varStatus="i">
+					<a href="javscript:void(0)" onclick="deleteImg(this,${car.cid},${i.index})"><img src="${host}${img}" width="300px" alt=""/></a>
+				</c:forEach>
+				<input type="hidden" name="imgs" id="imgs-input" value="${car.imgs}"/>
+				<input type="button" id="J_selectMutiImage" value="批量上传" />
+				<div id="J_imageView"></div>
 			</td>
 		</tr>
 	    <tr>

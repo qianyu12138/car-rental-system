@@ -35,7 +35,5 @@ public interface SystemService {
 
     void editstate(User user) throws Exception;
 
-
-
-
+    void deleteImg(Integer cid, Integer index);
 }

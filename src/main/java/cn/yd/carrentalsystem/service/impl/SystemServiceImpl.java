@@ -20,7 +20,7 @@ public class SystemServiceImpl implements SystemService {
     private CarMapper carMapper;
     @Autowired(required = false)
     private KindMapper kindMapper;
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userMapper;
 
     @Override
@@ -198,6 +198,19 @@ public class SystemServiceImpl implements SystemService {
     public void editstate(User user) throws Exception{
 
         userMapper.updatestate(user);
+    }
+
+    @Override
+    public void deleteImg(Integer cid, Integer index) {
+        Car car = carMapper.selectByPrimaryKey(cid);
+        String[] imgs = car.getImgs().split(";");
+        String newImgs = "";
+        for(int i=0;i<imgs.length;i++){
+            if(i!=index)
+                newImgs+=imgs[i]+";";
+        }
+        car.setImgs(newImgs);
+        carMapper.updateByPrimaryKey(car);
     }
 
     @Override

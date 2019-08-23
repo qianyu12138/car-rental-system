@@ -65,13 +65,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarCustom getCarByCid(Integer cid) {
         Car car = carMapper.selectByPrimaryKey(cid);
-        CarCustom carCustom = new CarCustom();
-        if(car.getImgs()!=null) {
-            String[] imgPathsArr = car.getImgs().split(";");
-            List<String> imgPaths = Arrays.asList(imgPathsArr);
-            carCustom.setImgPaths(imgPaths);
-        }
-        CommonUtils.BeantoBean(car, carCustom);
+        CarCustom carCustom = new CarCustom(car);
 
         Kind kind = kindMapper.selectByPrimaryKey(car.getKid());
         carCustom.setKind(kind);
