@@ -47,7 +47,7 @@
 <!--头部-->
 <div class="header-box"></div>
 <script>
-    $(".header-box").load("${pageContext.request.contextPath}/jsp/common/public-header.jsp");
+     $(".header-box").load("${pageContext.request.contextPath}/jsp/common/public-header.jsp");
     function sub() {
         $(".phoneError").html("&nbsp;");
         $(".passwordError").html("&nbsp;");
