@@ -47,7 +47,7 @@
 <!--头部-->
 <div class="header-box"></div>
 <script>
-    $(".header-box").load("${pageContext.request.contextPath}/jsp/common/public-header.html");
+    $(".header-box").load("${pageContext.request.contextPath}/jsp/common/public-header.jsp");
     function sub() {
         $(".phoneError").html("&nbsp;");
         $(".passwordError").html("&nbsp;");
@@ -99,7 +99,7 @@
 <!--尾部-->
 <div class="footer-box"></div>
 <script>
-    $(".footer-box").load("${pageContext.request.contextPath }/jsp/common/public-footer.html");
+    $(".footer-box").load("${pageContext.request.contextPath }/jsp/common/public-footer.jsp");
 </script>
 <script type="text/javascript">
 </script>
