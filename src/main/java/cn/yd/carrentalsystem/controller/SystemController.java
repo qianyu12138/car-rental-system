@@ -291,6 +291,9 @@ public class SystemController {
     @RequestMapping("/useridentitySAuth")
     public  String  useridentitySAuth(Model model,HttpServletRequest request,@RequestParam(value="user_uid",required=true,defaultValue="1") Integer uid) throws Exception {
         User user =systemService.findUserById(uid);
+////        model.addAttribute("user", useri);
+//        User user = (User) request.getSession().getAttribute("user");
+
             String idCard[]=user.getIdcardimgs().split(",");
             String driverCard[]=user.getLicenseiimg().split(",");
             request.setAttribute("idCard1",host+idCard[0]);
