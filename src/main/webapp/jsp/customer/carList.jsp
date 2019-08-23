@@ -50,7 +50,6 @@
         </div>
         <div class="left-float car-to-img">
             <img src="${pageContext.request.contextPath}/images/car-to.jpg">
-            <p>${host}</p>
         </div>
         <div class="choice-date left-float">
             <div class="choice-date-block"><span class="date-text">取车时间</span><!--

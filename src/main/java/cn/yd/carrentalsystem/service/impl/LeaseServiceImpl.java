@@ -89,9 +89,9 @@ public class LeaseServiceImpl implements LeaseService {
     @Override
     public void addLease(Lease lease) {
         Long dateInterval = lease.getReturntime().getTime()-lease.getReceivetime().getTime();
-        double day = Math.ceil(dateInterval / (24 * 60 * 60 * 1000));
+        double day = Math.ceil(dateInterval / (24 * 60 * 60 * 1000f));
         Car car = carMapper.selectByPrimaryKey(lease.getCid());
-        BigDecimal totalPrice = new BigDecimal(day).multiply(car.getPrice());
+        BigDecimal totalPrice = new BigDecimal(day).multiply(car.getPrice()).add(new BigDecimal(20));
         lease.setTotalprice(totalPrice);
         leaseMapper.insert(lease);
 
@@ -159,7 +159,7 @@ public class LeaseServiceImpl implements LeaseService {
         }
         lease.setState(state);
         leaseMapper.updateByPrimaryKey(lease);
-
+        redisLeaseTemplate.opsForValue().set("lease:"+lease.getLid(), lease);
     }
 
     @Override
@@ -168,5 +168,6 @@ public class LeaseServiceImpl implements LeaseService {
         newLease.setLid(lid);
         newLease.setState(5);
         leaseMapper.updateByPrimaryKeySelective(newLease);
+        redisLeaseTemplate.opsForValue().set("lease:"+newLease.getLid(), newLease);
     }
 }
