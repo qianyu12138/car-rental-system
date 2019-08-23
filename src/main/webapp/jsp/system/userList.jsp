@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fun"%>
 <%
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+
             request.getServerPort()+"/";
@@ -58,14 +59,20 @@
             <td>${user.address }</td>
             <td>${user.idcardnum }</td>
             <td>
-                <c:if test="${user.idcardimgs!=null&&!user.idcardimgs.isEmpty()}">
-                    <a href="<c:url value="/useridentitySAuth" />?user_uid=${user.uid}" class="easyui-linkbutton" iconCls="icon-ok" plain="true">认证信息</a>
+                <c:if test="${fun:length(user.licenseiimg) >1}">
+                    <a href="<c:url value="/useridentitySAuth" />?user_uid=${user.uid}" class="easyui-linkbutton" iconCls="icon-tip" plain="true">认证信息</a>
+                </c:if>
+                <c:if test="${fun:length(user.licenseiimg) <=1}">
+                    <a  class="easyui-linkbutton" iconCls="icon-no" plain="true">认证信息</a>
                 </c:if>
                 <c:if test="${user.state==0}">
                     <a href="<c:url value="editstate" />?user_uid=${user.uid}" class="easyui-linkbutton" iconCls="icon-ok" plain="true">激活</a>
                 </c:if>
+                <c:if test="${user.state!=0}">
+                    <a  class="easyui-linkbutton" iconCls="icon-no" plain="true">激活</a>
+                </c:if>
+                <a href="<c:url value="toUpdateUser"/>?user_uid=${user.uid }" id="failBtn" class="easyui-linkbutton" iconCls="icon-edit" plain="true" >修改</a>
                 <a href="<c:url value="deleteUser" />?user_uid=${user.uid}" class="easyui-linkbutton" iconCls="icon-no" plain="true">删除</a>
-                <a href="<c:url value="toUpdateUser"/>?user_uid=${user.uid }" id="failBtn" class="easyui-linkbutton" iconCls="icon-edit" plain="true" >修改</a><br/><br/>
             </td>
 		</tr>
 		</c:forEach>
