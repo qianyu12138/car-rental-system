@@ -106,8 +106,10 @@ public class LeaseServiceImpl implements LeaseService {
     public Lease findLeaseByLid(String lid) {
         Lease lease = null;
         lease = redisLeaseTemplate.opsForValue().get("lease:" + lid);
-        if(lease==null)
+        if(lease==null) {
             lease = leaseMapper.selectByPrimaryKey(lid);
+            redisLeaseTemplate.opsForValue().set("lease:"+lease.getLid(), lease);
+        }
         return lease;
     }
 
@@ -115,13 +117,16 @@ public class LeaseServiceImpl implements LeaseService {
     public LeaseCustom findLeaseCustomByLid(String lid) {
         Lease lease = null;
         lease = redisLeaseTemplate.opsForValue().get("lease:" + lid);
-        if(lease==null)
+        if(lease==null) {
             lease = leaseMapper.selectByPrimaryKey(lid);
-
+            redisLeaseTemplate.opsForValue().set("lease:"+lease.getLid(), lease);
+        }
         Car car = null;
         car = redisCarTemplate.opsForValue().get("car:"+lease.getCid());
-        if(car == null)
+        if(car == null) {
             car = carMapper.selectByPrimaryKey(lease.getCid());
+            redisCarTemplate.opsForValue().set("car:"+car.getCid(), car);
+        }
         CarCustom carCustom = new CarCustom();
         if(car.getImgs()!=null) {
             String[] imgPathsArr = car.getImgs().split(";");
