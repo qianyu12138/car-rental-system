@@ -24,14 +24,20 @@
                 success:function (data) {
                     if(data.isExist==true) {
                         $(".phoneError").html("用户名已存在");
-                        $(".registBtn").attr("disabled",true)
+                        $(".registBtn").attr("disabled",true);
                     }
                     else{
-                        $(".phoneError").html("用户名可用");
-                        $(".registBtn").attr("disabled",false)
+                        $(".registBtn").attr("disabled",false);
                     }
                 }
-            })
+            });
+            if($(".phone").val().length!=11) {
+                $(".phoneError").html("手机号不正确");
+                $(".registBtn").attr("disabled",true);
+            }else{
+
+                $(".phoneError").html("&nbsp;");
+            }
             $(this).val();
         });
     })
@@ -43,7 +49,7 @@
 <script>
     $(".header-box").load("${pageContext.request.contextPath}/jsp/common/public-header.html");
     function sub() {
-        $(".phoneError").html("&nbsp;")
+        $(".phoneError").html("&nbsp;");
         $(".passwordError").html("&nbsp;");
         if($(".phone").val().length!=11)
             $(".phoneError").html("手机号不正确");
