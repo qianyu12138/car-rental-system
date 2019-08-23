@@ -56,7 +56,7 @@
 
             <td><a href="javascript:void(0)" onclick="showCar(${lease.lease.lid})" class="easyui-linkbutton" iconCls="icon-tip" plain="true">车辆信息</a></td>
             <td>
-                <a href="${pageContext.request.contextPath}/order/audit?s=4&&l=${lease.lease.lid}" class="easyui-linkbutton" iconCls="icon-ok" plain="true">确认已取车</a>
+                <a href="${pageContext.request.contextPath}/order/audit?s=3&&l=${lease.lease.lid}" class="easyui-linkbutton" iconCls="icon-ok" plain="true">确认已取车</a>
 
             </td>
         </tr>
