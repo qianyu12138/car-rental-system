@@ -17,7 +17,7 @@
 
         <ul class="header-nav clearfloat">
             <li class="item left-float"><a class="nav-link first-link" href="${pageContext.request.contextPath}/jsp/index.jsp">首页</a></li>
-            <li class="item left-float"><a class="nav-link" href="#">租车</a></li>
+            <li class="item left-float"><a class="nav-link" href="${pageContext.request.contextPath}/toCarList">租车</a></li>
             <!--未登录-->
             <c:if test="${user==null}">
             <li class="item right-float">

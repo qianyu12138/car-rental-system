@@ -66,8 +66,15 @@
         <a href="${pageContext.request.contextPath}/toCarDetail?cid=${car.carCustom.cid}"><img class="hotimg" src="${host}${car.firstImg}"></a>
     </div>
     </c:forEach>
+    <br>
+    .
+    <br>
+    <br>
 
+    <br>
 </div>
+
+
 <div class="footer-box"></div>
 <script>
     $(".footer-box").load("${pageContext.request.contextPath}/jsp/common/public-footer.jsp");

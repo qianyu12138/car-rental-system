@@ -91,7 +91,7 @@
 
             <div class="form-group">
                 <button class="registBtn" onclick="return sub()">注册</button>
-                <a class="loginLink" href="login.jsp"><span>已有账号？前往</span>登录</a>
+                <a class="loginLink" href="${pageContext.request.contextPath }/toLogin"><span>已有账号？前往</span>登录</a>
             </div>
         </form>
     </div>
