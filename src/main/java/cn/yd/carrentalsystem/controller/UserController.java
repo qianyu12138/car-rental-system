@@ -1,9 +1,7 @@
 package cn.yd.carrentalsystem.controller;
 
 
-import cn.yd.carrentalsystem.po.Car;
 import cn.yd.carrentalsystem.po.CarQueryVo;
-import cn.yd.carrentalsystem.po.QueryVo;
 import cn.yd.carrentalsystem.po.User;
 import cn.yd.carrentalsystem.service.CarService;
 import cn.yd.carrentalsystem.service.UserService;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -160,9 +159,22 @@ public  String toMenu()
        User user= (User) request.getSession().getAttribute("user");
         newPassword = DigestUtils.md5Hex(newPassword);
        userService.changePwd(user,newPassword);
-        return  "redirect:/order/findAllOrderList";
+        return  "redirect:/order/findOrderList/0";
     }
-
+    @RequestMapping("/user/testPwd/{oldPassword}")
+    @ResponseBody
+public String testPwd(@PathVariable("oldPassword") String oldPassword,HttpServletRequest request)
+{
+    User user= (User) request.getSession().getAttribute("user");
+    if (DigestUtils.md5Hex(oldPassword).equals(user.getPassword()))
+    {
+        return  "{\"isSame\":"+true+"}";
+    }
+    else
+    {
+        return  "{\"isSame\":"+false+"}";
+    }
+}
     /**
      * 完善信息
      * @param request
