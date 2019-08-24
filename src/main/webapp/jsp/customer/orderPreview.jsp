@@ -88,7 +88,7 @@ pageEncoding="UTF-8"%>
                 	</div>
                 	<div class="form-group">
                 		<label>还车详细地址(不填默认网点还车)</label>
-                		<input form="leaseForm" name="returnaddress" class="form-control" type="text" value="${vo.endAddress} placeholder="（网点还车）${carCustom.endaddress}" "/>
+                		<input form="leaseForm" name="returnaddress" class="form-control" type="text" value="${vo.endAddress}" placeholder="（网点还车）${carCustom.endaddress}" />
                 	</div>
                 	<div class="form-group">
                 		<label>取车时间</label>
