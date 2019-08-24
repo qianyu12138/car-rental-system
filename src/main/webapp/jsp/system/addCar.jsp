@@ -77,7 +77,7 @@
 	<form action="<c:url value='addCar'/>" method="post" enctype="multipart/form-data">
 		<tr>
 			<td>车辆名称：</td>
-			<td><input type="text" name="cname"  /></td>
+			<td><input type="text" name="cname" required /></td>
 		</tr>
 		<tr>
 			<td>车辆图片：</td>
@@ -101,23 +101,23 @@
 		</tr>
 		<tr>
 			<td>车型</td>
-			<td><input type="text" name="cdesc"  /></td>
+			<td><input type="text" name="cdesc" maxlength="20"/></td>
 		</tr>
 		<tr>
 			<td>每日单价</td>
-			<td><input type="text" name="price" /></td>
+			<td><input type="text" name="price" onkeyup="value=value.replace(/\D/g,'')" maxlength="5" required/></td>
 		</tr>
 		<tr>
 			<td>车牌号</td>
-			<td><input type="text" name="licensenumber" /></td>
+			<td><input type="text" name="licensenumber" maxlength="10" /></td>
 		</tr>
 		<tr>
 			<td>座位数</td>
-			<td><input type="text" name="sitnumber"  /></td>
+			<td><input type="text" name="sitnumber" onkeyup="value=value.replace(/\D/g,'')" maxlength="2" /></td>
 		</tr>
 		<tr>
 			<td>排量</td>
-			<td><input type="text" name="displacement"  /></td>
+			<td><input type="text" name="displacement" maxlength="5"/></td>
 		</tr>
 		<tr>
 			<td>是否有导航仪</td>
@@ -125,7 +125,7 @@
 
 		<tr>
 			<td>油箱</td>
-			<td><input type="text" name="tankcapacity"  /></td>
+			<td><input type="text" name="tankcapacity" onkeyup="value=value.replace(/\D/g,'')" maxlength="5" /></td>
 		</tr>
 		<tr>
 			<td>是否自动挡</td>
@@ -137,7 +137,7 @@
 		</tr>
 		<tr>
 			<td>押金</td>
-			<td><input type="text" name="deposit"  /></td>
+			<td><input type="text" name="deposit" onkeyup="value=value.replace(/\D/g,'')" maxlength="10"/></td>
 		</tr>
 		<tr>
 			<td>是否热卖</td>
@@ -149,11 +149,11 @@
 		</tr>
         <tr>
             <td>起始地址</td>
-            <td><input type="text" name="startaddress"  /></td>
+            <td><input type="text" name="startaddress" maxlength="20" /></td>
         </tr>
         <tr>
             <td>目的地址</td>
-            <td><input type="text" name="endaddress"  /></td>
+            <td><input type="text" name="endaddress" maxlength="20" /></td>
         </tr>
 		<tr>
 			<td colspan="2">

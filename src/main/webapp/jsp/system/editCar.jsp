@@ -102,23 +102,23 @@ table#tab1{
 		</tr>
 	    <tr>
 	   		<td>车型</td>
-	       	<td><input type="text" name="cdesc" value="${car.cdesc }" /></td>
+	       	<td><input type="text" name="cdesc" value="${car.cdesc }" maxlength="20"/></td>
 	    </tr>
 		<tr>
 			<td>每日单价</td>
-			<td><input type="text" name="price" value="${car.price }" /></td>
+			<td><input type="text" name="price" value="${car.price }" onkeyup="value=value.replace(/\D/g,'')" maxlength="5" required/></td>
 		</tr>
 		<tr>
 			<td>车牌号</td>
-			<td><input type="text" name="licensenumber" value="${car.licensenumber }" /></td>
+			<td><input type="text" name="licensenumber" value="${car.licensenumber }" maxlength="10" /></td>
 		</tr>
 		<tr>
 			<td>座位数</td>
-			<td><input type="text" name="sitnumber" value="${car.sitnumber}" /></td>
+			<td><input type="text" name="sitnumber" value="${car.sitnumber}" onkeyup="value=value.replace(/\D/g,'')" maxlength="2" /></td>
 		</tr>
 		<tr>
 			<td>排量</td>
-			<td><input type="text" name="displacement" value="${car.displacement }" /></td>
+			<td><input type="text" name="displacement" value="${car.displacement }" maxlength="5"/></td>
 		</tr>
 		<tr>
 			<td>是否有导航仪</td>
@@ -127,7 +127,7 @@ table#tab1{
 
 		<tr>
 			<td>油箱</td>
-			<td><input type="text" name="tankcapacity" value="${car.tankcapacity }" /></td>
+			<td><input type="text" name="tankcapacity" value="${car.tankcapacity }" onkeyup="value=value.replace(/\D/g,'')" maxlength="5" /></td>
 		</tr>
 		<tr>
 			<td>是否自动挡</td>
@@ -141,7 +141,7 @@ table#tab1{
 		</tr>
 		<tr>
 			<td>押金</td>
-			<td><input type="text" name="deposit" value="${car.deposit }" /></td>
+			<td><input type="text" name="deposit" value="${car.deposit }" onkeyup="value=value.replace(/\D/g,'')" maxlength="10"/></td>
 		</tr>
 		<tr>
 			<td>是否热卖</td>
@@ -156,11 +156,11 @@ table#tab1{
 		</tr>
 		<tr>
 			<td>起始地址</td>
-			<td><input type="text" name="startaddress" value="${car.startaddress }" /></td>
+			<td><input type="text" name="startaddress" value="${car.startaddress }" maxlength="20" /></td>
 		</tr>
 		<tr>
 			<td>目的地址</td>
-			<td><input type="text" name="endaddress" value="${car.endaddress }" /></td>
+			<td><input type="text" name="endaddress" value="${car.endaddress }" maxlength="20" /></td>
 		</tr>
 	    <tr>  		
 	       	<td colspan="2">
